@@ -1,9 +1,11 @@
-
+import HeroCarousel from "../components/HeroCarousel";
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <main>
+      <HeroCarousel />
+    </main>
+  );
+};
 
-export default HomePage
+export default HomePage;
