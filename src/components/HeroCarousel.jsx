@@ -24,7 +24,7 @@ const HeroCarousel = () => {
 
   return (
     <div className="relative flex items-center justify-center bg-gray-100 overflow-hidden">
-      <div className="absolute bottom-4 right-4 flex gap-4 z-10">
+      <div className="absolute bottom-6 right-10 flex gap-4 z-10">
         {imgSource.map((img, i) => (
           <HeroCarouselButtons
             className="relative w-2 h-2"
