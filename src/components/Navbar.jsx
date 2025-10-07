@@ -1,9 +1,37 @@
-import React from 'react'
+import {
+  AiOutlineMenu,
+  AiOutlineSearch,
+  AiOutlineShoppingCart,
+  AiOutlineUser,
+} from "react-icons/ai";
+import { Link } from "react-router";
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
-  )
-}
+    <nav className="max-w-full mx-auto px-4 py-2 lg:px-6 lg:py-4 xl:px-8 xl:py-6 ">
+      <div className="w-full flex items-center justify-between">
+        <AiOutlineMenu size={28} className="block lg:hidden text-[#80ad53]" />
+        <img
+          src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
+          alt="logo"
+          className="w-24"
+        />
+        <ul className="hidden lg:flex items-center gap-8 flex-wrap text-[#80ad53] font-normal">
+          <Link>Home</Link>
+          <Link>Shop by category</Link>
+          <Link>Combo</Link>
+          <Link>Blogs and community</Link>
+          <Link>Bulk order Enquiry</Link>
+          <Link>Contact Us</Link>
+        </ul>
+        <div className="flex items-center justify-between text-[#80ad53] gap-4">
+          <AiOutlineUser size={28} />
+          <AiOutlineSearch size={28} />
+          <AiOutlineShoppingCart size={28} />
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
