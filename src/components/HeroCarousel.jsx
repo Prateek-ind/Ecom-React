@@ -15,12 +15,18 @@ const HeroCarousel = () => {
       setCurrentIndex((prev) => {
         return (prev + 1) % imgSource.length;
       });
-    }, 6000);
+    }, 4000);
     setLoading(false);
     return () => {
       clearInterval(intervalId);
     };
   }, []);
+
+  const handleImageLoad = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 100);
+  };
 
   return (
     <div className="relative flex items-center justify-center bg-gray-100 overflow-hidden">
@@ -34,12 +40,22 @@ const HeroCarousel = () => {
           />
         ))}
       </div>
+      {currentIndex === 0 && (
+        <button
+          className=" absolute z-10 right-12 bottom-12 px-16 py-4 font-lg
+         font-customFont text-[#80ad53] border border-[#80ad53] bg-white
+         transition-all duration-500 hover:bg-gradient-to-l hover:from-white hover:to-transparent"
+        >
+          Shop
+        </button>
+      )}
 
       <img
+        key={currentIndex}
         src={imgSource[currentIndex]}
-        onLoad={() => setLoading(false)}
-        className={`w-full h-full object-cover transition-opacity duration-700 ${
-          loading ? "opacity-0" : "opacity-100"
+        onLoad={handleImageLoad}
+        className={`w-full h-full object-cover transition-all duration-2000 ease-in-out ${
+          loading ? "opacity-0 scale-110" : "opacity-100 scale-100"
         }`}
         alt=""
       />
