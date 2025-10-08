@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { makhanaProducts } from "./makhanaProducts";
 
-initialItemsItems = [{ makhanaProducts }];
+const initialItemsItems = [{ makhanaProducts }];
 
 const initialState = { items: [], loading: false, error: null };
 
