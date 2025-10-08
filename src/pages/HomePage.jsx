@@ -1,4 +1,4 @@
-import HeroCarousel from "../components/HeroCarousel";
+import HeroCarousel from "../components/HeroSection/HeroCarousel";
 
 const HomePage = () => {
   return (

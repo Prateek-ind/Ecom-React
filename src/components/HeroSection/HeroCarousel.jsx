@@ -10,8 +10,9 @@ const HeroCarousel = () => {
     "//healthybuddie.com/cdn/shop/files/16_1674dbb4-ecfa-4147-a6b7-68ea5fc90fbd.png?v=1751962604&width=3000",
     "//healthybuddie.com/cdn/shop/files/22_120ee40c-dd86-4183-bc7a-edd5eb87c77c.png?v=1756285257&width=5760",
   ];
+  let imgIntervalId = "";
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    imgIntervalId = setInterval(() => {
       setLoading(true);
       setCurrentIndex((prev) => {
         return (prev + 1) % imgSource.length;
@@ -19,9 +20,9 @@ const HeroCarousel = () => {
     }, 4000);
     setLoading(false);
     return () => {
-      clearInterval(intervalId);
+      clearInterval(imgIntervalId);
     };
-  }, []);
+  }, [currentIndex]);
 
   const handleImageLoad = () => {
     setTimeout(() => {
@@ -41,7 +42,7 @@ const HeroCarousel = () => {
           />
         ))}
       </div>
-      
+
       <img
         key={currentIndex}
         src={imgSource[currentIndex]}
@@ -52,7 +53,6 @@ const HeroCarousel = () => {
         alt=""
       />
       {currentIndex !== 2 && <HeroShopButton currentIndex={currentIndex} />}
-
     </div>
   );
 };
