@@ -9,7 +9,7 @@ import { Link } from "react-router";
 const Navbar = () => {
   return (
     <>
-      <nav className=" max-w-full sticky bg-white z-50 mx-auto px-4 py-1 lg:px-6 lg:py-2 xl:px-8 lg:py-3 ">
+      <nav className=" max-w-full sticky bg-white z-50 mx-auto px-4 py-1 lg:px-6 lg:py-2 xl:px-8 xl:py-4 ">
         <div className="w-full flex items-center justify-between">
           <AiOutlineMenu size={28} className="block lg:hidden text-[#80ad53]" />
           <img
