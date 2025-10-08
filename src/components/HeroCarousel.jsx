@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeroCarouselButtons from "./HeroCarouselButtons";
+import HeroShopButton from "./HeroShopButton";
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,16 +41,7 @@ const HeroCarousel = () => {
           />
         ))}
       </div>
-      {currentIndex === 0 && (
-        <button
-          className=" absolute z-10 right-12 bottom-12 px-16 py-4 font-lg
-         font-customFont text-[#80ad53] border border-[#80ad53] bg-white
-         transition-all duration-500 hover:bg-gradient-to-l hover:from-white hover:to-transparent"
-        >
-          Shop
-        </button>
-      )}
-
+      
       <img
         key={currentIndex}
         src={imgSource[currentIndex]}
@@ -59,6 +51,8 @@ const HeroCarousel = () => {
         }`}
         alt=""
       />
+      {currentIndex !== 2 && <HeroShopButton currentIndex={currentIndex} />}
+
     </div>
   );
 };
