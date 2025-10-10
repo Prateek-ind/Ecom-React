@@ -1,6 +1,6 @@
 import React from "react";
-import ProductCard from "../ProductCard";
-import Products from "../Products";
+import ProductCard from "../Product/ProductCard";
+import Products from "../Product/Products";
 
 const ExploreSection = () => {
   return (
