@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        customFont: ['"Poppins"', "sans-serif"],
+        customFont: ['Poppins', "sans-serif"],
       },
       animation: {
         "spin-slow": "spin 4s linear infinite",
