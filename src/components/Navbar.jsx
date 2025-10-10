@@ -9,15 +9,15 @@ import { Link } from "react-router";
 const Navbar = () => {
   return (
     <>
-      <nav className=" max-w-full sticky bg-white z-50 mx-auto px-4 py-1 lg:px-6 lg:py-2 xl:px-8 xl:py-4 ">
+      <nav className=" w-full fixed bg-white z-50 mx-auto px-4  lg:px-6  xl:px-8  ">
         <div className="w-full flex items-center justify-between">
-          <AiOutlineMenu size={28} className="block lg:hidden text-[#80ad53]" />
+          <AiOutlineMenu size={28} className="block lg:hidden text-[#293819]" />
           <img
             src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
             alt="logo"
             className="w-24"
           />
-          <ul className="hidden lg:flex items-center gap-8 flex-wrap text-[#80ad53] text-sm font-medium uppercase">
+          <ul className="hidden lg:flex items-center gap-8 flex-wrap text-[#729b4a] text-xs font-normal font-customFont tracking-widest uppercase">
             <Link>Home</Link>
             <Link>Shop by category</Link>
             <Link>Combo</Link>
