@@ -2,6 +2,7 @@ export const makhanaProducts = {
   makhana: {
     roastedMakhana: {
       tangyTomato: {
+        name: "Roasted Makhana - Tangy Tomato",
         1: "//healthybuddie.com/cdn/shop/files/26_3f420484-66cc-4cea-9dc7-8ff1ef4de83b.png?v=1756140477&width=1500",
         2: "//healthybuddie.com/cdn/shop/files/27_bff4f2a3-3325-4f60-b8f3-54d3d1db0393.png?v=1756140476&width=1500",
         originalPrice: 219,
@@ -10,6 +11,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       indianClassicMix: {
+        name: "Roasted Makhana - Indian Classic mix",
         1: "//healthybuddie.com/cdn/shop/files/2_8880d31f-a63c-46c8-b3b2-69c8cfe089bd.png?v=1756140039&width=1500",
         2: "//healthybuddie.com/cdn/shop/files/3_a0243501-58a4-403d-94c2-0c9a1364dfa3.png?v=1756140038&width=1500",
         originalPrice: 219,
@@ -18,6 +20,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       periPeri: {
+        name: "Roasted Makhana - Peri peri",
         1: "//healthybuddie.com/cdn/shop/files/10_d7d4db1d-5e44-4e71-8a30-e08dce78b91f.png?v=1756105674&width=2438",
         2: "//healthybuddie.com/cdn/shop/files/11_8dc1e203-f71b-4264-9bee-9d173f611af4.png?v=1756105676&width=2438",
         originalPrice: 219,
@@ -26,6 +29,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       perkyPudina: {
+        name: "Roasted Makhana - Perky Pudina",
         1: "//healthybuddie.com/cdn/shop/files/34_562bca7f-fcd3-4678-af20-aeda82324bdc.png?v=1756140330&width=1500",
         2: "//healthybuddie.com/cdn/shop/files/35_b2d3c395-0847-4a61-9072-604296b09cb1.png?v=1756140329&width=1500",
         originalPrice: 219,
@@ -34,6 +38,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       creamNOninon: {
+        name: "Roasted Makhana - Cream n Onion",
         1: "//healthybuddie.com/cdn/shop/files/42_8c2adc0f-3a00-4fe7-810a-a9c500f20ceb.png?v=1756105910&width=2438",
         2: "//healthybuddie.com/cdn/shop/files/43_6184cce7-cd6c-4df1-ab4a-d64e2320f07e.png?v=1756105910&width=2438",
         originalPrice: 219,
@@ -42,6 +47,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       himalayanSaltNPepper: {
+        name: "Roasted Makhana - Himalayan Salt & Pepper",
         1: "//healthybuddie.com/cdn/shop/files/18_9d3e9e02-7fc3-4ef9-a507-7f2669941a4b.png?v=1756140222&width=1500",
         2: "//healthybuddie.com/cdn/shop/files/19_b698988a-bbaf-4f11-b3d7-426d1f6cce2f.png?v=1756140222&width=1500",
         originalPrice: 219,
@@ -50,6 +56,7 @@ export const makhanaProducts = {
         rating: 4.8,
       },
       pearlLotus: {
+        name: "Roasted Makhana - Lotus Premium",
         1: "//healthybuddie.com/cdn/shop/files/28_5f7281b3-41dd-4454-8a16-51f9ce9543cc.png?v=1756288915&width=1485",
         2: "//healthybuddie.com/cdn/shop/files/27_b299f527-2908-48c1-9fbb-9b5334f9f4ba.png?v=1756288915&width=1485",
         originalPrice: 439,
@@ -58,6 +65,7 @@ export const makhanaProducts = {
         rating: 5,
       },
       jumboLotus: {
+        name: "Roasted Makhana - Lotus Premium jumbo",
         1: "//healthybuddie.com/cdn/shop/files/26_1c9f7c45-f356-4d11-b14a-f1af92dc662e.png?v=1750342912&width=1485",
         2: "//healthybuddie.com/cdn/shop/files/25_35c92333-3555-4139-9580-9da7ec31dc95.png?v=1750342913&width=1485",
         originalPrice: 799,
