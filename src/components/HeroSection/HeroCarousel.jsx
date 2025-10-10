@@ -31,7 +31,7 @@ const HeroCarousel = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center bg-gray-100 overflow-hidden">
+    <div className="relative pt-20 flex items-center justify-center bg-gray-100 overflow-hidden">
       <div className="absolute bottom-6 right-10 flex gap-4 z-10">
         {imgSource.map((img, i) => (
           <HeroCarouselButtons
