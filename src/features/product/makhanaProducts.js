@@ -1,10 +1,30 @@
+import tangyTomatoImg1 from "../../assets/RoastedMakhanaIMG/TangyTomato/tangyTomato1.webp";
+import tangyTomatoImg2 from "../../assets/RoastedMakhanaIMG/TangyTomato/tangyTomato2.webp";
+import indianClassicImg1 from "../../assets/RoastedMakhanaIMG/IndianClassic/IndianClassic1.webp";
+import indianClassicImg2 from "../../assets/RoastedMakhanaIMG/IndianClassic/IndianClassic2.webp";
+import periPeriImg1 from "../../assets/RoastedMakhanaIMG/PeriPeri/periPeri1.webp";
+import periPeriImg2 from "../../assets/RoastedMakhanaIMG/PeriPeri/periPeri2.webp";
+import peryPudinaImg1 from "../../assets/RoastedMakhanaIMG/PerkyPudina/perkyPudina1.webp";
+import peryPudinaImg2 from "../../assets/RoastedMakhanaIMG/PerkyPudina/perkyPudina2.webp";
+import creamNOnionImg1 from "../../assets/RoastedMakhanaIMG/CreamNOnion/creamNOnion1.webp";
+import creamNOnionImg2 from "../../assets/RoastedMakhanaIMG/CreamNOnion/creamNOnion2.webp";
+import himalayanSaltNPepperImg1 from "../../assets/RoastedMakhanaIMG/HimalayanSaltNPepper/himalayanSaltNPepper1.webp";
+import himalayanSaltNPepperImg2 from "../../assets/RoastedMakhanaIMG/HimalayanSaltNPepper/himalayanSaltNPepper2.webp";
+import pearlotusImg1 from "../../assets/RoastedMakhanaIMG/PearlLotus/pearlLotus1.webp";
+import pearlotusImg2 from "../../assets/RoastedMakhanaIMG/PearlLotus/pearlLotus2.webp";
+import pearlLotusJumboImg1 from "../../assets/RoastedMakhanaIMG/PearlLotusJumbo/pearlLotusJumbo1.webp";
+import pearlLotusJumboImg2 from "../../assets/RoastedMakhanaIMG/PearlLotusJumbo/pearlLotusJumbo2.webp";
+import heroSectionImg1 from "../../assets/HeroSectionIMG/heroSectionIMG1.webp";
+import heroSectionImg2 from "../../assets/HeroSectionIMG/heroSectionIMG2.webp";
+import heroSectionImg3 from "../../assets/HeroSectionIMG/heroSectionIMG3.webp";
+
 export const makhanaProducts = {
   makhana: {
     roastedMakhana: {
       tangyTomato: {
         name: "Roasted Makhana - Tangy Tomato",
-        1: "//healthybuddie.com/cdn/shop/files/26_3f420484-66cc-4cea-9dc7-8ff1ef4de83b.png?v=1756140477&width=1500",
-        2: "//healthybuddie.com/cdn/shop/files/27_bff4f2a3-3325-4f60-b8f3-54d3d1db0393.png?v=1756140476&width=1500",
+        img1: tangyTomatoImg1,
+        img2: tangyTomatoImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 9,
@@ -12,8 +32,8 @@ export const makhanaProducts = {
       },
       indianClassicMix: {
         name: "Roasted Makhana - Indian Classic mix",
-        1: "//healthybuddie.com/cdn/shop/files/2_8880d31f-a63c-46c8-b3b2-69c8cfe089bd.png?v=1756140039&width=1500",
-        2: "//healthybuddie.com/cdn/shop/files/3_a0243501-58a4-403d-94c2-0c9a1364dfa3.png?v=1756140038&width=1500",
+        img1: indianClassicImg1,
+        img2: indianClassicImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 9,
@@ -21,8 +41,8 @@ export const makhanaProducts = {
       },
       periPeri: {
         name: "Roasted Makhana - Peri peri",
-        1: "//healthybuddie.com/cdn/shop/files/10_d7d4db1d-5e44-4e71-8a30-e08dce78b91f.png?v=1756105674&width=2438",
-        2: "//healthybuddie.com/cdn/shop/files/11_8dc1e203-f71b-4264-9bee-9d173f611af4.png?v=1756105676&width=2438",
+        img1: periPeriImg1,
+        img2: periPeriImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 9,
@@ -30,8 +50,8 @@ export const makhanaProducts = {
       },
       perkyPudina: {
         name: "Roasted Makhana - Perky Pudina",
-        1: "//healthybuddie.com/cdn/shop/files/34_562bca7f-fcd3-4678-af20-aeda82324bdc.png?v=1756140330&width=1500",
-        2: "//healthybuddie.com/cdn/shop/files/35_b2d3c395-0847-4a61-9072-604296b09cb1.png?v=1756140329&width=1500",
+        img1: peryPudinaImg1,
+        img2: peryPudinaImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 9,
@@ -39,8 +59,8 @@ export const makhanaProducts = {
       },
       creamNOninon: {
         name: "Roasted Makhana - Cream n Onion",
-        1: "//healthybuddie.com/cdn/shop/files/42_8c2adc0f-3a00-4fe7-810a-a9c500f20ceb.png?v=1756105910&width=2438",
-        2: "//healthybuddie.com/cdn/shop/files/43_6184cce7-cd6c-4df1-ab4a-d64e2320f07e.png?v=1756105910&width=2438",
+        img1: creamNOnionImg1,
+        img2: creamNOnionImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 9,
@@ -48,8 +68,8 @@ export const makhanaProducts = {
       },
       himalayanSaltNPepper: {
         name: "Roasted Makhana - Himalayan Salt & Pepper",
-        1: "//healthybuddie.com/cdn/shop/files/18_9d3e9e02-7fc3-4ef9-a507-7f2669941a4b.png?v=1756140222&width=1500",
-        2: "//healthybuddie.com/cdn/shop/files/19_b698988a-bbaf-4f11-b3d7-426d1f6cce2f.png?v=1756140222&width=1500",
+        img1: himalayanSaltNPepperImg1,
+        img2: himalayanSaltNPepperImg2,
         originalPrice: 219.0,
         discountedPrice: 199.0,
         discount: 10,
@@ -57,8 +77,8 @@ export const makhanaProducts = {
       },
       pearlLotus: {
         name: "Roasted Makhana - Lotus Premium",
-        1: "//healthybuddie.com/cdn/shop/files/28_5f7281b3-41dd-4454-8a16-51f9ce9543cc.png?v=1756288915&width=1485",
-        2: "//healthybuddie.com/cdn/shop/files/27_b299f527-2908-48c1-9fbb-9b5334f9f4ba.png?v=1756288915&width=1485",
+        img1: pearlotusImg1,
+        img2: pearlotusImg2,
         originalPrice: 439.0,
         discountedPrice: 269.0,
         discount: 39,
@@ -66,8 +86,8 @@ export const makhanaProducts = {
       },
       jumboLotus: {
         name: "Roasted Makhana - Lotus Premium.00",
-        1: "//healthybuddie.com/cdn/shop/files/26_1c9f7c45-f356-4d11-b14a-f1af92dc662e.png?v=1750342912&width=1485",
-        2: "//healthybuddie.com/cdn/shop/files/25_35c92333-3555-4139-9580-9da7ec31dc95.png?v=1750342913&width=1485",
+        img1: pearlLotusJumboImg1,
+        img2: pearlLotusJumboImg2,
         originalPrice: 799.0,
         discountedPrice: 499.0,
         discount: 44,
@@ -75,4 +95,10 @@ export const makhanaProducts = {
       },
     },
   },
+};
+
+export const heroSectionImg = {
+  img1: heroSectionImg1,
+  img2: heroSectionImg2,
+  img3: heroSectionImg3,
 };
