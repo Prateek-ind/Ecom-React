@@ -1,11 +1,22 @@
 import { Link } from "react-router";
 import StarRating from "./StarRating";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
+  const [isHovered, setIsHovered] = useState();
   return (
-    <div className=" flex flex-col items-center uppercase text-center">
-      <div className="relative">
-        <img src={product[1]} className="w-full h-auto" alt="" />
+    <div className=" flex flex-col items-center uppercase text-center cursor-pointer">
+      <div
+        className="relative w-full overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img
+          src={isHovered ? product.img2 : product.img1}
+          className="w-full h-auto opacity-100 transition-opacity duration-500"
+          alt=""
+        />
+
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>
@@ -24,9 +35,11 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="flex gap-4 pt-4">
         <Link>
-        <StarRating rating={product.rating} />
-      </Link>
-      <p className="text-xs text-gray-400 tracking-widest">({product.rating})</p>
+          <StarRating rating={product.rating} />
+        </Link>
+        <p className="text-xs text-gray-400 tracking-widest">
+          ({product.rating})
+        </p>
       </div>
     </div>
   );
