@@ -32,7 +32,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className=" w-full border-b border-gray-100"></div>
+      <div className=" w-full border-b-2 border-gray-100"></div>
     </>
   );
 };
