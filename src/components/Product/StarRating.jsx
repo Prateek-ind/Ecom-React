@@ -15,12 +15,12 @@ const StarRating = ({ rating }) => {
         return (
           <div
             key={i}
-            className="relative w-4 h-4 text-green-400"
+            className="relative w-4 h-4 text-lime-500"
             style={{ width: 24, height: 24 }}
           >
             <FaStar className="absolute top-0 left-0 w-4 h-4 text-gray-300" />
             <FaStar
-              className="absolute top-0 left-0 w-4 h-4 text-green-400 overflow-hidden"
+              className="absolute top-0 left-0 w-4 h-4 text-lime-500 overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - fillPercent}% 0 0)` }}
             />
           </div>
