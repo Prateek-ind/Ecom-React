@@ -3,12 +3,12 @@ import HeroCarouselButtons from "./HeroCarouselButtons";
 import HeroShopButton from "./HeroShopButton";
 import { heroSectionImg } from "../../features/product/makhanaProducts";
 
-const HeroCarousel = () => {
+const HeroCarousel = ({ isMobile }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const imgSource = Object.values(heroSectionImg);
 
   let imgIntervalId = "";
+
   useEffect(() => {
     imgIntervalId = setInterval(() => {
       setLoading(true);
@@ -21,6 +21,10 @@ const HeroCarousel = () => {
       clearInterval(imgIntervalId);
     };
   }, [currentIndex]);
+
+  const imgSource = isMobile
+    ? Object.values(heroSectionImg.mobile)
+    : Object.values(heroSectionImg.desktop);
 
   const handleImageLoad = () => {
     setTimeout(() => {
@@ -50,7 +54,9 @@ const HeroCarousel = () => {
         }`}
         alt=""
       />
-      {currentIndex !== 2 && <HeroShopButton currentIndex={currentIndex} />}
+      {currentIndex !== 2 && (
+        <HeroShopButton currentIndex={currentIndex} isMobile={isMobile} />
+      )}
     </div>
   );
 };
