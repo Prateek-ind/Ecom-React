@@ -17,6 +17,17 @@ import pearlLotusJumboImg2 from "../../assets/RoastedMakhanaIMG/PearlLotusJumbo/
 import heroSectionImg1 from "../../assets/HeroSectionIMG/heroSectionIMG1.webp";
 import heroSectionImg2 from "../../assets/HeroSectionIMG/heroSectionIMG2.webp";
 import heroSectionImg3 from "../../assets/HeroSectionIMG/heroSectionIMG3.webp";
+import heroSectionImg1_2 from "../../assets/HeroSectionIMG/heroSectionIMG1_2.webp";
+import heroSectionImg2_2 from "../../assets/HeroSectionIMG/heroSectionIMG2_2.webp";
+import heroSectionImg3_2 from "../../assets/HeroSectionIMG/heroSectionIMG3_2.webp";
+import partitionImg1 from "../../assets/PartitionIMG/partitionIMG_1.webp";
+import partitionImg1Mobile from "../../assets/PartitionIMG/partitionIMG_1_mobile.webp";
+import comboPack2X6Img_1 from "../../assets/ComboPackIMG/ComboPackOf2X6/ComboPack2X6.webp";
+import comboPack2X6Img_2 from "../../assets/ComboPackIMG/ComboPackOf2X6/ComboPack2X6_2.webp";
+import comboPack5Img6_1 from "../../assets/ComboPackIMG/ComboPckOf6/ComboPackOf6.webp";
+import comboPack5Img6_2 from "../../assets/ComboPackIMG/ComboPckOf6/ComboPackOf6_2.webp";
+import comboPack5Img5_1 from "../../assets/ComboPackIMG/ComboPackOf5/ComboPackOf5.webp";
+import comboPack5Img5_2 from "../../assets/ComboPackIMG/ComboPackOf5/ComboPackOf5_2.webp";
 
 export const makhanaProducts = {
   makhana: {
@@ -94,11 +105,52 @@ export const makhanaProducts = {
         rating: 4.4,
       },
     },
+    comboOfMakhana: {
+      packOf6X2: {
+        name: "Ultimate makhana family pack (12 pack)",
+        img1: comboPack2X6Img_1,
+        img2: comboPack2X6Img_2,
+        originalPrice: 2618.0,
+        discountedPrice: 2217.0,
+        discount: 15,
+        rating: 4.0,
+      },
+      packOf6: {
+        name: "Super six flavour combo",
+        img1: comboPack5Img6_1,
+        img2: comboPack5Img6_2,
+        originalPrice: 1304.0,
+        discountedPrice: 1108.0,
+        discount: 15,
+        rating: 4.5,
+      },
+      packOf2X5: {
+        name: "Cream and cruncy combo",
+        img1: comboPack5Img5_1,
+        img2: comboPack5Img5_2,
+        originalPrice: 1304.0,
+        discountedPrice: 1108.0,
+        discount: 15,
+        rating: 4.5,
+      },
+    },
   },
 };
 
 export const heroSectionImg = {
-  img1: heroSectionImg1,
-  img2: heroSectionImg2,
-  img3: heroSectionImg3,
+  desktop: {
+    img1: heroSectionImg1,
+    img2: heroSectionImg2,
+    img3: heroSectionImg3,
+  },
+  mobile: {
+    img1: heroSectionImg1_2,
+    img2: heroSectionImg2_2,
+    img3: heroSectionImg3_2,
+  },
+};
+
+export const partitionImg = {
+  desktop: partitionImg1,
+  mobile: partitionImg1Mobile,
 };
