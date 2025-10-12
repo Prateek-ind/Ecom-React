@@ -8,7 +8,6 @@ const ExploreSection = ({
   noOfItems,
   partitionImageSrc,
 }) => {
-
   return (
     <>
       <section
@@ -25,7 +24,9 @@ const ExploreSection = ({
         </div>
         <Products productsData={productsData} noOfItems={noOfItems} />
       </section>
-      <img src={partitionImageSrc} alt="partition image" className="mt-12" />
+      {partitionImageSrc && (
+        <img src={partitionImageSrc} alt="partition image" className="mt-12" />
+      )}
     </>
   );
 };
