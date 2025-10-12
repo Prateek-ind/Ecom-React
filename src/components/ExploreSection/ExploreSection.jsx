@@ -1,13 +1,14 @@
 import Products from "../Product/Products";
-import { partitionImg } from "../../features/product/makhanaProducts";
+import { partitionImg } from "../../features/product/Products";
 
 const ExploreSection = ({
-  isMobile,
   heading,
   slogan,
   productsData,
   noOfItems,
+  partitionImageSrc,
 }) => {
+
   return (
     <>
       <section
@@ -24,11 +25,7 @@ const ExploreSection = ({
         </div>
         <Products productsData={productsData} noOfItems={noOfItems} />
       </section>
-      <img
-        src={isMobile ? partitionImg.mobile : partitionImg.desktop}
-        alt="partition image"
-        className="mt-12"
-      />
+      <img src={partitionImageSrc} alt="partition image" className="mt-12" />
     </>
   );
 };

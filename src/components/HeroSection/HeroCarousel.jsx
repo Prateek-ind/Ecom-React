@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import HeroCarouselButtons from "./HeroCarouselButtons";
 import HeroShopButton from "./HeroShopButton";
-import { heroSectionImg } from "../../features/product/makhanaProducts";
+import { heroSectionImg } from "../../features/product/Products";
 
 const HeroCarousel = ({ isMobile }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

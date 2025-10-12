@@ -10,10 +10,10 @@ const Products = ({ productsData, noOfItems }) => {
   }
 
   return (
-    <div className="mt-16  w-full px-4 lg:px-6 xl:px-8 bg-[#feffec] ">
+    <div className="mt-16 w-full px-4 lg:px-6 xl:px-8 bg-[#feffec] ">
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 
-  md:grid-cols-3 gap-12 "
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
+   gap-12 "
       >
         {productKeys.slice(0, noOfItems).map((key) => {
           const product = productsData[key];
