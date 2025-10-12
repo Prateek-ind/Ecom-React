@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { makhanaProducts } from "./makhanaProducts";
+import { makhanaProducts, teaProducts } from "./Products";
 
-
-const initialState = { items: [makhanaProducts], loading: false, error: null };
+const initialState = { items: [makhanaProducts, teaProducts], loading: false, error: null };
 
 const productSlice = createSlice({
   name: "product",
