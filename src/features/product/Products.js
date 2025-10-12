@@ -48,8 +48,8 @@ import darjeelingLeafImg_1 from "../../assets/TeaIMG/darjeelingLeaf/darjeelingLe
 import darjeelingLeafImg_2 from "../../assets/TeaIMG/darjeelingLeaf/darjeelingLeafImg_2.webp";
 import tulsiGreenImg_1 from "../../assets/TeaIMG/tulsiGreen/tulsiGreenImg_1.webp";
 import tulsiGreenImg_2 from "../../assets/TeaIMG/tulsiGreen/tulsiGreenImg_2.webp";
-import roastedRoseBlackImg_1 from "../../assets/TeaIMG/roastedRoseBlack/roastedRoseBlackImg_1.img";
-import roastedRoseBlackImg_2 from "../../assets/TeaIMG/roastedRoseBlack/roastedRoseBlackImg_2.img";
+import roastedRoseBlackImg_1 from "../../assets/TeaIMG/roastedRoseBlack/roastedRoseBlackImg_1.webp";
+import roastedRoseBlackImg_2 from "../../assets/TeaIMG/roastedRoseBlack/roastedRoseBlackImg_2.webp";
 import teaComboPackOf6Img_1 from "../../assets/TeaCombosIMG/PackOf6/teaComboPackOf6.webp";
 import teaComboPackOf6Img_2 from "../../assets/TeaCombosIMG/PackOf6/teaComboPackOf6_2.webp";
 import balancedWellnessComboImg_1 from "../../assets/TeaCombosIMG/balancedWellnessCombo/balancedWellnessImg_1.webp";
@@ -265,7 +265,7 @@ export const teaProducts = {
       discount: 28,
       rating: 4.8,
     },
-    packOf6: {
+    herBalanceCombo: {
       img1: herBalanceComboImg_1,
       img2: herBalanceComboImg_2,
       name: "Her balance cleanse combo",
@@ -274,7 +274,7 @@ export const teaProducts = {
       discount: 14,
       rating: 0,
     },
-    packOf6: {
+    brainNBodyCombo: {
       img1: brainNBodyComboImg_1,
       img2: brainNBodyComboImg_2,
       name: "Brain & body vitality combo",
@@ -283,7 +283,7 @@ export const teaProducts = {
       discount: 18,
       rating: 0,
     },
-    packOf6: {
+    immunityNDetoxCombo: {
       img1: immunityNDetoxComboImg_1,
       img2: immunityNDetoxComboImg_2,
       name: "Immunity & detox combo",
@@ -292,7 +292,7 @@ export const teaProducts = {
       discount: 18,
       rating: 4,
     },
-    packOf6: {
+    womenWellnessCombo: {
       img1: womenWellnessComboImg_1,
       img2: womenWellnessComboImg_2,
       name: "Women's wellness combo",
