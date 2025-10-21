@@ -3,6 +3,7 @@ import ExploreSection from "../components/ExploreSection/ExploreSection";
 import { partitionImg } from "../features/product/Products";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Reviews from "../components/Reviews";
 
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -81,6 +82,7 @@ const HomePage = () => {
         noOfItems={6}
         partitionImageSrc={null}
       />
+      <Reviews/>
     </main>
   );
 };
