@@ -27,6 +27,7 @@ const ExploreSection = ({
       {partitionImageSrc && (
         <img src={partitionImageSrc} alt="partition image" className="mt-12" />
       )}
+      <hr />
     </>
   );
 };
