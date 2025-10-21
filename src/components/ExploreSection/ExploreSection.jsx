@@ -12,7 +12,7 @@ const ExploreSection = ({
     <>
       <section
         className="w-full flex flex-col items-center
-     px-4 lg:px-6 xl:px-8 mt-12 font-customFont bg-[#feffec] uppercase"
+     px-4 lg:px-6 xl:px-8 my-12 font-customFont bg-[#feffec] uppercase"
       >
         <div className="flex flex-col items-center gap-4">
           <p className="text-xs text-gray-900 font-light tracking-[2px]">
