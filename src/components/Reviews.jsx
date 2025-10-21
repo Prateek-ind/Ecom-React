@@ -26,7 +26,7 @@ const Reviews = () => {
         <h2 className="text-3xl font-normal tracking-widest text-gray-800 uppercase my-4">
           Voices We Value
         </h2>
-        <p className="text-xs font-normal text-gray-800 my-4 leading-6">
+        <p className="text-sm font-normal text-gray-800 my-4 leading-6">
           From crunchy cravings to healthy snacking habits — here’s what our
           customers have to say about their favorite Makhana flavors and combos.
           Tried, tasted, and truly enjoyed.
