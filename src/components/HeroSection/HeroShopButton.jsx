@@ -1,4 +1,4 @@
-const HeroShopButton = ({ currentIndex, isMobile }) => {
+const HeroShopButton = ({ label, currentIndex, isMobile }) => {
   const cssClasses = {
     desktop: {
       first: `" absolute z-10 top-70 right-50 px-16 py-2 font-lg
@@ -27,7 +27,7 @@ const HeroShopButton = ({ currentIndex, isMobile }) => {
           isMobile ? cssClasses.mobile.first : cssClasses.desktop.first
         }
       >
-        Shop
+        {label ? label : "Shop"}
       </button>
     );
   } else {
@@ -37,7 +37,7 @@ const HeroShopButton = ({ currentIndex, isMobile }) => {
           isMobile ? cssClasses.mobile.second : cssClasses.desktop.second
         }
       >
-        Shop
+        {label ? label : "Shop"}
       </button>
     );
   }
