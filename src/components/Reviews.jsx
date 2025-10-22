@@ -15,9 +15,10 @@ const Reviews = () => {
     setReview(index === reviews.length - 1 ? 0 : index + 1);
   };
   return (
+    <>
     <section
       className="w-full flex flex-col items-center
-     px-4 lg:px-6 xl:px-8 mt-12 font-customFont bg-[#feffec] "
+     px-4 lg:px-6 xl:px-8 py-12 font-customFont bg-[#feffec] "
     >
       <div className="flex flex-col items-center text-center w-2/4">
         <h3 className="text-sm font-bold tracking-widest text-gray-800 uppercase my-4">
@@ -48,6 +49,8 @@ const Reviews = () => {
         </div>
       </div>
     </section>
+    <hr className="bg-[#feffec]"/>
+    </>
   );
 };
 
