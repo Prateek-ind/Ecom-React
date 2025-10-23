@@ -1,4 +1,4 @@
-import React from "react";
+import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { Form } from "react-router";
 
 const Footer = () => {
@@ -63,6 +63,17 @@ const Footer = () => {
             cater to your taste and health needs.
           </p>
         </div>
+      </div>
+      <div className="flex flex-col items-center my-4 gap-4">
+        <div className="flex gap-4">
+          <a href="https://www.facebook.com">
+            <AiFillFacebook size={24} className="cursor-pointer" />
+          </a>
+          <a href="https://www.instagram.com">
+            <AiFillInstagram size={24} className="cursor-pointer" />
+          </a>
+        </div>
+        <p>© 2025 - ALL RIGHTS RESERVED.</p>
       </div>
     </footer>
   );
