@@ -25,7 +25,8 @@ const GetInTouch = () => {
           <button
             className="px-16 py-2 font-lg
          font-customFont bg-[#63ce36] border border-[#80ad53] text-white hover:scale-105
-         transition-all duration-500 hover:bg-gradient-to-l hover:from-white hover:to-transparent"
+         transition-all duration-500 hover:bg-gradient-to-l  hover:from-green-500 hover:to-green-800
+         hover:text-white"
           >
             Subscribe
           </button>
