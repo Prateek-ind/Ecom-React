@@ -6,7 +6,7 @@ const GetInTouch = () => {
   return (
     <section
       className="w-full flex flex-col items-center
-     px-4 lg:px-6 xl:px-8 my-12 font-customFont bg-[#feffec] "
+     px-4 lg:px-6 xl:px-8 py-12 font-customFont bg-[#feffec] "
     >
       <div className="flex flex-col items-center text-center w-2/4">
         <h3 className="text-sm font-bold tracking-widest text-gray-800 uppercase mt-8">
@@ -20,7 +20,7 @@ const GetInTouch = () => {
           special discounts. No spam, just pure snack goodness straight to your
           inbox.
         </p>
-        <Form className="flex gap-4">
+        <Form className=" flex flex-col items-center gap-4 my-2">
           <input type="text" className="w-96 border px-4 py-2 " />
           <button
             className="px-16 py-2 font-lg
