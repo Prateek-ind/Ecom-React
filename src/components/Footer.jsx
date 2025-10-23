@@ -5,16 +5,16 @@ const Footer = () => {
   return (
     <footer
       className="w-full flex flex-col items-center
-     px-4 lg:px-6 xl:px-8 py-12 font-customFont bg-[#7cc65d] "
+     px-4 lg:px-6 xl:px-8 py-12 font-customFont bg-[#7cc65d] text-center"
     >
-      <div className="flex items-start justify-between gap-4 ">
-        <div>
+      <div className="flex items-center justify-center sm:items-start flex-col sm:flex-row sm:justify-between gap-8 ">
+        <div className="flex flex-col items-center">
           <h3 className="mb-4 font-normal">NewsLetter</h3>
           <p className="text-sm font-thin my-2">
             Sign up to our newsletter to receive exclusive offers.
           </p>
-          <div>
-            <Form className="flex flex-col gap-4">
+          <div  className="flex flex-col gap-4">
+            <Form  className=" flex flex-col items-center gap-4 my-2">
               <input
                 type="text"
                 className="w-72 border border-gray-300 outline-none px-4 py-2 text-sm font-thin bg-transparent text-black placeholder:text-black"
