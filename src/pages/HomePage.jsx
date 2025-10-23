@@ -9,25 +9,11 @@ import GetInTouch from "../components/GetInTouch";
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const makhanaData = useSelector((state) => state.product.items?.[0]?.makhana);
-  const teaData = useSelector((state) => state.product.items?.[1]);
-
-  const roastedMakhanaProductData = makhanaData?.roastedMakhana || {};
-  const roastedMakhanaComboProductData = makhanaData?.comboOfMakhana || {};
-
-  const roastedMakhanaProducts = Object.keys(roastedMakhanaProductData);
-  const roastedMakhanaComboProducts = Object.keys(
-    roastedMakhanaComboProductData
-  );
-
-  const teaProductsData = teaData?.tea || {};
-  const comboTeaProductsData = teaData?.teaCombo || {};
-
-  const teaProducts = Object.keys(teaProductsData);
-  const comboTeaProducts = Object.keys(comboTeaProductsData);
+  const makhanaData = useSelector((state) => state.product.makhana);
+  const teaData = useSelector((state) => state.product.tea);
 
   const partitionImageSrc = partitionImg;
-  console.log(teaProductsData);
+  console.log();
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,8 +29,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        products={roastedMakhanaProducts}
-        productsData={roastedMakhanaProductData}
+        products={makhanaData.singles}
+        productsData={Object.keys(makhanaData.singles)}
         noOfItems={6}
         partitionImageSrc={
           isMobile
@@ -56,8 +42,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        products={roastedMakhanaComboProducts}
-        productsData={roastedMakhanaComboProductData}
+        products={makhanaData.combo}
+        productsData={Object.keys(makhanaData.combo)}
         noOfItems={3}
         partitionImageSrc={
           isMobile
@@ -69,8 +55,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Taste the Tradition"
         slogan="Wellness in Every Sip"
-        products={teaProducts}
-        productsData={teaProductsData}
+        products={teaData.singles}
+        productsData={Object.keys(teaData.singles)}
         noOfItems={6}
         partitionImageSrc={null}
       />
@@ -78,13 +64,13 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Tea Combo Packs"
         slogan="Wellness in Every Sip"
-        products={comboTeaProducts}
-        productsData={comboTeaProductsData}
+        products={teaData.combo}
+        productsData={Object.keys(teaData.combo)}
         noOfItems={6}
         partitionImageSrc={null}
       />
-      <Reviews/>
-      <GetInTouch/>
+      <Reviews />
+      <GetInTouch />
     </main>
   );
 };
