@@ -31,8 +31,9 @@ const Navbar = () => {
             <AiOutlineShoppingCart size={28} />
           </div>
         </div>
+        <hr />
       </nav>
-      <div className=" w-full border-b-2 border-gray-100"></div>
+      
     </>
   );
 };
