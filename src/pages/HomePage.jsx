@@ -9,11 +9,8 @@ import GetInTouch from "../components/GetInTouch";
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const makhanaData = useSelector((state) => state.product.makhana);
-  const teaData = useSelector((state) => state.product.tea);
-
   const partitionImageSrc = partitionImg;
-  console.log(teaData.combo);
+  console.log();
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,8 +26,7 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        products={makhanaData.singles}
-        
+        category="makhanaSingles"
         noOfItems={6}
         partitionImageSrc={
           isMobile
@@ -42,8 +38,7 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        products={makhanaData.combo}
-        
+        category="makhanaCombo"
         noOfItems={3}
         partitionImageSrc={
           isMobile
@@ -55,8 +50,7 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Taste the Tradition"
         slogan="Wellness in Every Sip"
-        products={teaData.singles}
-      
+        category="teaSingles"
         noOfItems={6}
         partitionImageSrc={null}
       />
@@ -64,8 +58,7 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Tea Combo Packs"
         slogan="Wellness in Every Sip"
-        products={teaData.combo}
-     
+        category="teaCombo"
         noOfItems={6}
         partitionImageSrc={null}
       />

@@ -1,12 +1,23 @@
+import { useSelector } from "react-redux";
 import Products from "../Product/Products";
 
 const ExploreSection = ({
   heading,
   slogan,
-  products,
+
   noOfItems,
+  category,
   partitionImageSrc,
 }) => {
+  const products =
+    category === "makhanaSingles"
+      ? useSelector((state) => state.product.makhana.singles)
+      : category === "makhanaCombo"
+      ? useSelector((state) => state.product.makhana.combo)
+      : category === "teaSingles"
+      ? useSelector((state) => state.product.tea.singles)
+      : useSelector((state) => state.product.tea.combo);
+
   return (
     <>
       <section
