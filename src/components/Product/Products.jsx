@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import ViewAllBtn from "../ExploreSection/ViewAllBtn";
 
-const Products = ({ productsData, noOfItems }) => {
-  console.log(productsData);
-  const productKeys = Object.keys(productsData);
-  if (!productsData || Object.keys(productsData).length === 0) {
+const Products = ({ products, noOfItems }) => {
+  console.log(products);
+  const productKeys = Object.keys(products);
+  if (!products || Object.keys(products).length === 0) {
     return <p className="text-center py-10">No products available.</p>;
   }
 
@@ -16,13 +16,13 @@ const Products = ({ productsData, noOfItems }) => {
    gap-12 "
       >
         {productKeys.slice(0, noOfItems).map((key) => {
-          const product = productsData[key];
+          const product = products[key];
 
           return <ProductCard key={key} product={product} />;
         })}
       </div>
       <div className="flex justify-center">
-        <ViewAllBtn />
+       
       </div>
     </div>
   );
