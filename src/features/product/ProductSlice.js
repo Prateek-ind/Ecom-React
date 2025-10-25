@@ -24,8 +24,8 @@ const initialState = {
     combo: processProducts(makhanaProducts.makhana, "comboOfMakhana"),
   },
   tea: {
-    singles: processProducts(teaProducts.tea, "tea"),
-    combo: processProducts(teaProducts.tea, "teaCombo"),
+    singles: processProducts(teaProducts, "tea"),
+    combo: processProducts(teaProducts, "teaCombo"),
   },
   loading: false,
   error: null,
