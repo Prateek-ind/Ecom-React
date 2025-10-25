@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import Products from "../Product/Products";
+import ViewAllBtn from "./ViewAllBtn";
 
 const ExploreSection = ({
   heading,
@@ -33,6 +34,7 @@ const ExploreSection = ({
           </h2>
         </div>
         <Products products={products} noOfItems={noOfItems} />
+        <ViewAllBtn category={category} />
       </section>
       {partitionImageSrc && (
         <img
