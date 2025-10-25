@@ -13,7 +13,7 @@ const HomePage = () => {
   const teaData = useSelector((state) => state.product.tea);
 
   const partitionImageSrc = partitionImg;
-  console.log();
+  console.log(teaData.combo);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,7 +30,7 @@ const HomePage = () => {
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
         products={makhanaData.singles}
-        productsData={Object.keys(makhanaData.singles)}
+        
         noOfItems={6}
         partitionImageSrc={
           isMobile
@@ -43,7 +43,7 @@ const HomePage = () => {
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
         products={makhanaData.combo}
-        productsData={Object.keys(makhanaData.combo)}
+        
         noOfItems={3}
         partitionImageSrc={
           isMobile
@@ -56,7 +56,7 @@ const HomePage = () => {
         heading="Taste the Tradition"
         slogan="Wellness in Every Sip"
         products={teaData.singles}
-        productsData={Object.keys(teaData.singles)}
+      
         noOfItems={6}
         partitionImageSrc={null}
       />
@@ -65,7 +65,7 @@ const HomePage = () => {
         heading="Tea Combo Packs"
         slogan="Wellness in Every Sip"
         products={teaData.combo}
-        productsData={Object.keys(teaData.combo)}
+     
         noOfItems={6}
         partitionImageSrc={null}
       />
