@@ -2,7 +2,6 @@ import HeroCarousel from "../components/HeroSection/HeroCarousel";
 import ExploreSection from "../components/ExploreSection/ExploreSection";
 import { partitionImg } from "../features/product/Products";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Reviews from "../components/Reviews";
 import GetInTouch from "../components/GetInTouch";
 
