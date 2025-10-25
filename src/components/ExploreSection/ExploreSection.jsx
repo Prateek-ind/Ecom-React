@@ -3,7 +3,7 @@ import Products from "../Product/Products";
 const ExploreSection = ({
   heading,
   slogan,
-  productsData,
+  products,
   noOfItems,
   partitionImageSrc,
 }) => {
@@ -21,7 +21,7 @@ const ExploreSection = ({
             {heading}
           </h2>
         </div>
-        <Products productsData={productsData} noOfItems={noOfItems} />
+        <Products products={products} noOfItems={noOfItems} />
       </section>
       {partitionImageSrc && (
         <img
