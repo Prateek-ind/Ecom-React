@@ -17,8 +17,7 @@ const ProductCard = ({ product }) => {
           className="w-full h-auto opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
-        {isHovered && <AddToCartBtn />
-}
+        {isHovered && <AddToCartBtn product={product} />}
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>

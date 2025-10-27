@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../features/cart/CartSlice";
 
-const AddToCartBtn = () => {
+const AddToCartBtn = ({ product }) => {
   const [cssClasses, setCssClasses] = useState("");
+  const dispatch = useDispatch();
 
   const triggerAnimation = (animation) => {
     setCssClasses(""); // reset class
     setTimeout(() => setCssClasses(animation), 10); // reapply after a small delay
+  };
+
+  const handleAddToCart = () => {
+    dispatch(cartActions.addToCart(product));
   };
 
   return (
@@ -17,6 +24,7 @@ const AddToCartBtn = () => {
         onMouseEnter={() => triggerAnimation("animate-spinOnceRight")}
         onMouseLeave={() => triggerAnimation("animate-spinOnceLeft")}
         className={`p-2 text-lg transition-transform ${cssClasses}`}
+        onClick={handleAddToCart}
       >
         +
       </button>
