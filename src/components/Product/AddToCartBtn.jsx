@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../features/cart/CartSlice";
+import { cartUIActions } from "../../features/cart/cartUISlice";
 
 const AddToCartBtn = ({ product }) => {
   const [cssClasses, setCssClasses] = useState("");
@@ -13,6 +14,7 @@ const AddToCartBtn = ({ product }) => {
 
   const handleAddToCart = () => {
     dispatch(cartActions.addToCart(product));
+    dispatch(cartUIActions.openCart());
   };
 
   return (
