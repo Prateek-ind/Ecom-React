@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import StarRating from "./StarRating";
 import { useState } from "react";
+import AddToCartBtn from "./AddToCartBtn";
 
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState();
@@ -16,7 +17,8 @@ const ProductCard = ({ product }) => {
           className="w-full h-auto opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
-
+        {isHovered && <AddToCartBtn />
+}
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>
