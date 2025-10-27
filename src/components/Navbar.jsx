@@ -4,9 +4,12 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 
 const Navbar = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const hasItems = Object.keys(cartItems).length;
   return (
     <>
       <nav className=" w-full fixed z-50 mx-auto   bg-[#feffec]">
@@ -28,7 +31,12 @@ const Navbar = () => {
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
             <AiOutlineUser size={28} />
             <AiOutlineSearch size={28} />
-            <AiOutlineShoppingCart size={28} />
+            <div className="relative">
+              <AiOutlineShoppingCart size={28} className="" />
+              {hasItems > 0 && (
+                <div className="w-3 h-3 rounded-full absolute -right-1 -top-1 bg-green-600 shadow-white"></div>
+              )}
+            </div>
           </div>
         </div>
         <hr />
