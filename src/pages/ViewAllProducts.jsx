@@ -19,11 +19,11 @@ const ViewAllProducts = () => {
   return (
     <section
       className="w-full max-w-8xl flex flex-col items-center
-     px-4 lg:px-6 xl:px-8 py-12 font-customFont bg-[#feffec] uppercase"
+     font-customFont bg-[#feffec] uppercase"
     >
-      <div className=" w-full text-center uppercase mt-12">
-        <div className="w-full relative py-8 ">
-          <p className="absolute top-2 left-0 text-sm text-gray-600 fot-thin">
+      <div className=" w-full text-center uppercase mt-24">
+        <div className="w-full relative py-12 ">
+          <p className="pl-4 absolute top-2 left-0 text-xs text-gray-500 font-thin">
             Home / Shop / {` `}
             {category === "makhanaSingles"
               ? "Makhana"
@@ -46,13 +46,13 @@ const ViewAllProducts = () => {
 
         <div>
           <hr />
-          <p className="py-4 text-sm font-thin tracking-widest text-gray-500">
+          <p className="py-4  text-sm font-thin tracking-widest text-gray-500">
             {Object.keys(products).length} PRODUCTS
           </p>
           <hr />
         </div>
       </div>
-      <div>
+      <div className="px-4  lg:px-6  xl:px-8 mb-12">
         <Products products={products} noOfItems={8} />
       </div>
     </section>

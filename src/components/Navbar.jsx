@@ -9,8 +9,8 @@ import { Link } from "react-router";
 const Navbar = () => {
   return (
     <>
-      <nav className=" w-full fixed z-50 mx-auto px-4  lg:px-6  xl:px-8  bg-[#feffec]">
-        <div className="mx-auto max-w-7xl flex items-center justify-between">
+      <nav className=" w-full fixed z-50 mx-auto   bg-[#feffec]">
+        <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
           <AiOutlineMenu size={28} className="block lg:hidden text-[#293819]" />
           <img
             src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
@@ -33,7 +33,6 @@ const Navbar = () => {
         </div>
         <hr />
       </nav>
-      
     </>
   );
 };
