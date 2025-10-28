@@ -6,19 +6,19 @@ const CartDrawerItems = ({
   decreaseQuantity,
   removeFromCart,
 }) => {
-  const totalAmount = Number(cart.totalAmount) || 0;
+  const totalAmount = cart.totalAmount;
   console.log(totalAmount);
   return (
     <>
       <div>
         <hr />
-        {totalAmount < 308.45 ? (
+        {totalAmount > 308.45 ? (
           <p className="py-2 px-4 text-xs text-gray-500">
             You are eligible for free shipping.
           </p>
         ) : (
           <p className="py-2 px-4 text-xs text-gray-500">
-            Spend Rs. 119.45 more and get free shipping!
+            ` Spend Rs. {(308.45 - totalAmount).toFixed(2)} more and get free shipping!`
           </p>
         )}
         <hr />
