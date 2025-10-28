@@ -6,6 +6,7 @@ import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import OrderNoteSection from "./OrderNoteSection";
 import CartDrawerItems from "./CartDrawerItems";
+import { useNavigate } from "react-router";
 
 const CartDrawer = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const CartDrawer = () => {
   const cart = useSelector((state) => state.cart);
   const [note, setNote] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const navigate =  useNavigate()
 
   const increaseQuantity = (item) => {
     dispatch(cartActions.addToCart(item));
@@ -75,7 +77,7 @@ const CartDrawer = () => {
             </p>
           </div>
         </div>
-        <button className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4">
+        <button className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4" onClick={()=>navigate('cart')}>
           Checkout
         </button>
       </div>
