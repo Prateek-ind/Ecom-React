@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoCloseOutline } from "react-icons/io5";
+import { MdDiscount } from "react-icons/md";
 import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import OrderNoteSection from "./OrderNoteSection";
@@ -61,12 +62,22 @@ const CartDrawer = () => {
           Taxes and shipping calculated at checkout
         </p>
         <div>
-          <p className="px-3 py-1.5 bg-red-500 text-white text-sm font-thin mt-2">
-            5% Instant (Get 5% Prepaid)
-          </p>
-          <p>Rs. {Number(cart.totalAmount) * 0.05}</p>
+          <div className="flex items-center gap-4 ">
+            <div
+              className="px-3 py-1.5 mt-2 max-w-fit bg-red-600
+             text-white text-xs font-thin flex items-center gap-2"
+            >
+              <MdDiscount /> <p>5% Instant (Get 5% Prepaid)</p>
+            </div>
+            <p className="text-sm text-gray-700">
+              {" "}
+              - Rs. {(Number(cart.totalAmount) * 0.05).toFixed(2)}
+            </p>
+          </div>
         </div>
-        <button>Checkout</button>
+        <button className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4">
+          Checkout
+        </button>
       </div>
     </div>
   );
