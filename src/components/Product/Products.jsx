@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+
 import ProductCard from "./ProductCard";
-import ViewAllBtn from "../ExploreSection/ViewAllBtn";
+
 
 const Products = ({ products, noOfItems }) => {
   console.log(products);
