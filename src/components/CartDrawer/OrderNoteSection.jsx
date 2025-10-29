@@ -1,4 +1,12 @@
-const OrderNoteSection = ({ note, setNote, isEditing, setIsEditing }) => {
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../features/cart/CartSlice";
+
+const OrderNoteSection = () => {
+  const dispatch = useDispatch();
+  const note = useSelector((state) => state.cart.orderNote);
+  const [isEditing, setIsEditing] = useState(false);
+
   const handleSave = () => {
     if (note.trim() !== "") {
       setIsEditing(false);
@@ -10,12 +18,12 @@ const OrderNoteSection = ({ note, setNote, isEditing, setIsEditing }) => {
   };
 
   const handleCancel = () => {
-    setNote("");
+    dispatch(cartActions.setOrderNote(""));
     setIsEditing(false);
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 w-full max-w-md">
       {!isEditing && !note && (
         <button
           className="text-sm font-thin text-gray-700 "
@@ -33,7 +41,7 @@ const OrderNoteSection = ({ note, setNote, isEditing, setIsEditing }) => {
             id="order-note"
             placeholder="Add your note..."
             value={note}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => dispatch(cartActions.setOrderNote(e.target.value))}
           />
           <div className="flex gap-4">
             <button
