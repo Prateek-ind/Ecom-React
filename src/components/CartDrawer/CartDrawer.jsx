@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdDiscount } from "react-icons/md";
-import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import OrderNoteSection from "./OrderNoteSection";
 import CartDrawerItems from "./CartDrawerItems";
@@ -12,19 +10,8 @@ const CartDrawer = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.cartUI.isOpen);
   const cart = useSelector((state) => state.cart);
-  const [note, setNote] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const navigate =  useNavigate()
 
-  const increaseQuantity = (item) => {
-    dispatch(cartActions.addToCart(item));
-  };
-  const decreaseQuantity = (item) => {
-    dispatch(cartActions.removeFromCart(item));
-  };
-  const removeFromCart = (item) => {
-    dispatch(cartActions.deleteFromCart(item));
-  };
+  const navigate = useNavigate();
 
   const closeCartDrawer = () => {
     dispatch(cartUIActions.closeCart());
@@ -46,20 +33,10 @@ const CartDrawer = () => {
           <IoCloseOutline size={32} className="text-gray-400" />
         </button>
       </div>
-      <CartDrawerItems
-        cart={cart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        removeFromCart={removeFromCart}
-      />
+      <CartDrawerItems cart={cart} />
       <hr />
       <div className="px-4">
-        <OrderNoteSection
-          note={note}
-          setNote={setNote}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        />
+        <OrderNoteSection />
         <p className="text-xs text-gray-400 font-thin mt-2">
           Taxes and shipping calculated at checkout
         </p>
@@ -77,7 +54,10 @@ const CartDrawer = () => {
             </p>
           </div>
         </div>
-        <button className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4" onClick={()=>navigate('cart')}>
+        <button
+          className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4"
+          onClick={() => navigate("cart")}
+        >
           Checkout
         </button>
       </div>

@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { items: {}, totalQuantity: 0, totalAmount: 0 };
+const initialState = {
+  items: {},
+  orderNote: "",
+  totalQuantity: 0,
+  totalAmount: 0,
+};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -39,9 +44,13 @@ const cartSlice = createSlice({
       if (!state.items[id]) return;
 
       state.totalQuantity -= state.items[id].quantity;
-      state.totalAmount -= state.items[id].quantity * Number(state.items[id].discountedPrice);
+      state.totalAmount -=
+        state.items[id].quantity * Number(state.items[id].discountedPrice);
 
       delete state.items[id];
+    },
+    setOrderNote(state, action) {
+      state.orderNote = action.payload; 
     },
   },
 });
