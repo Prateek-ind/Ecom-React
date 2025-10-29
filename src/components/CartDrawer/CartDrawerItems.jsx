@@ -1,13 +1,9 @@
 import React from "react";
+import EditQuantityComponent from "./EditQuantityComponent";
 
-const CartDrawerItems = ({
-  cart,
-  increaseQuantity,
-  decreaseQuantity,
-  removeFromCart,
-}) => {
+const CartDrawerItems = ({ cart }) => {
   const totalAmount = cart.totalAmount;
-  console.log(totalAmount);
+
   return (
     <>
       <div>
@@ -18,7 +14,8 @@ const CartDrawerItems = ({
           </p>
         ) : (
           <p className="py-2 px-4 text-xs text-gray-500">
-            ` Spend Rs. {(308.45 - totalAmount).toFixed(2)} more and get free shipping!`
+            ` Spend Rs. {(308.45 - totalAmount).toFixed(2)} more and get free
+            shipping!`
           </p>
         )}
         <hr />
@@ -46,19 +43,7 @@ const CartDrawerItems = ({
                       2
                     )}`}
                   </p>
-                  <div className="flex justify-between mt-4 text-sm tracking-widest text-gray-700">
-                    <div className="flex gap-4 border px-4 py-1">
-                      <button onClick={() => decreaseQuantity(item)}>-</button>
-                      <p>{item.quantity}</p>
-                      <button onClick={() => increaseQuantity(item)}>+</button>
-                    </div>
-                    <button
-                      className="underline hover:text-red-500"
-                      onClick={() => removeFromCart(item)}
-                    >
-                      Remove
-                    </button>
-                  </div>
+                  <EditQuantityComponent cartItem={item} />
                 </div>
               </div>
             ))}
