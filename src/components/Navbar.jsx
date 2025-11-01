@@ -32,7 +32,7 @@ const Navbar = () => {
             <AiOutlineUser size={28} />
             <AiOutlineSearch size={28} />
             <div className="relative">
-              <AiOutlineShoppingCart size={28} className="" />
+              <Link to={'cart'}><AiOutlineShoppingCart size={28} className="cursor-pointer" /></Link>
               {hasItems > 0 && (
                 <div className="w-3 h-3 rounded-full absolute -right-1 -top-1 bg-green-600 shadow-white"></div>
               )}
