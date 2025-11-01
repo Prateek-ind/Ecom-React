@@ -13,7 +13,7 @@ const EditQuantityComponent = ({ cartItem }) => {
     dispatch(cartActions.deleteFromCart(item));
   };
   return (
-    <div className="flex justify-between mt-4 text-sm tracking-widest text-gray-700 gap-4">
+    <div className="flex md:flex-col lg:flex-row justify-between mt-4 text-sm tracking-widest text-gray-700 gap-4">
       <div className="flex gap-4 border px-4 py-1">
         <button onClick={() => decreaseQuantity(cartItem)}>-</button>
         <p>{cartItem.quantity}</p>
