@@ -56,7 +56,10 @@ const CartDrawer = () => {
         </div>
         <button
           className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4"
-          onClick={() => navigate("cart")}
+          onClick={() => {
+            navigate("checkout");
+            closeCartDrawer();
+          }}
         >
           Checkout
         </button>
