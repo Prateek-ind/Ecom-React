@@ -3,6 +3,7 @@ import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import ViewAllProducts from "./pages/ViewAllProducts";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         { path: "cart", element: <Cart /> },
       ],
     },
+    { path: "/checkout", element: <Checkout /> },
   ]);
 
   return <RouterProvider router={router} />;
