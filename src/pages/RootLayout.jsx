@@ -3,7 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CartDrawer from "../components/CartDrawer/CartDrawer";
 
+import { useDispatch } from "react-redux";
+
 const RootLayout = () => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <Navbar />
