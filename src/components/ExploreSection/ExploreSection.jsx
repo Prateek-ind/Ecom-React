@@ -40,7 +40,7 @@ const ExploreSection = ({
         <img
           src={partitionImageSrc}
           alt="partition image"
-          className="pt-12 bg-[#feffec]"
+          className="w-full pt-12 bg-[#feffec]"
         />
       )}
       <hr />
