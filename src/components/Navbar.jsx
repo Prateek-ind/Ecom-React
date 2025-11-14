@@ -15,11 +15,13 @@ const Navbar = () => {
       <nav className=" w-full fixed z-50 mx-auto   bg-[#feffec]">
         <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
           <AiOutlineMenu size={28} className="block lg:hidden text-[#293819]" />
-          <img
-            src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
-            alt="logo"
-            className="w-24"
-          />
+          <Link to={'/'}>
+            <img
+              src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
+              alt="logo"
+              className="w-24 cursor-pointer"
+            />
+          </Link>
           <ul className="hidden lg:flex items-center gap-8 flex-wrap text-[#729b4a] text-xs font-normal font-customFont tracking-widest uppercase">
             <Link>Home</Link>
             <Link>Shop by category</Link>
@@ -32,7 +34,9 @@ const Navbar = () => {
             <AiOutlineUser size={28} />
             <AiOutlineSearch size={28} />
             <div className="relative">
-              <Link to={'cart'}><AiOutlineShoppingCart size={28} className="cursor-pointer" /></Link>
+              <Link to={"cart"}>
+                <AiOutlineShoppingCart size={28} className="cursor-pointer" />
+              </Link>
               {hasItems > 0 && (
                 <div className="w-3 h-3 rounded-full absolute -right-1 -top-1 bg-green-600 shadow-white"></div>
               )}
