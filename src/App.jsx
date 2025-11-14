@@ -18,7 +18,7 @@ const App = () => {
         { path: "cart", element: <Cart /> },
       ],
     },
-    { path: "/checkout", element: <Checkout /> },
+    { path: "cart/checkout", element: <Checkout /> },
   ]);
 
   return <RouterProvider router={router} />;
