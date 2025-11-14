@@ -8,11 +8,13 @@ const CheckoutNavbar = () => {
   return (
     <nav className=" w-full fixed z-50 mx-auto   bg-white">
       <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
+        <Link to={'/'}>
         <img
           src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
           alt="logo"
           className="w-24 justify-items-center"
         />
+        </Link>
 
         <div className="flex items-center justify-between text-[#80ad53] gap-4">
           <div className="relative">
