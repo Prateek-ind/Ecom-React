@@ -16,7 +16,7 @@ const CheckoutNavbar = () => {
 
         <div className="flex items-center justify-between text-[#80ad53] gap-4">
           <div className="relative">
-            <Link to={"cart"}>
+            <Link to={"/cart"}>
               <AiOutlineShoppingCart size={28} className="cursor-pointer" />
             </Link>
             {hasItems > 0 && (
