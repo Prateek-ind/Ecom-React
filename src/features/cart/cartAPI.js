@@ -22,15 +22,15 @@ export const fetchCart = async (userId) => {
   const itemFields = data.fields?.items?.mapValue?.fields || {};
 
   const cartItems = Object.fromEntries(
-    Object.entries(items).map(([id, val]) => {
-      const itemFields = val.mapValue.fields;
+    Object.entries(itemFields).map(([id, val]) => {
+      const fields = val.mapValue.fields;
       return [
         id,
         {
           id,
-          name: itemFields.name.stringValue,
-          price: parseFloat(itemFields.price.doubleValue),
-          quantity: parseInt(itemFields.quantity.integerValue),
+          name: fields.name.stringValue,
+          price: parseFloat(fields.price.doubleValue),
+          quantity: parseInt(fields.quantity.integerValue),
         },
       ];
     })
@@ -47,11 +47,10 @@ export const saveCart = async (userId, cartItems) => {
         mapValue: {
           fields: Object.fromEntries(
             Object.entries(cartItems).map(([id, item]) => [
-              id, // product ID as key
+              id,
               {
                 mapValue: {
                   fields: {
-                    // Each product field must include its type
                     name: { stringValue: item.name },
                     price: { doubleValue: item.price },
                     quantity: { integerValue: item.quantity },
