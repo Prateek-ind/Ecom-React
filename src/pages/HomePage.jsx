@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import Reviews from "../components/Reviews";
 import GetInTouch from "../components/GetInTouch";
 
+
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const partitionImageSrc = partitionImg;
-  console.log();
 
   useEffect(() => {
     const handleResize = () => {

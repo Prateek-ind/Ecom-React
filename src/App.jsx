@@ -5,20 +5,22 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ViewAllProducts from "./pages/ViewAllProducts";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const App = () => {
+  useLocalStorage()
   const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
       children: [
         { index: true, element: <HomePage /> },
-        { path: "product/:id", element: <ProductDetails /> },
+        { path: "products/:id", element: <ProductDetails /> },
         { path: "view-All/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
       ],
     },
-    { path: "/checkout", element: <Checkout /> },
+    { path: "cart/checkout", element: <Checkout /> },
   ]);
 
   return <RouterProvider router={router} />;

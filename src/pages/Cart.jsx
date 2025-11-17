@@ -62,7 +62,7 @@ function Cart({}) {
                   {item.name}
                 </p>
                 <p className="text-xs text-gray-500 tracking-widest">
-                  {item.quantity} × Rs. {item.discountedPrice.toFixed(2)}
+                  {item.quantity} × Rs. {(item.discountedPrice || 0).toFixed(2)}
                 </p>
               </div>
             </div>

@@ -5,7 +5,6 @@ import ViewAllBtn from "./ViewAllBtn";
 const ExploreSection = ({
   heading,
   slogan,
-
   noOfItems,
   category,
   partitionImageSrc,

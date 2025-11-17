@@ -36,14 +36,14 @@ const CartDrawerItems = ({ cart }) => {
                     {item.name}
                   </p>
                   <p className="text-xs text-gray-500 tracking-widest">
-                    {item.quantity} × ${item.discountedPrice.toFixed(2)}
+                    {item.quantity} × ${(item.discountedPrice || 0).toFixed(2)}
                   </p>
                   <p className="text-sm font-extralight text-gray-800">
                     {` Rs. ${(item.quantity * item.discountedPrice).toFixed(
                       2
                     )}`}
                   </p>
-                  <EditQuantityComponent cartItem={item} />
+                  <EditQuantityComponent product={item} />
                 </div>
               </div>
             ))}

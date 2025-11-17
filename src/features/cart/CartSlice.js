@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchCartFromDB, saveCartToDB } from "./cartThunk";
+
 
 const initialState = {
   items: {},
@@ -50,8 +52,38 @@ const cartSlice = createSlice({
       delete state.items[id];
     },
     setOrderNote(state, action) {
-      state.orderNote = action.payload; 
+      state.orderNote = action.payload;
     },
+    clearCart(state) {
+      state.items = {};
+      state.totalQuantity = 0;
+      state.totalAmount = 0;
+      state.orderNote = "";
+    },
+    replaceCart(state, action){
+      state.items = action.payload.items || 0
+      state.totalQuantity = action.payload.totalQuantity || 0
+      state.totalAmount = action.payload.totalAmount || 0
+      state.orderNote = action.payload.orderNote || ''
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCartFromDB.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.totalQuantity = Object.values(action.payload).reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        state,
+          (totalAmount = Object.values(action.payload).reduce(
+            (sum, item) => sum + item.quantity * Number(item.discountedPrice),
+            0
+          ));
+      })
+      .addCase(saveCartToDB.fulfilled, (state, action) => {
+        state.items = action.payload;
+      });
   },
 });
 

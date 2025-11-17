@@ -1,4 +1,5 @@
 
+import { Link } from "react-router";
 import ProductCard from "./ProductCard";
 
 
@@ -18,7 +19,7 @@ const Products = ({ products, noOfItems }) => {
         {productKeys.slice(0, noOfItems).map((key) => {
           const product = products[key];
 
-          return <ProductCard key={key} product={product} />;
+          return <Link to={`products/${product.id}`} state={product} ><ProductCard key={key} product={product}  /></Link>;
         })}
       </div>
       <div className="flex justify-center">
