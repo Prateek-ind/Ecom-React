@@ -11,9 +11,6 @@ const HomePage = () => {
 
   const partitionImageSrc = partitionImg;
 
-  
-
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
