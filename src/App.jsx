@@ -15,7 +15,7 @@ const App = () => {
       element: <RootLayout />,
       children: [
         { index: true, element: <HomePage /> },
-        { path: "product/:id", element: <ProductDetails /> },
+        { path: "products/:id", element: <ProductDetails /> },
         { path: "view-All/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
       ],
