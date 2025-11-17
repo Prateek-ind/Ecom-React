@@ -5,7 +5,6 @@ import ViewAllBtn from "./ViewAllBtn";
 const ExploreSection = ({
   heading,
   slogan,
-  userId,
   noOfItems,
   category,
   partitionImageSrc,
@@ -33,8 +32,8 @@ const ExploreSection = ({
             {heading}
           </h2>
         </div>
-        <Products userId={userId} products={products} noOfItems={noOfItems} />
-        <ViewAllBtn userId={userId} category={category} />
+        <Products products={products} noOfItems={noOfItems} />
+        <ViewAllBtn category={category} />
       </section>
       {partitionImageSrc && (
         <img
