@@ -60,6 +60,12 @@ const cartSlice = createSlice({
       state.totalAmount = 0;
       state.orderNote = "";
     },
+    replaceCart(state, action){
+      state.items = action.payload.items || 0
+      state.totalQuantity = action.payload.totalQuantity || 0
+      state.totalAmount = action.payload.totalAmount || 0
+      state.orderNote = action.payload.orderNote || ''
+    }
   },
   extraReducers: (builder) => {
     builder
