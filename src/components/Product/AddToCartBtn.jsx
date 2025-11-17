@@ -38,7 +38,7 @@ const AddToCartBtn = ({ product }) => {
   return (
     <div
       className="absolute flex items-center justify-center bottom-4 right-4
-      w-10 h-10 bg-gray-200 cursor-pointer"
+      w-10 h-10 bg-gray-100 border border-gray-400 cursor-pointer"
     >
       <button
         onMouseEnter={() => triggerAnimation("animate-spinOnceRight")}
