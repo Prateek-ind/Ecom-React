@@ -4,10 +4,11 @@ import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import { saveCartToDB } from "../../features/cart/cartThunk";
 
-const AddToCartBtn = ({ product, userId }) => {
+const AddToCartBtn = ({ product }) => {
   const [cssClasses, setCssClasses] = useState("");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const userId = useSelector((state)=>state.user.userId)
 
   const triggerAnimation = (animation) => {
     setCssClasses(""); // reset class
