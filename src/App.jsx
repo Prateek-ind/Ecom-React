@@ -5,8 +5,10 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ViewAllProducts from "./pages/ViewAllProducts";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const App = () => {
+  useLocalStorage()
   const router = createBrowserRouter([
     {
       path: "/",
