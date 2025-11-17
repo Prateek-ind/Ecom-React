@@ -1,20 +1,37 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
+import { saveCartToDB } from "../../features/cart/cartThunk";
 
-const AddToCartBtn = ({ product }) => {
+const AddToCartBtn = ({ product, userId }) => {
   const [cssClasses, setCssClasses] = useState("");
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
 
   const triggerAnimation = (animation) => {
     setCssClasses(""); // reset class
-    setTimeout(() => setCssClasses(animation), 10); // reapply after a small delay
+    setTimeout(() => setCssClasses(animation), 10);
   };
 
   const handleAddToCart = () => {
     dispatch(cartActions.addToCart(product));
     dispatch(cartUIActions.openCart());
+
+    setTimeout(() => {
+      dispatch(
+        saveCartToDB({
+          userId,
+          cartItems: {
+            ...cartItems,
+            [product.id]: {
+              ...product,
+              quantity: (cartItems[product.id]?.quantity || 0) + 1,
+            },
+          },
+        })
+      );
+    }, 0);
   };
 
   return (
