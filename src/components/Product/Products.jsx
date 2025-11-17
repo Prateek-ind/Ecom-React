@@ -2,7 +2,7 @@
 import ProductCard from "./ProductCard";
 
 
-const Products = ({ products, noOfItems }) => {
+const Products = ({ products, noOfItems, userId }) => {
   console.log(products);
   const productKeys = Object.keys(products);
   if (!products || Object.keys(products).length === 0) {
@@ -18,7 +18,7 @@ const Products = ({ products, noOfItems }) => {
         {productKeys.slice(0, noOfItems).map((key) => {
           const product = products[key];
 
-          return <ProductCard key={key} product={product} />;
+          return <ProductCard key={key} product={product} userId={userId} />;
         })}
       </div>
       <div className="flex justify-center">

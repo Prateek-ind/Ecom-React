@@ -9,7 +9,7 @@ const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const partitionImageSrc = partitionImg;
-  console.log();
+  const userId = "testUser123";
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +27,7 @@ const HomePage = () => {
         slogan="Taste the variety of our premium snacks"
         category="makhanaSingles"
         noOfItems={6}
+        userId={userId}
         partitionImageSrc={
           isMobile
             ? partitionImageSrc.mobile.img1
@@ -39,6 +40,7 @@ const HomePage = () => {
         slogan="Taste the variety of our premium snacks"
         category="makhanaCombo"
         noOfItems={3}
+        userId={userId}
         partitionImageSrc={
           isMobile
             ? partitionImageSrc.mobile.img2
@@ -51,6 +53,7 @@ const HomePage = () => {
         slogan="Wellness in Every Sip"
         category="teaSingles"
         noOfItems={6}
+        userId={userId}
         partitionImageSrc={null}
       />
       <ExploreSection
@@ -59,6 +62,7 @@ const HomePage = () => {
         slogan="Wellness in Every Sip"
         category="teaCombo"
         noOfItems={6}
+        userId={userId}
         partitionImageSrc={null}
       />
       <Reviews />
