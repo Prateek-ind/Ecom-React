@@ -5,6 +5,7 @@ import { cartUIActions } from "../../features/cart/cartUISlice";
 import OrderNoteSection from "./OrderNoteSection";
 import CartDrawerItems from "./CartDrawerItems";
 import { useNavigate } from "react-router";
+import MultiButton from "../Product/MultiButton";
 
 const CartDrawer = () => {
   const dispatch = useDispatch();
@@ -54,15 +55,15 @@ const CartDrawer = () => {
             </p>
           </div>
         </div>
-        <button
+        <MultiButton
           className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4"
-          onClick={() => {
-            navigate("cart/checkout");
-            closeCartDrawer();
-          }}
+          
+            navigate={"cart/checkout"}
+            closeCartDrawer={closeCartDrawer}
+          
         >
           Checkout
-        </button>
+        </MultiButton>
       </div>
     </div>
   );
