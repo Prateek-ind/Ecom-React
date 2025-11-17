@@ -1,8 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../features/cart/CartSlice";
 
-const EditQuantityComponent = ({ cartItem }) => {
-  const dispatch = useDispatch();
+const EditQuantityComponent = ({ product, showRemoveBtn=true }) => {
+const cartItems = useSelector(state=>state.cart.items)
+const cartItem = cartItems[product] || {...product, quantity: 0}
+const dispatch = useDispatch();
+
   const increaseQuantity = (item) => {
     dispatch(cartActions.addToCart(item));
   };
@@ -15,16 +18,16 @@ const EditQuantityComponent = ({ cartItem }) => {
   return (
     <div className="flex md:flex-col lg:flex-row justify-between mt-4 text-sm tracking-widest text-gray-700 gap-4">
       <div className="flex gap-4 border px-4 py-1">
-        <button onClick={() => decreaseQuantity(cartItem)}>-</button>
+        <button disabled={cartItem.quantity===1} onClick={() => decreaseQuantity(cartItem)}>-</button>
         <p>{cartItem.quantity}</p>
         <button onClick={() => increaseQuantity(cartItem)}>+</button>
       </div>
-      <button
+      {showRemoveBtn && <button
         className="underline hover:text-red-500"
         onClick={() => removeFromCart(cartItem)}
       >
         Remove
-      </button>
+      </button>}
     </div>
   );
 };
