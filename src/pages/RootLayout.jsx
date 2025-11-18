@@ -4,12 +4,14 @@ import Footer from "../components/Footer";
 import CartDrawer from "../components/CartDrawer/CartDrawer";
 
 import { useDispatch } from "react-redux";
+import ScrollToTop from "../components/ScrollToTop";
 
 const RootLayout = () => {
   const dispatch = useDispatch();
 
   return (
     <>
+    <ScrollToTop/>
       <Navbar />
       <main>
         <CartDrawer />
