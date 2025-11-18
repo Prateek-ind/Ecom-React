@@ -61,7 +61,7 @@ const cartSlice = createSlice({
       state.orderNote = "";
     },
     replaceCart(state, action){
-      state.items = action.payload.items || 0
+      state.items = action.payload.items || {}
       state.totalQuantity = action.payload.totalQuantity || 0
       state.totalAmount = action.payload.totalAmount || 0
       state.orderNote = action.payload.orderNote || ''
@@ -75,11 +75,10 @@ const cartSlice = createSlice({
           (sum, item) => sum + item.quantity,
           0
         );
-        state,
-          (totalAmount = Object.values(action.payload).reduce(
+        state.totalAmount = Object.values(action.payload).reduce(
             (sum, item) => sum + item.quantity * Number(item.discountedPrice),
             0
-          ));
+          );
       })
       .addCase(saveCartToDB.fulfilled, (state, action) => {
         state.items = action.payload;

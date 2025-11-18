@@ -15,24 +15,22 @@ const AddToCartBtn = ({ product }) => {
     setTimeout(() => setCssClasses(animation), 10);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
     dispatch(cartActions.addToCart(product));
     dispatch(cartUIActions.openCart());
 
     setTimeout(() => {
-      dispatch(
-        saveCartToDB({
-          userId,
-          cartItems: {
-            ...cartItems,
-            [product.id]: {
-              ...product,
-              quantity: (cartItems[product.id]?.quantity || 0) + 1,
-            },
-          },
-        })
-      );
-    }, 0);
+  const updatedCartItems = {
+    ...cartItems,
+    [product.id]: {
+      ...product,
+      quantity: (cartItems[product.id]?.quantity || 0) + 1,
+    },
+  };
+  dispatch(saveCartToDB({ userId, cartItems: updatedCartItems }));
+}, 0);
   };
 
   return (

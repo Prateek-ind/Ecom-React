@@ -18,9 +18,10 @@ const App = () => {
         { path: "products/:id", element: <ProductDetails /> },
         { path: "view-All/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
+        { path: "cart/checkout", element: <Checkout /> },
       ],
     },
-    { path: "cart/checkout", element: <Checkout /> },
+    
   ]);
 
   return <RouterProvider router={router} />;

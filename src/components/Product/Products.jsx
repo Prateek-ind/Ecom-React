@@ -19,7 +19,8 @@ const Products = ({ products, noOfItems }) => {
         {productKeys.slice(0, noOfItems).map((key) => {
           const product = products[key];
 
-          return <Link to={`products/${product.id}`} state={product} ><ProductCard key={key} product={product}  /></Link>;
+          return <Link to={`/products/${product.id}`} state={product} >
+            <ProductCard key={key} product={product}  /></Link>;
         })}
       </div>
       <div className="flex justify-center">
