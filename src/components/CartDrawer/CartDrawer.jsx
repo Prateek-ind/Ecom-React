@@ -56,11 +56,11 @@ const CartDrawer = () => {
           </div>
         </div>
         <MultiButton
-          className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4"
+          className="w-full px-8 py-2 bg-[#63ce36] text-white mt-4 mb-4 uppercase"
           
-            navigate={"cart/checkout"}
+            navigateTo={"/cart/checkout"}
             closeCartDrawer={closeCartDrawer}
-          
+          label={'Checkout'}
         >
           Checkout
         </MultiButton>
