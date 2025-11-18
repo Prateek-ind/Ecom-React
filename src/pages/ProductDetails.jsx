@@ -3,6 +3,8 @@ import StarRating from "../components/Product/StarRating";
 import EditQuantityComponent from "../components/CartDrawer/EditQuantityComponent";
 import { useEffect, useState } from "react";
 import MultiButton from "../components/Product/MultiButton";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../features/cart/CartSlice";
 
 const offers = [
   { heading: "Free Shipping", 
@@ -16,7 +18,7 @@ const offers = [
 
 const ProductDetails = () => {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0)
-
+  const dispatch = useDispatch()
   const location = useLocation()
   const product = location.state;
 
@@ -50,21 +52,26 @@ const ProductDetails = () => {
           <p>({product.rating})</p>
           </div>
         </div>
-        <EditQuantityComponent cartItem={product} showRemoveBtn={false}/>
+        <EditQuantityComponent product={product} showRemoveBtn={false}/>
         <div className="mt-8 bg-[#63ce36] text-white text-center rounded-lg py-8 px-4 tracking-wider">
           <span className="text-xl p-2 font-bold bg-[#77ec45] rounded-full">{currentOffer.heading}</span>
           <p className="mt-8 text-sm font-light leading-6">{currentOffer.content}</p>
         </div>
         <MultiButton
           className="w-full px-8 py-2 bg-white text-[#63ce36] border border-[#63ce36] mt-4 mb-4 uppercase "
-          navigateTo={'cart'}
+          navigateTo={'/cart'}
           label={'Add to cart'}
+          onClick={()=>  dispatch(cartActions.addToCart(product))}
         />
           
         
         <MultiButton
           className="w-full px-8 py-2 bg-[#63ce36] text-white mb-4 uppercase"
-          navigateTo={'cart/checkout'}
+          navigateTo={'/cart/checkout'}
+          onClick={()=>{
+            dispatch(cartActions.clearCart())
+            dispatch(cartActions.addToCart(product))
+          }}
           label={'Buy now'}
         />
         
