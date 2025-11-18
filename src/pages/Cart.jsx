@@ -67,7 +67,7 @@ function Cart({}) {
               </div>
             </div>
             <div className="pt-4 pl-0 md:pl-4">
-              <EditQuantityComponent cartItem={item} />
+              <EditQuantityComponent product={item} />
             </div>
             <div className="pt-8 pl-10 lg:pl-20 hidden md:block">
               <p>Rs. {cart.totalAmount.toFixed(2)}</p>
