@@ -23,12 +23,12 @@ const Navbar = () => {
             />
           </Link>
           <ul className="hidden lg:flex items-center gap-8 flex-wrap text-[#729b4a] text-xs font-normal font-customFont tracking-widest uppercase">
-            <Link>Home</Link>
-            <Link>Shop by category</Link>
-            <Link>Combo</Link>
-            <Link>Blogs and community</Link>
-            <Link>Bulk order Enquiry</Link>
-            <Link>Contact Us</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Home</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Shop by category</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Combo</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Blogs and community</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Bulk order Enquiry</Link>
+            <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">Contact Us</Link>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
             <AiOutlineUser size={28} />
