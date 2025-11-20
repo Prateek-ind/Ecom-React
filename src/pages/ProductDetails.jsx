@@ -49,45 +49,77 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="pt-2 pr-8 mb-4">
-        <h2 className="text-gray-500 tracking-widest uppercase text-sm mb-4">
-          Healthy buddy
-        </h2>
-        <h1 className="text-gray-700 tracking-widest uppercase text-2xl mb-4">
-          {product.name}
-        </h1>
-        <span className="bg-red-600 p-1 text-xs text-white">
-          Save {product.discount} %
-        </span>
-        <div className="flex gap-4 mt-4 tracking-widest items-center justify-between">
-          <p className="text-red-600 text-xl">
-            Rs. {product.discountedPrice.toFixed(2)}
+        <div className="pb-4">
+          <h2 className="text-gray-500 tracking-widest uppercase text-sm mb-4">
+            Healthy buddy
+          </h2>
+          <h1 className="text-gray-700 tracking-widest uppercase text-2xl mb-4">
+            {product.name}
+          </h1>
+          <span className="bg-red-600 p-1 text-xs text-white">
+            Save {product.discount} %
+          </span>
+          <div className="flex gap-4 mt-4 tracking-widest items-center justify-between">
+            <p className="text-red-600 text-xl">
+              Rs. {product.discountedPrice.toFixed(2)}
+            </p>
+            <p className="text-gray-500 line-through text-md ">
+              Rs. {product.originalPrice.toFixed(2)}
+            </p>
+            <div className="flex gap-2 text-xs">
+              <StarRating rating={product.rating} />
+              <p>({product.rating})</p>
+            </div>
+          </div>
+          <EditQuantityComponent product={product} showRemoveBtn={false} />
+          <OfferSwitcher offers={offers} />
+          <MultiButton
+            className="w-full px-8 py-2 bg-white text-[#63ce36] border border-[#63ce36] mt-4 mb-4 uppercase "
+            navigateTo={"/cart"}
+            label={"Add to cart"}
+            onClick={() => dispatch(cartActions.addToCart(product))}
+          />
+
+          <MultiButton
+            className="w-full px-8 py-2 bg-[#63ce36] text-white mb-4 uppercase"
+            navigateTo={"/cart/checkout"}
+            onClick={() => {
+              dispatch(cartActions.clearCart());
+              dispatch(cartActions.addToCart(product));
+            }}
+            label={"Buy now"}
+          />
+        </div>
+        <hr />
+        <div className="pt-8">
+          <p className="text-sm font-light text-gray-700 leading-6 pb-8">
+            {product.description}
           </p>
-          <p className="text-gray-500 line-through text-md ">
-            Rs. {product.originalPrice.toFixed(2)}
-          </p>
-          <div className="flex gap-2 text-xs">
-            <StarRating rating={product.rating} />
-            <p>({product.rating})</p>
+          <hr />
+          <div className="pt-8 pb-4">
+            <h3 className="text-gray-800 font-bold">Ingredients</h3>
+            <p className="text-sm font-light text-gray-700 leading-6 pb-8">
+              {product.ingredients}
+            </p>
+          </div>
+          <hr />
+          <div className="pt-8">
+            <h3 className="text-gray-800 font-bold pb-4">Key Highlights: </h3>
+            <ul className="list-disc pl-2">
+              {Object.values(product.keyHighlights).map((highlight, i) => (
+                <li key={i} className="text-sm font-light text-gray-700 leading-6">{highlight}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="pt-8">
+            <h3 className="text-gray-800 font-bold pb-4">Health Benefits: </h3>
+            <ul className="list-disc pl-2">
+              {Object.values(product.healthBenefits).map((benefit, i) => (
+                <li key={i} className="text-sm font-light text-gray-700 leading-6">{benefit}</li>
+              ))}
+            </ul>
           </div>
         </div>
-        <EditQuantityComponent product={product} showRemoveBtn={false} />
-        <OfferSwitcher offers={offers} />
-        <MultiButton
-          className="w-full px-8 py-2 bg-white text-[#63ce36] border border-[#63ce36] mt-4 mb-4 uppercase "
-          navigateTo={"/cart"}
-          label={"Add to cart"}
-          onClick={() => dispatch(cartActions.addToCart(product))}
-        />
-
-        <MultiButton
-          className="w-full px-8 py-2 bg-[#63ce36] text-white mb-4 uppercase"
-          navigateTo={"/cart/checkout"}
-          onClick={() => {
-            dispatch(cartActions.clearCart());
-            dispatch(cartActions.addToCart(product));
-          }}
-          label={"Buy now"}
-        />
       </div>
     </div>
   );
