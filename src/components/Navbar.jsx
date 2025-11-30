@@ -42,8 +42,8 @@ const Navbar = () => {
                 Shop by category
               </Link>
               {hoverCategory && (
-                <div className="absolute left-0 w-full mt-10 px-4 py-4 border-t-2 border-[#729b4a] bg-[#feffec]">
-                  <ShopByCategoryDrawer />
+                <div className="absolute left-0 w-full mt-10 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
+                  <ShopByCategoryDrawer setHoverCategory={setHoverCategory}/>
                 </div>
               )}
             </li>
