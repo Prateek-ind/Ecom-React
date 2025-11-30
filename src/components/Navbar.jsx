@@ -56,7 +56,7 @@ const Navbar = () => {
                 Combo
               </Link>
               {hoverCombo && (
-                <div className="absolute left-0 w-40 mt-10 px-4 py-4 border-t-2 border-[#729b4a] bg-[#feffec]">
+                <div className="absolute left-0 w-40 mt-10 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
                   <ComboDrawer />
                 </div>
               )}
