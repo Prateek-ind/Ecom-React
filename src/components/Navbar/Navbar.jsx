@@ -19,17 +19,17 @@ const Navbar = () => {
     <>
       <nav className=" w-full fixed z-50 mx-auto bg-[#feffec]">
         <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
-          <AiOutlineMenu size={28} className="block lg:hidden text-[#293819]" />
+          <AiOutlineMenu size={28} className="block xl:hidden text-[#293819]" />
           <Link to={"/"}>
             <img
               src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
               alt="logo"
-              className="w-24 cursor-pointer"
+              className="w-28 cursor-pointer"
             />
           </Link>
-          <ul className="hidden lg:flex items-center gap-12 flex-wrap text-[#729b4a] text-xs font-normal font-customFont tracking-widest uppercase">
+          <ul className="hidden xl:flex items-center gap-12 flex-wrap text-[#729b4a] text-sm font-normal font-customFont tracking-widest uppercase">
             <li>
-              <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Home
               </Link>
             </li>
@@ -38,12 +38,12 @@ const Navbar = () => {
               onMouseLeave={() => setHoverCategory(false)}
               className="relative"
             >
-              <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Shop by category
               </Link>
               {hoverCategory && (
-                <div className="absolute left-0 w-full mt-10 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
-                  <ShopByCategoryDrawer setHoverCategory={setHoverCategory}/>
+                <div className="absolute left-0 w-full mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
+                  <ShopByCategoryDrawer setHoverCategory={setHoverCategory} />
                 </div>
               )}
             </li>
@@ -52,23 +52,23 @@ const Navbar = () => {
               onMouseLeave={() => setHoverCombo(false)}
               className="relative"
             >
-              <Link className=" px-4 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className=" px-4 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Combo
               </Link>
               {hoverCombo && (
-                <div className="absolute left-0 w-40 mt-10 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
+                <div className="absolute left-0 w-40 mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
                   <ComboDrawer />
                 </div>
               )}
             </li>
 
             <li>
-              <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Bulk order Enquiry
               </Link>
             </li>
             <li>
-              <Link className="px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Contact Us
               </Link>
             </li>
