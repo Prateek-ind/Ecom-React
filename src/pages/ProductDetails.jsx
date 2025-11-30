@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 import StarRating from "../components/Product/StarRating";
 import EditQuantityComponent from "../components/CartDrawer/EditQuantityComponent";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MultiButton from "../components/Product/MultiButton";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../features/cart/CartSlice";
@@ -26,14 +26,14 @@ const ProductDetails = () => {
   const location = useLocation();
   const product = location.state;
   const [selectedImg, setSelectedImg] = useState(product.img1);
-
+  console.log(location);
   const productImgArray = Object.keys(product)
     .filter((key) => key.startsWith("img"))
     .map((key) => (key = product[key]));
 
   console.log(selectedImg);
   return (
-    <div className="pt-36 pb-36 grid grid-cols-3 items-start">
+    <div className="px-8 pt-36 pb-36 grid grid-cols-1 md:grid-cols-3 md:items-start">
       <div className="col-span-2">
         <img src={selectedImg} className="pl-12 pr-24" alt="" />
         <div className="flex gap-4 pl-12  pt-4">
@@ -95,30 +95,75 @@ const ProductDetails = () => {
           <p className="text-sm font-light text-gray-700 leading-6 pb-8">
             {product.description}
           </p>
-          <hr />
-          <div className="pt-8 pb-4">
-            <h3 className="text-gray-800 font-bold">Ingredients</h3>
-            <p className="text-sm font-light text-gray-700 leading-6 pb-8">
-              {product.ingredients}
+        
+          {product?.healthBenefits.length && <div className="pt-8 pb-4">
+            <hr className="pb-8 "/>
+             
+              <h3 className="text-gray-800 font-bold">Ingredients</h3>
+            
+            <p className="text-sm font-light text-gray-700 leading-6 pb-4">
+              {product?.ingredients}
             </p>
-          </div>
-          <hr />
-          <div className="pt-8">
+          </div>}
+          
+          <div className="pt-8 pb-8">
+             <hr className="pb-8 "/>
             <h3 className="text-gray-800 font-bold pb-4">Key Highlights: </h3>
             <ul className="list-disc pl-2">
               {Object.values(product.keyHighlights).map((highlight, i) => (
-                <li key={i} className="text-sm font-light text-gray-700 leading-6">{highlight}</li>
+                <li
+                  key={i}
+                  className="text-sm font-light text-gray-700 leading-6"
+                >
+                  {highlight}
+                </li>
               ))}
             </ul>
           </div>
-          <div className="pt-8">
-            <h3 className="text-gray-800 font-bold pb-4">Health Benefits: </h3>
-            <ul className="list-disc pl-2">
-              {Object.values(product.healthBenefits).map((benefit, i) => (
-                <li key={i} className="text-sm font-light text-gray-700 leading-6">{benefit}</li>
-              ))}
-            </ul>
-          </div>
+          <hr />
+          {product?.healthBenefits &&
+            Object.keys(product.healthBenefits).length > 0 && (
+              <div className="pt-8">
+                <h3 className="text-gray-800 font-bold pb-4">
+                  Health Benefits:{" "}
+                </h3>
+                {product.benefitsHeading && (
+                  <p className="text-sm text-gray-800 pb-2">
+                    {product.benefitsHeading}
+                  </p>
+                )}
+                <ul className="list-disc pl-2">
+                  {Object.values(product?.healthBenefits).map((benefit, i) => (
+                    <li
+                      key={i}
+                      className="text-sm font-light text-gray-700 leading-6"
+                    >
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          <hr />
+          {["combo", "pack"].some((word) =>
+            location.pathname.toLowerCase().includes(word)
+          ) && (
+            <div className="pt-8">
+              <h3 className="text-gray-800 font-bold pb-4">
+                Includes Flavours:{" "}
+              </h3>
+              <ul className="list-disc pl-2">
+                {Object.values(product?.includesFlavours).map((benefit, i) => (
+                  <li
+                    key={i}
+                    className="text-sm font-light text-gray-700 leading-6"
+                  >
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
