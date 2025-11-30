@@ -6,7 +6,7 @@ const EditQuantityComponent = ({ product, showRemoveBtn = true }) => {
    if (!product) return null;
   const cartItem = cartItems[product.id]
     ? { ...cartItems[product.id], id: product.id }
-    : { ...product, quantity: 0 };
+    : { ...product, quantity: 1 };
   const dispatch = useDispatch();
 
   const increaseQuantity = (item) => {
