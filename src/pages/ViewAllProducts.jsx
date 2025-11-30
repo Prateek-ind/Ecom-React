@@ -21,7 +21,7 @@ const ViewAllProducts = () => {
       className="w-full max-w-8xl flex flex-col items-center
      font-customFont bg-[#feffec] uppercase"
     >
-      <div className=" w-full text-center uppercase mt-24">
+      <div className=" w-full text-center uppercase mt-28">
         <div className="w-full relative py-12 ">
           <p className="pl-4 absolute top-2 left-0 text-xs text-gray-500 font-thin">
             Home / Shop / {` `}
