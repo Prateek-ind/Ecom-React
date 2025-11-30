@@ -52,11 +52,11 @@ const Navbar = () => {
               onMouseLeave={() => setHoverCombo(false)}
               className="relative"
             >
-              <Link className=" px-2 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
+              <Link className=" px-4 py-12 border-b-2 border-transparent hover:border-[#729b4a]">
                 Combo
               </Link>
               {hoverCombo && (
-                <div className="absolute left-0 w-full mt-10 px-4 py-4 border-t-2 border-[#729b4a] bg-[#feffec]">
+                <div className="absolute left-0 w-40 mt-10 px-4 py-4 border-t-2 border-[#729b4a] bg-[#feffec]">
                   <ComboDrawer />
                 </div>
               )}
