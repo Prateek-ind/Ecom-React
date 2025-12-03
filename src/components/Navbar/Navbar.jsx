@@ -9,17 +9,23 @@ import { Link } from "react-router";
 import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
 import { useState } from "react";
 import ComboDrawer from "./ComboDrawer";
+import HamMenu from "./HamMenu";
 
 const Navbar = () => {
   const [hoverCategory, setHoverCategory] = useState(false);
   const [hoverCombo, setHoverCombo] = useState(false);
+  const [hamMenuOpen, setHamMenuOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
   const hasItems = Object.keys(cartItems).length;
   return (
     <>
       <nav className=" w-full fixed z-50 mx-auto bg-[#feffec]">
         <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
-          <AiOutlineMenu size={28} className="block xl:hidden text-[#293819]" />
+          <AiOutlineMenu
+            size={28}
+            className="block xl:hidden text-[#293819]"
+            onClick={() => setHamMenuOpen(true)}
+          />
           <Link to={"/"}>
             <img
               src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
@@ -27,6 +33,7 @@ const Navbar = () => {
               className="w-28 cursor-pointer"
             />
           </Link>
+
           <ul className="hidden xl:flex items-center gap-12 flex-wrap text-[#729b4a] text-sm font-normal font-customFont tracking-widest uppercase">
             <li>
               <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
@@ -56,7 +63,7 @@ const Navbar = () => {
                 Combo
               </Link>
               {hoverCombo && (
-                <div className="absolute left-0 w-40 mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
+                <div className="absolute left-0 w-56 mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
                   <ComboDrawer />
                 </div>
               )}
@@ -86,6 +93,13 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        {hamMenuOpen && (
+          <HamMenu
+            setHamMenuOpen={setHamMenuOpen}
+            hamMenuOpen={hamMenuOpen}
+            className="cursor-pointer"
+          />
+        )}
         <hr />
       </nav>
     </>
