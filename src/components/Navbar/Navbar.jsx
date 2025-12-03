@@ -70,7 +70,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+              <Link to={'/bulk-order-inquiry'} className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Bulk order Enquiry
               </Link>
             </li>
