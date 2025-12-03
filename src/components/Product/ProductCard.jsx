@@ -35,9 +35,9 @@ const ProductCard = ({ product }) => {
         </p>
       </div>
       <div className="flex gap-4 pt-4">
-        <Link>
+        
           <StarRating rating={product.rating} />
-        </Link>
+        
         <p className="text-xs text-gray-400 tracking-widest">
           ({product.rating})
         </p>

@@ -2,19 +2,19 @@ import React from "react";
 import EditQuantityComponent from "./EditQuantityComponent";
 
 const CartDrawerItems = ({ cart }) => {
-  const totalAmount = cart.totalAmount;
+ 
 
   return (
     <>
       <div>
         <hr />
-        {totalAmount > 308.45 ? (
+        {cart.totalAmount > cart.freeShippingThreshold ? (
           <p className="py-2 px-4 text-xs text-gray-500">
             You are eligible for free shipping.
           </p>
         ) : (
           <p className="py-2 px-4 text-xs text-gray-500">
-            ` Spend Rs. {(308.45 - totalAmount).toFixed(2)} more and get free
+            ` Spend Rs. {(cart.freeShippingThreshold - cart.totalAmount).toFixed(2)} more and get free
             shipping!`
           </p>
         )}

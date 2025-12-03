@@ -1,7 +1,7 @@
 export const projectId = import.meta.env.VITE_PROJECT_ID;
 export const apiKey = import.meta.env.VITE_API_KEY;
 
-const rdbUrl =
+export const rdbUrl =
   "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
 
 let idToken = null;
@@ -9,7 +9,7 @@ export const setIdToken = (token) => {
   idToken = token;
 };
 
-const getHeaders = () => {
+export const getHeaders = () => {
   const headers = { "Content-Type": "application/json" };
   if (idToken) headers["Authorization"] = `Bearer ${idToken}`;
   return headers;

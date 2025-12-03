@@ -39,6 +39,7 @@ const Reviews = () => {
           {reviews.map((_, i) => {
             return (
               <button
+              key={i}
                 className={`w-2 h-2 rounded-full ${
                   review === i ? "bg-gray-700 scale-110" : "bg-gray-400"
                 }  `}

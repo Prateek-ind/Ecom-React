@@ -12,7 +12,7 @@ const Checkout = () => {
   return (
     <>
       <CheckoutNavbar />
-      <div className="pt-32 mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="pt-32 mb-12 mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="">
           <CheckoutForm />
         </div>

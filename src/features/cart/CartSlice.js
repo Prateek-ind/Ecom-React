@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCartFromDB, saveCartToDB } from "./cartThunk";
 
+const updateShipping = (state) => {
+  state.shipping = state.totalAmount >= state.freeShippingThreshold ? 0 : 100;
+};
 
 const initialState = {
   items: {},
   orderNote: "",
   totalQuantity: 0,
   totalAmount: 0,
+  shipping: 100,
+  freeShippingThreshold: 308.5,
 };
 
 const cartSlice = createSlice({
@@ -25,6 +30,7 @@ const cartSlice = createSlice({
       }
       state.totalQuantity++;
       state.totalAmount += Number(product.discountedPrice);
+      updateShipping(state);
     },
     removeFromCart(state, action) {
       const product = action.payload;
@@ -39,6 +45,7 @@ const cartSlice = createSlice({
       }
       state.totalQuantity -= 1;
       state.totalAmount -= Number(product.discountedPrice);
+      updateShipping(state);
     },
     deleteFromCart(state, action) {
       const product = action.payload;
@@ -50,6 +57,7 @@ const cartSlice = createSlice({
         state.items[id].quantity * Number(state.items[id].discountedPrice);
 
       delete state.items[id];
+      updateShipping(state);
     },
     setOrderNote(state, action) {
       state.orderNote = action.payload;
@@ -59,13 +67,15 @@ const cartSlice = createSlice({
       state.totalQuantity = 0;
       state.totalAmount = 0;
       state.orderNote = "";
+      state.shipping = 100;
     },
-    replaceCart(state, action){
-      state.items = action.payload.items || {}
-      state.totalQuantity = action.payload.totalQuantity || 0
-      state.totalAmount = action.payload.totalAmount || 0
-      state.orderNote = action.payload.orderNote || ''
-    }
+    replaceCart(state, action) {
+      state.items = action.payload.items || {};
+      state.totalQuantity = action.payload.totalQuantity || 0;
+      state.totalAmount = action.payload.totalAmount || 0;
+      state.orderNote = action.payload.orderNote || "";
+      updateShipping(state);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -76,12 +86,14 @@ const cartSlice = createSlice({
           0
         );
         state.totalAmount = Object.values(action.payload).reduce(
-            (sum, item) => sum + item.quantity * Number(item.discountedPrice),
-            0
-          );
+          (sum, item) => sum + item.quantity * Number(item.discountedPrice),
+          0
+        );
+        updateShipping(state);
       })
       .addCase(saveCartToDB.fulfilled, (state, action) => {
         state.items = action.payload;
+        updateShipping(state);
       });
   },
 });

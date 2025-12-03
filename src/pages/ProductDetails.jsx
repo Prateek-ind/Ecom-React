@@ -33,10 +33,11 @@ const ProductDetails = () => {
 
   console.log(selectedImg);
   return (
-    <div className="px-8 pt-36 pb-36 grid grid-cols-1 md:grid-cols-3 md:items-start">
+    <div className=" pt-36 pb-36 mx-auto max-w-7xl px-6 lg:px-8
+     grid grid-cols-1 items-center md:grid-cols-3 md:items-start">
       <div className="col-span-2">
-        <img src={selectedImg} className="pl-12 pr-24" alt="" />
-        <div className="flex gap-4 pl-12  pt-4">
+        <img src={selectedImg} className="px-12" alt="" />
+        <div className="flex gap-4 px-12 flex-wrap pt-4">
           {productImgArray.map((img, i) => (
             <img
               src={img}
@@ -48,7 +49,7 @@ const ProductDetails = () => {
           ))}
         </div>
       </div>
-      <div className="pt-2 pr-8 mb-4">
+      <div className="pt-2 px-8 mb-4">
         <div className="pb-4">
           <h2 className="text-gray-500 tracking-widest uppercase text-sm mb-4">
             Healthy buddy
@@ -95,19 +96,21 @@ const ProductDetails = () => {
           <p className="text-sm font-light text-gray-700 leading-6 pb-8">
             {product.description}
           </p>
-        
-          {product?.healthBenefits.length && <div className="pt-8 pb-4">
-            <hr className="pb-8 "/>
-             
+
+          {product?.healthBenefits.length && (
+            <div className="pt-8 pb-4">
+              <hr className="pb-8 " />
+
               <h3 className="text-gray-800 font-bold">Ingredients</h3>
-            
-            <p className="text-sm font-light text-gray-700 leading-6 pb-4">
-              {product?.ingredients}
-            </p>
-          </div>}
-          
+
+              <p className="text-sm font-light text-gray-700 leading-6 pb-4">
+                {product?.ingredients}
+              </p>
+            </div>
+          )}
+
           <div className="pt-8 pb-8">
-             <hr className="pb-8 "/>
+            <hr className="pb-8 " />
             <h3 className="text-gray-800 font-bold pb-4">Key Highlights: </h3>
             <ul className="list-disc pl-2">
               {Object.values(product.keyHighlights).map((highlight, i) => (

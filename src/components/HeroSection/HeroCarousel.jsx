@@ -39,6 +39,7 @@ const HeroCarousel = ({ isMobile }) => {
           <HeroCarouselButtons
             className="relative w-2 h-2"
             index={i}
+            key={i}
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
           />
