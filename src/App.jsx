@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import ViewAllProducts from "./pages/ViewAllProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 
 const App = () => {
   useLocalStorage()
@@ -19,6 +20,7 @@ const App = () => {
         { path: "view-All/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
         { path: "cart/checkout", element: <Checkout /> },
+        {path: "/bulk-order-inquiry", element: <BulkOrderInquiry/>}
       ],
     },
     
