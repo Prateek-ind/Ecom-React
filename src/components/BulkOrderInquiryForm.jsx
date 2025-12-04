@@ -51,9 +51,10 @@ const BulkOrderInquiryForm = () => {
         <select
           name="requirementType"
           required
+          defaultValue=""
           className="col-span-2 text-gray-700 w-full px-4 py-4 outline-none border border-gray-300 rounded"
         >
-          <option value="type-of-requirement" disabled>
+          <option value=""  disabled>
             Type of Requirement
           </option>
           <option value="corporate-gifting">Corporate Gifting</option>
@@ -72,6 +73,7 @@ const BulkOrderInquiryForm = () => {
         <select
           name="packagingType"
           required
+          defaultValue=""
           className="col-span-2 text-gray-700 w-full px-4 py-4 outline-none border border-gray-300 rounded"
         >
           <option value="" disabled>
