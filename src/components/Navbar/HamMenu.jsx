@@ -74,12 +74,12 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
           </div>
         )}
 
-        <Link>
+        <Link to={'/bulk-order-inquiry'}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Bulk order Inquiry
           </li>
         </Link>
-        <Link>
+        <Link to={'/contact-us'}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Contact Us
           </li>
