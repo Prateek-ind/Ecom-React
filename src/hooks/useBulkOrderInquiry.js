@@ -16,7 +16,7 @@ export const useBulkOrderInquiry = () => {
       setSuccess(true);
       return result;
     } catch (error) {
-      setError("COuld not place order inquiry" || error.message);
+      setError("Could not place order inquiry" || error.message);
       console.log(error.message);
       return null;
     } finally {
