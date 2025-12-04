@@ -231,6 +231,13 @@ const CheckoutForm = () => {
                   className="border px-3 py-3 w-full rounded"
                 />
               </div>
+              <input
+            type="text"
+            name="name-on-card"
+            className="border px-2 py-4 w-full rounded"
+            placeholder="Name on Card"
+            required
+          />
             </div>
           )}
           {paymentMethod === "net-banking" && (
