@@ -3,7 +3,7 @@ import BulkOrderInquiryForm from '../components/BulkOrderInquiryForm'
 
 const BulkOrderInquiry = () => {
   return (
-   <section className='max-w-3xl mx-auto px-4 py-10'>
+   <section className='max-w-3xl mx-auto px-4 py-10 bg-[#feffec]'>
     <div className='mb-6 mt-24 text-center' >
         
     <h3 className='text-sm text-gray-700 tracking-widest mb-8 uppercase'>Bulk Order Inquiry</h3>
