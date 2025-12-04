@@ -7,9 +7,10 @@ import Checkout from "./pages/Checkout";
 import ViewAllProducts from "./pages/ViewAllProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import BulkOrderInquiry from "./pages/BulkOrderInquiry";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
-  useLocalStorage()
+  useLocalStorage();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -20,10 +21,10 @@ const App = () => {
         { path: "view-All/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
         { path: "cart/checkout", element: <Checkout /> },
-        {path: "/bulk-order-inquiry", element: <BulkOrderInquiry/>}
+        { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
+        { path: "/contact-us", element: <ContactUs /> },
       ],
     },
-    
   ]);
 
   return <RouterProvider router={router} />;

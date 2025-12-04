@@ -75,7 +75,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+              <Link to={'/contact-us'} className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Contact Us
               </Link>
             </li>

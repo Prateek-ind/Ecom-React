@@ -1,27 +1,28 @@
 import { useState } from "react";
-import { bulkOrderInquiryToDb } from "../components/firebase/orderService";
+import { contactUsToDb } from "../components/firebase/userService";
 
-export const useBulkOrderInquiry = () => {
+export const useContactUs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
-  const submitInquiry = async ({userId, orderDetails}) => {
+
+  const contactUsFormSubmit = async ({ userId, messageDetails }) => {
     setIsLoading(true);
     setSuccess(false);
-    setError(false);
+    setError(null);
 
     try {
-      const result = await bulkOrderInquiryToDb({ userId, orderDetails });
+      const result = await contactUsToDb({ userId, messageDetails });
       setSuccess(true);
       return result;
     } catch (error) {
-      setError("Could not place order inquiry" || error.message);
+      setError("Failed to send Message." || error.message);
       console.log(error.message);
       return null;
     } finally {
       setIsLoading(false);
     }
   };
-  return { submitInquiry, isLoading, error, success };
+  return {contactUsFormSubmit, isLoading, success, error};
 };

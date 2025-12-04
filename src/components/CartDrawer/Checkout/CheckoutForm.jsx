@@ -31,7 +31,7 @@ const CheckoutForm = () => {
 
     const discount = subtotal - discountedTotal;
 
-    orderDetails.cart = {
+    orderDetails.orderDetails = {
       items: cartItems.map((item) => ({
         id: item.id,
         name: item.name,
