@@ -18,32 +18,41 @@ const Checkout = () => {
         </div>
         <div>
           <div className="bg-gray-100 p-8">
-            {Object.values(cart.items).length > 0 ? Object.values(cart.items).map((item) => (
-              <div className="flex gap-8 items-center ">
-                <div className="relative object-contain">
-                  <img
-                    src={item.img1}
-                    className="h-20 w-24 mb-4 rounded-lg border-4 border-white"
-                    alt=""
-                  />
-                  <p
-                    className="absolute w-6 h-6 p-1 bg-black text-white left-14 
+            {Object.values(cart.items).length > 0 ? (
+              Object.values(cart.items).map((item) => (
+                <div className="flex gap-8 items-center ">
+                  <div className="relative object-contain">
+                    <img
+                      src={item.img1}
+                      className="h-20 w-24 mb-4 rounded-lg border-4 border-white"
+                      alt=""
+                    />
+                    <p
+                      className="absolute w-6 h-6 p-1 bg-black text-white left-14 
                   -top-2 text-xs text-center rounded-lg border-2 border-white shadow"
-                  >
-                    {item.quantity}
-                  </p>
+                    >
+                      {item.quantity}
+                    </p>
+                  </div>
+                  <div className="w-full flex items-center justify-between gap-2">
+                    <p className="text-sm tracking-wider text-gray-700 w-3/4">
+                      {item.name}
+                    </p>
+                    <p className="text-sm tracking-wider text-gray-700">
+                      Rs. {item.discountedPrice.toFixed(2)}
+                    </p>
+                  </div>
                 </div>
-                <div className="w-full flex items-center justify-between gap-2">
-                  <p className="text-sm tracking-wider text-gray-700 w-3/4">
-                    {item.name}
-                  </p>
-                  <p className="text-sm tracking-wider text-gray-700">
-                    Rs. {item.discountedPrice.toFixed(2)}
-                  </p>
-                </div>
-              </div>
-            )): <p className="text-gray-700">Your cart is empty</p>}
+              ))
+            ) : (
+              <p className="text-gray-700">Your cart is empty</p>
+            )}
             <CheckoutDiscount />
+            {cart.orderNote && (
+              <p className="pt-8 text-sm text-gray-700">
+                Order Note: "{cart.orderNote}"
+              </p>
+            )}
             <div className="flex gap-8 mt-8 justify-between text-sm text-gray-700">
               <p>SubTotal: ({Object.values(cart.items).length} items)</p>
               <p>Rs. {cart.totalAmount.toFixed(2)}</p>
@@ -54,7 +63,8 @@ const Checkout = () => {
                 className="px-3 py-1.5 mt-2 max-w-fit bg-white text-gray-500
                           text-sm font-thin flex items-center gap-2 rounded"
               >
-                <MdDiscount /> <p>5% Instant Discount (Get 5% Prepaid Discount)</p>
+                <MdDiscount />{" "}
+                <p>5% Instant Discount (Get 5% Prepaid Discount)</p>
               </div>
               <p className="text-sm text-gray-700">- Rs. {prepaidDiscount}</p>
             </div>
@@ -69,7 +79,9 @@ const Checkout = () => {
                 {amountAfterDiscount}
               </p>
             </div>
-            <p className="mt-2 text-sm font-semibold">Total Savings: Rs. {prepaidDiscount}</p>
+            <p className="mt-2 text-sm font-semibold">
+              Total Savings: Rs. {prepaidDiscount}
+            </p>
           </div>
         </div>
       </div>
