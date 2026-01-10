@@ -4,9 +4,9 @@ import { allProducts } from "./Products";
 const processProducts = (data, type, categoryKey) => {
   const category = data[categoryKey];
 
-  if (!category) return {};
+  if (!category) return [];
 
-  const processed = {};
+  const processed = [];
 
   for (const key in category) {
     processed.push({
