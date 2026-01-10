@@ -7,9 +7,9 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
   return (
     <div className="xl:py-0 py-4">
       <ul className="xl:block flex flex-col gap-2 tracking-widest">
-        <li >
+        <li>
           <Link
-            to={"/view-All/makhanaSingles"}
+            to={"/view-All/makhana/singles"}
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={() => setHamMenuOpen(false)}
           >
@@ -18,7 +18,7 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
         </li>
         <li className="xl:py-2">
           <Link
-            to={"/view-All/teaSingles"}
+            to={"/view-All/tea/singles"}
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={() => setHamMenuOpen(false)}
           >
@@ -37,7 +37,7 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
           <ul>
             <li className="px-4 py-2 xl:py-1 text-[#729b4a] hover:text-[#729b4a7a] uppercase">
               <Link
-                to={"/view-All/makhanaCombo"}
+                to={"/view-All/makhana/combo"}
                 onClick={() => {
                   setHoverCategory(false);
                   setHoverCombo(false);
@@ -49,7 +49,7 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
             </li>
             <li className="px-4 py-2 xl:py-1 text-[#729b4a] hover:text-[#729b4a7a] uppercase">
               <Link
-                to={"/view-All/teaCombo"}
+                to={"/view-All/tea/combo"}
                 onClick={() => {
                   setHoverCategory(false);
                   setHoverCombo(false);
