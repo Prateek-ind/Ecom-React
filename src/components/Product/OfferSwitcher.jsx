@@ -17,7 +17,7 @@ const OfferSwitcher = ({offers}) => {
   const currentOffer = offers[currentOfferIndex];
 
   return (
-    <div className="mt-8 bg-[#63ce36] text-white text-center rounded-lg py-8 px-4 tracking-wider">
+    <div className="h-44 mt-8 bg-[#63ce36] text-white text-center rounded-lg py-8 px-4 tracking-wider">
       <span className="text-xl p-2 font-bold bg-[#77ec45] rounded-full">
         {currentOffer.heading}
       </span>
