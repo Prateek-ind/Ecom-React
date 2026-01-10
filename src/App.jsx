@@ -18,7 +18,7 @@ const App = () => {
       children: [
         { index: true, element: <HomePage /> },
         { path: "products/:id", element: <ProductDetails /> },
-        { path: "view-All/:category", element: <ViewAllProducts /> },
+        { path: "view-All/:type/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
         { path: "cart/checkout", element: <Checkout /> },
         { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
