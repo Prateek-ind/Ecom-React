@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const ComboDrawer = ({ setHamMenuOpen }) => {
   return (
@@ -8,7 +8,7 @@ const ComboDrawer = ({ setHamMenuOpen }) => {
         <li className="py-1">
           {" "}
           <Link
-            to={"/view-All/makhanaCombo"}
+            to={"/view-All/makhana/combo"}
             onClick={() => setHamMenuOpen(false)}
             className="px-4 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
           >
@@ -17,7 +17,7 @@ const ComboDrawer = ({ setHamMenuOpen }) => {
         </li>
         <li className="py-1">
           <Link
-            to={"/view-All/teaCombo"}
+            to={"/view-All/tea/combo"}
             onClick={() => setHamMenuOpen(false)}
             className="px-4 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
           >
