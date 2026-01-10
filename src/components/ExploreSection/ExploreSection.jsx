@@ -31,7 +31,7 @@ const ExploreSection = ({
           </h2>
         </div>
         <Products products={products} noOfItems={noOfItems} />
-        <ViewAllBtn category={category} />
+        <ViewAllBtn category={category} type={type} />
       </section>
       {partitionImageSrc && (
         <img
