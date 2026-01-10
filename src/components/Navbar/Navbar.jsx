@@ -10,11 +10,13 @@ import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
 import { useState } from "react";
 import ComboDrawer from "./ComboDrawer";
 import HamMenu from "./HamMenu";
+import Search from "../Search";
 
 const Navbar = () => {
   const [hoverCategory, setHoverCategory] = useState(false);
   const [hoverCombo, setHoverCombo] = useState(false);
   const [hamMenuOpen, setHamMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false)
   const cartItems = useSelector((state) => state.cart.items);
   const hasItems = Object.keys(cartItems).length;
   return (
@@ -81,8 +83,9 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
-            <AiOutlineUser size={28} />
-            <AiOutlineSearch size={28} />
+            <AiOutlineUser size={28} className="cursor-pointer"/>
+            <AiOutlineSearch size={28} onClick={()=>setSearchOpen(true)} className="cursor-pointer" />
+              {searchOpen && <Search setSearchOpen={setSearchOpen}/>}
             <div className="relative">
               <Link to={"cart"}>
                 <AiOutlineShoppingCart size={28} className="cursor-pointer" />
