@@ -1,11 +1,12 @@
 import { useLocation } from "react-router";
 import StarRating from "../components/Product/StarRating";
 import EditQuantityComponent from "../components/CartDrawer/EditQuantityComponent";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import MultiButton from "../components/Product/MultiButton";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../features/cart/CartSlice";
 import OfferSwitcher from "../components/Product/OfferSwitcher";
+import ProductImageGallery from "../components/Product/ProductImageGallery";
 
 const offers = [
   {
@@ -26,29 +27,24 @@ const ProductDetails = () => {
   const location = useLocation();
   const product = location.state;
   const [selectedImg, setSelectedImg] = useState(product.img1);
-  console.log(location);
-  const productImgArray = Object.keys(product)
-    .filter((key) => key.startsWith("img"))
-    .map((key) => (key = product[key]));
 
-  console.log(selectedImg);
+  const productImgArray = useMemo(()=>
+    Object.keys(product)
+      .filter((key) => key.startsWith("img"))
+      .map((key) => (key = product[key])),
+    [product]
+  );
+
   return (
-    <div className=" pt-36 pb-36 mx-auto max-w-7xl px-6 lg:px-8
-     grid grid-cols-1 items-center md:grid-cols-3 md:items-start">
-      <div className="col-span-2">
-        <img src={selectedImg} className="px-12" alt="" />
-        <div className="flex gap-4 px-12 flex-wrap pt-4">
-          {productImgArray.map((img, i) => (
-            <img
-              src={img}
-              key={i}
-              onClick={() => setSelectedImg(img)}
-              className={`w-16 h-16 object-cover cursor-pointer border-2 p-0.5 
-          ${selectedImg === img ? "border-gray-500" : "border-gray-300"}`}
-            />
-          ))}
-        </div>
-      </div>
+    <div
+      className=" pt-36 pb-36 mx-auto max-w-7xl px-6 lg:px-8
+     grid grid-cols-1 items-center md:grid-cols-3 md:items-start bg-[#feffec]"
+    >
+      <ProductImageGallery
+        images={productImgArray}
+        selectedImg={selectedImg}
+        onSelectImage={setSelectedImg}
+      />
       <div className="pt-2 px-8 mb-4">
         <div className="pb-4">
           <h2 className="text-gray-500 tracking-widest uppercase text-sm mb-4">
