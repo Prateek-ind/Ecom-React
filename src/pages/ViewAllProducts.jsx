@@ -4,16 +4,19 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 const ViewAllProducts = () => {
-  const { category } = useParams();
-  const products =
-    category === "makhanaSingles"
-      ? useSelector((state) => state.product.makhana.singles)
-      : category === "makhanaCombo"
-      ? useSelector((state) => state.product.makhana.combo)
-      : category === "teaSingles"
-      ? useSelector((state) => state.product.tea.singles)
-      : useSelector((state) => state.product.tea.combo);
+  const { type, category } = useParams();
 
+  const allProducts = useSelector((state) => state.product.allProducts);
+
+  const products = allProducts.filter(
+    (product) => product.type === type && product.category === category
+  );
+
+  const getTitle = () => {
+    if (type === "makhana")
+      return category === "singles" ? "Makhana" : "Makhana Combo";
+    if (type === "tea") return category === "singles" ? "Tea" : "Tea Combo";
+  };
   console.log();
 
   return (
@@ -24,30 +27,17 @@ const ViewAllProducts = () => {
       <div className=" w-full text-center uppercase mt-28">
         <div className="w-full relative py-12 ">
           <p className="pl-4 absolute top-2 left-0 text-xs text-gray-500 font-thin">
-            Home / Shop / {` `}
-            {category === "makhanaSingles"
-              ? "Makhana"
-              : category === "makhanaCombo"
-              ? "Makhana Combo"
-              : category === "teaSingles"
-              ? "Tea"
-              : "Tea Combo"}
+            Home / Shop / {getTitle()}
           </p>
           <h2 className="text-3xl text-gray-700 font-extralight tracking-widest">
-            {category === "makhanaSingles"
-              ? "Makhana"
-              : category === "makhanaCombo"
-              ? "Makhana Combo"
-              : category === "teaSingles"
-              ? "Tea"
-              : "Tea Combo"}
+            {getTitle()}
           </h2>
         </div>
 
         <div>
           <hr />
           <p className="py-4  text-sm font-thin tracking-widest text-gray-500">
-            {Object.keys(products).length} PRODUCTS
+            {products.length} PRODUCTS
           </p>
           <hr />
         </div>

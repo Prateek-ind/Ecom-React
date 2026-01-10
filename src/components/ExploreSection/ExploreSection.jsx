@@ -6,17 +6,15 @@ const ExploreSection = ({
   heading,
   slogan,
   noOfItems,
+  type,
   category,
   partitionImageSrc,
 }) => {
-  const products =
-    category === "makhanaSingles"
-      ? useSelector((state) => state.product.makhana.singles)
-      : category === "makhanaCombo"
-      ? useSelector((state) => state.product.makhana.combo)
-      : category === "teaSingles"
-      ? useSelector((state) => state.product.tea.singles)
-      : useSelector((state) => state.product.tea.combo);
+  const allProducts = useSelector((state) => state.product.allProducts);
+
+  const products = allProducts.filter(
+    (product) => product.type === type && product.category === category
+  );
 
   return (
     <>
@@ -33,7 +31,7 @@ const ExploreSection = ({
           </h2>
         </div>
         <Products products={products} noOfItems={noOfItems} />
-        <ViewAllBtn category={category} />
+        <ViewAllBtn category={category} type={type} />
       </section>
       {partitionImageSrc && (
         <img

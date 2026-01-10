@@ -10,7 +10,7 @@ export const setIdToken = (token) => {
 
 export const fetchCartFromDB = createAsyncThunk(
   "cart/fetchCart",
-  async (userId, thunkAPI) => {
+  async (userId) => {
     const url = `${rdbUrl}/carts/${userId}.json?auth=${idToken || ""}`;
     const response = await fetch(url);
     if (!response.ok) {

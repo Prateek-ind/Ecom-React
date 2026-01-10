@@ -25,7 +25,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        category="makhanaSingles"
+        type='makhana'
+        category="singles"
         noOfItems={6}
         partitionImageSrc={
           isMobile
@@ -37,7 +38,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Explore our flavours"
         slogan="Taste the variety of our premium snacks"
-        category="makhanaCombo"
+        type='makhana'
+        category="combo"
         noOfItems={3}
         partitionImageSrc={
           isMobile
@@ -49,7 +51,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Taste the Tradition"
         slogan="Wellness in Every Sip"
-        category="teaSingles"
+        type='tea'
+        category="singles"
         noOfItems={6}
         partitionImageSrc={null}
       />
@@ -57,7 +60,8 @@ const HomePage = () => {
         isMobile={isMobile}
         heading="Tea Combo Packs"
         slogan="Wellness in Every Sip"
-        category="teaCombo"
+        type='tea'
+        category="combo"
         noOfItems={6}
         partitionImageSrc={null}
       />

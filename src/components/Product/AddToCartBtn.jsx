@@ -4,7 +4,7 @@ import { cartActions } from "../../features/cart/CartSlice";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import { saveCartToDB } from "../../features/cart/cartThunk";
 
-const AddToCartBtn = ({ product }) => {
+const AddToCartBtn = ({ product, closeSearch }) => {
   const [cssClasses, setCssClasses] = useState("");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
@@ -31,6 +31,7 @@ const AddToCartBtn = ({ product }) => {
   };
   dispatch(saveCartToDB({ userId, cartItems: updatedCartItems }));
 }, 0);
+  if(closeSearch) closeSearch()
   };
 
   return (

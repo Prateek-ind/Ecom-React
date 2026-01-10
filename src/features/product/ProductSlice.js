@@ -1,32 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { makhanaProducts, teaProducts } from "./Products";
+import { allProducts } from "./Products";
 
-const processProducts = (data, categoryKey) => {
+const processProducts = (data, type, categoryKey) => {
   const category = data[categoryKey];
 
-  if (!category) return {};
+  if (!category) return [];
 
-  const processed = {};
+  const processed = [];
 
   for (const key in category) {
-    processed[key] = {
+    processed.push({
       ...category[key],
       id: key,
+      type,
       category: categoryKey,
-    };
+    });
   }
   return processed;
 };
 
 const initialState = {
-  makhana: {
-    singles: processProducts(makhanaProducts.makhana, "roastedMakhana"),
-    combo: processProducts(makhanaProducts.makhana, "comboOfMakhana"),
-  },
-  tea: {
-    singles: processProducts(teaProducts, "tea"),
-    combo: processProducts(teaProducts, "teaCombo"),
-  },
+  allProducts: allProducts,
   loading: false,
   error: null,
 };
