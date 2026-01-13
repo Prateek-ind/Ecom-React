@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CheckoutNavbar from "../components/CartDrawer/Checkout/CheckoutNavbar";
+import CheckoutNavbar from "../components/Navbar/CheckoutNavbar";
 import CheckoutForm from "../components/CartDrawer/Checkout/CheckoutForm";
 import CheckoutDiscount from "../components/CartDrawer/Checkout/CheckoutDiscount";
 import { MdDiscount } from "react-icons/md";
