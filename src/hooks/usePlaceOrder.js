@@ -16,13 +16,12 @@ export const usePlaceOrder = () => {
       setSuccess(true);
       return result;
     } catch (error) {
-      setError("Order error" || error.message);
+      setError(error.message || "Order error");
       console.log(error.message);
       return null;
     } finally {
       setIsLoading(false);
     }
-    
   };
   return { placeOrder, isLoading, success, error };
 };

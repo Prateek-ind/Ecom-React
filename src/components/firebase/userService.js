@@ -1,7 +1,7 @@
-import { rdbUrl, setIdToken, getHeaders } from "../../features/cart/cartAPI";
+import { rdbUrl, getIdToken, getHeaders } from "../../features/cart/cartAPI";
 
 export const contactUsToDb = async ({ userId, messageDetails }) => {
-  const url = `${rdbUrl}/messages/${userId}.json?auth=${setIdToken() || null}`;
+  const url = `${rdbUrl}/messages/${userId}.json?auth=${getIdToken() || null}`;
   const payload = {
     ...messageDetails,
     message: messageDetails.message,
