@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./pages/RootLayout";
+import RootLayout from "./layouts/RootLayout";
 import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
@@ -9,6 +9,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
+import AuthLayout from "./layouts/AuthLayout";
 
 const App = () => {
   useLocalStorage();
@@ -27,7 +28,12 @@ const App = () => {
         
       ],
     },
-    {path: "auth", element: <Login/>}
+    {path: "/auth", element: <AuthLayout/>,
+      children: [
+        {path: 'login', element: <Login/>},
+        {path: 'signup', element: <Login mode='signup'/>}
+      ]
+    }
   ]);
 
   return <RouterProvider router={router} />;
