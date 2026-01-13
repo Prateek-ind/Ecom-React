@@ -8,6 +8,7 @@ import ViewAllProducts from "./pages/ViewAllProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 import ContactUs from "./pages/ContactUs";
+import Login from "./pages/Login";
 
 const App = () => {
   useLocalStorage();
@@ -23,8 +24,10 @@ const App = () => {
         { path: "cart/checkout", element: <Checkout /> },
         { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
         { path: "/contact-us", element: <ContactUs /> },
+        
       ],
     },
+    {path: "auth", element: <Login/>}
   ]);
 
   return <RouterProvider router={router} />;
