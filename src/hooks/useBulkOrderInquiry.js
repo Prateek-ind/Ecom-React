@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { bulkOrderInquiryToDb } from "../components/firebase/orderService";
+import { bulkOrderInquiryToDb } from "../features/order/orderAPI";
 
 export const useBulkOrderInquiry = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
-  const submitInquiry = async ({userId, orderDetails}) => {
+  const submitInquiry = async ({ userId, orderDetails }) => {
     setIsLoading(true);
     setSuccess(false);
     setError(false);
