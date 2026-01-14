@@ -1,32 +1,47 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userId: 'testUser1',
-    userName: 'testUser number 1',
-    email: 'testUser@test.abc',
-    isLoggedIn: false,
-}
+  userId: null,
+  userName: null,
+  email: null,
+  isLoggedIn: false,
+};
 
 const userSlice = createSlice({
-    name: 'userSlice',
-    initialState: initialState,
-    reducers: {
-        login(state, action){
-            const {userId, userName, email} = action.payload
-            state.userId = userId
-            state.userName = userName
-            state.email = email
-            state.isLoggedIn = true
-        },
-        logout(state){
-            state.isLoggedIn = false
+  name: "userSlice",
+  initialState: initialState,
+  reducers: {
+    login(state, action) {
+      const { userId, userName, email, token } = action.payload;
+      state.userId = userId;
+      state.userName = userName;
+      state.email = email;
+      state.isLoggedIn = true;
 
-            state.userId = null
-            state.userName = null
-            state.email = null
-        }
-    }
-})
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("email", email);
+    },
+    logout(state) {
+      state.isLoggedIn = false;
 
-export default userSlice.reducer
-export const userActions =  userSlice.actions
+      state.userId = null;
+      state.userName = null;
+      state.email = null;
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("email");
+    },
+    autoLogin(state, action) {
+      const { userId, email, token } = action.payload;
+      state.userId = userId;
+      state.token = token;
+      state.email = email;
+      state.isLoggedIn = true;
+    },
+  },
+});
+
+export default userSlice.reducer;
+export const userActions = userSlice.actions;
