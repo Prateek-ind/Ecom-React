@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { placeOrderToDb } from "../components/firebase/orderService";
+import { placeOrderToDb } from "../features/order/orderAPI";
 
 export const usePlaceOrder = () => {
   const [isLoading, setIsLoading] = useState(false);
