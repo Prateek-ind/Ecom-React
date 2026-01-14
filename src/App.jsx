@@ -10,9 +10,12 @@ import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import AuthLayout from "./layouts/AuthLayout";
+import { useAuthInitial } from "./hooks/useAuthInitial";
 
 const App = () => {
+  useAuthInitial();
   useLocalStorage();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -25,15 +28,16 @@ const App = () => {
         { path: "cart/checkout", element: <Checkout /> },
         { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
         { path: "/contact-us", element: <ContactUs /> },
-        
       ],
     },
-    {path: "/auth", element: <AuthLayout/>,
+    {
+      path: "/auth",
+      element: <AuthLayout />,
       children: [
-        {path: 'login', element: <Login/>},
-        {path: 'signup', element: <Login mode='signup'/>}
-      ]
-    }
+        { path: "login", element: <Login /> },
+        { path: "signup", element: <Login mode="signup" /> },
+      ],
+    },
   ]);
 
   return <RouterProvider router={router} />;
