@@ -20,7 +20,7 @@ const Checkout = () => {
           <div className="bg-gray-100 p-8">
             {Object.values(cart.items).length > 0 ? (
               Object.values(cart.items).map((item) => (
-                <div className="flex gap-8 items-center ">
+                <div key={item.id} className="flex gap-8 items-center ">
                   <div className="relative object-contain">
                     <img
                       src={item.img1}
