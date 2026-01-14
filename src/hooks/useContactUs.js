@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { contactUsToDb } from "../components/firebase/userService";
+import { contactUsToDb } from "../features/users/userAPI";
+
 
 export const useContactUs = () => {
   const [isLoading, setIsLoading] = useState(false);

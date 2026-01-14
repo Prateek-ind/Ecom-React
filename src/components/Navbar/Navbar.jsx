@@ -83,7 +83,7 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
-            <AiOutlineUser size={28} className="cursor-pointer"/>
+            <Link to={'auth/login'}><AiOutlineUser size={28} className="cursor-pointer"/></Link>
             <AiOutlineSearch size={28} onClick={()=>setSearchOpen(true)} className="cursor-pointer" />
               {searchOpen && <Search setSearchOpen={setSearchOpen}/>}
             <div className="relative">

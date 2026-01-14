@@ -1,7 +1,8 @@
-import { rdbUrl, setIdToken, getHeaders } from "../../features/cart/cartAPI";
+import { rdbUrl, getIdToken, getHeaders } from "../cart/cartAPI";
 
 export const placeOrderToDb = async ({ orderDetails, userId }) => {
-  const url = `${rdbUrl}/orders/${userId}.json?auth=${setIdToken() || ""}`;
+  const token = getIdToken();
+  const url = `${rdbUrl}/orders/${userId}.json?auth=${token || ""}`;
   const payload = {
     ...orderDetails,
     userId: userId || null,
@@ -20,9 +21,9 @@ export const placeOrderToDb = async ({ orderDetails, userId }) => {
 };
 
 export const bulkOrderInquiryToDb = async ({ userId, orderDetails }) => {
-  const url = `${rdbUrl}/bulkOrderInquiry/${userId}.json?auth=${
-    setIdToken() || ""
-  }`;
+  const token = getIdToken();
+  if (!token) throw new Error("User not authenticated");
+  const url = `${rdbUrl}/bulkOrderInquiry/${userId}.json?auth=${token || ""}`;
   const payload = {
     ...orderDetails,
     userId: userId || null,

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CheckoutNavbar from "../components/CartDrawer/Checkout/CheckoutNavbar";
+import CheckoutNavbar from "../components/Navbar/CheckoutNavbar";
 import CheckoutForm from "../components/CartDrawer/Checkout/CheckoutForm";
 import CheckoutDiscount from "../components/CartDrawer/Checkout/CheckoutDiscount";
 import { MdDiscount } from "react-icons/md";
@@ -20,7 +20,7 @@ const Checkout = () => {
           <div className="bg-gray-100 p-8">
             {Object.values(cart.items).length > 0 ? (
               Object.values(cart.items).map((item) => (
-                <div className="flex gap-8 items-center ">
+                <div key={item.id} className="flex gap-8 items-center ">
                   <div className="relative object-contain">
                     <img
                       src={item.img1}

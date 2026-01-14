@@ -1,4 +1,4 @@
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 const CheckoutNavbar = () => {
@@ -6,7 +6,7 @@ const CheckoutNavbar = () => {
   const hasItems = Object.keys(cartItems).length;
 
   return (
-    <nav className=" w-full fixed z-50 mx-auto   bg-white">
+    <nav className=" w-full top-0 left-0 fixed z-50 mx-auto   bg-white">
       <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
         <Link to={'/'}>
           <img

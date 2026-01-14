@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./pages/RootLayout";
+import RootLayout from "./layouts/RootLayout";
 import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
@@ -8,9 +8,14 @@ import ViewAllProducts from "./pages/ViewAllProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 import ContactUs from "./pages/ContactUs";
+import Login from "./pages/Login";
+import AuthLayout from "./layouts/AuthLayout";
+import { useAuthInitial } from "./hooks/useAuthInitial";
 
 const App = () => {
+  useAuthInitial();
   useLocalStorage();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -23,6 +28,14 @@ const App = () => {
         { path: "cart/checkout", element: <Checkout /> },
         { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
         { path: "/contact-us", element: <ContactUs /> },
+      ],
+    },
+    {
+      path: "/auth",
+      element: <AuthLayout />,
+      children: [
+        { path: "login", element: <Login /> },
+        { path: "signup", element: <Login mode="signup" /> },
       ],
     },
   ]);

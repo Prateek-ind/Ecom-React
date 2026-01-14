@@ -5,7 +5,7 @@ export const rdbUrl =
   "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
 
 let idToken = null;
-export const setIdToken = (token) => {
+export const getIdToken = (token) => {
   idToken = token;
 };
 
@@ -17,9 +17,7 @@ export const getHeaders = () => {
 
 export const fetchCart = async (userId) => {
   const url = `${rdbUrl}/carts/${userId}.json?auth=${idToken || ""}`;
-
   const response = await fetch(url, { headers: getHeaders() });
-
   if (!response.ok) {
     throw new Error("Failed to fetch cart");
   }

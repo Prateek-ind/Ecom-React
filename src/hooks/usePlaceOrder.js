@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { placeOrderToDb } from "../components/firebase/orderService";
+import { placeOrderToDb } from "../features/order/orderAPI";
 
 export const usePlaceOrder = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,13 +16,12 @@ export const usePlaceOrder = () => {
       setSuccess(true);
       return result;
     } catch (error) {
-      setError("Order error" || error.message);
+      setError(error.message || "Order error");
       console.log(error.message);
       return null;
     } finally {
       setIsLoading(false);
     }
-    
   };
   return { placeOrder, isLoading, success, error };
 };
