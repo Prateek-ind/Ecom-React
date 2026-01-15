@@ -1,6 +1,6 @@
 import { AiOutlineUser } from "react-icons/ai";
 import { IoCloseOutline } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
 import ComboDrawer from "./ComboDrawer";
 import { useState } from "react";
@@ -27,7 +27,7 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
         />
       </div>
       <ul className="flex flex-col flex-1">
-        <Link to={"/"}>
+        <Link to={"/"} onClick={() => setHamMenuOpen(false)}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Home
           </li>
@@ -50,7 +50,7 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
             }`}
           >
             {" "}
-            <ShopByCategoryDrawer setHamMenuOpen={setHamMenuOpen} />
+            <ShopByCategoryDrawer setHamMenuOpen={setHamMenuOpen}  />
           </div>
         )}
 
@@ -66,26 +66,30 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
         </li>
         {openDrawer === "combo" && (
           <div
+            onClick={() => setHamMenuOpen(false)}
             className={`overflow-hidden transition-all duration-300 ${
               openDrawer === "combo" ? "max-h-96" : "max-h-0"
             }`}
           >
-            <ComboDrawer setHamMenuOpen={setHamMenuOpen}/>
+            <ComboDrawer setHamMenuOpen={setHamMenuOpen} />
           </div>
         )}
 
-        <Link to={'/bulk-order-inquiry'}>
+        <Link to={"/bulk-order-inquiry"} onClick={() => setHamMenuOpen(false)}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Bulk order Inquiry
           </li>
         </Link>
-        <Link to={'/contact-us'}>
+        <Link to={"/contact-us"} onClick={() => setHamMenuOpen(false)}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Contact Us
           </li>
         </Link>
       </ul>
-      <div className=" flex gap-2 py-8 text-[#80ad53]">
+      <div
+        onClick={() => setHamMenuOpen(false)}
+        className=" flex gap-2 py-8 text-[#80ad53]"
+      >
         <Link>
           <AiOutlineUser size={28} />
         </Link>
