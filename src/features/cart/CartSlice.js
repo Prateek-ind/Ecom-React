@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const rdbUrl =
+  "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
+
 const updateShipping = (state) => {
   state.shipping = state.totalAmount >= state.freeShippingThreshold ? 0 : 100;
 };
@@ -98,17 +101,11 @@ const cartSlice = createSlice({
   },
 });
 
-const rdbUrl =
-  "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
-
-let idToken = null;
-export const setIdToken = (token) => {
-  idToken = token;
-};
-
 export const fetchCartFromDB = createAsyncThunk(
   "cart/fetchCart",
-  async ({userId, token}) => {
+  async ({ userId }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.user.token;
     const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
     const response = await fetch(url);
     if (!response.ok) {
@@ -121,7 +118,9 @@ export const fetchCartFromDB = createAsyncThunk(
 
 export const saveCartToDB = createAsyncThunk(
   "cart/saveCart",
-  async ({ userId, cartItems, token }) => {
+  async ({ userId, cartItems }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.user.token;
     const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
     const response = await fetch(url, {
       method: "PUT",
