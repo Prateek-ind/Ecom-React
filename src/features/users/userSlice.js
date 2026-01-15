@@ -4,6 +4,7 @@ const initialState = {
   userId: null,
   userName: null,
   email: null,
+  token: null,
   isLoggedIn: false,
 };
 
@@ -17,7 +18,7 @@ const userSlice = createSlice({
       state.userName = userName;
       state.email = email;
       state.isLoggedIn = true;
-
+      state.token = token
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
       localStorage.setItem("email", email);
@@ -28,7 +29,7 @@ const userSlice = createSlice({
       state.userId = null;
       state.userName = null;
       state.email = null;
-
+      
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("email");
@@ -38,6 +39,7 @@ const userSlice = createSlice({
       state.userId = userId;
       state.token = token;
       state.email = email;
+      state.token = token
       state.isLoggedIn = true;
     },
   },
