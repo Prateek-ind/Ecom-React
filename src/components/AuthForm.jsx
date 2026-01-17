@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Form, useNavigate, useSearchParams } from "react-router-dom";
+import { Form, replace, useNavigate, useSearchParams } from "react-router-dom";
 import { userActions } from "../features/users/userSlice";
 import { auth } from "./firebase/config";
 import {
@@ -46,7 +46,12 @@ const AuthForm = () => {
       dispatch(
         userActions.login({ token, email: user.email, userId: user.uid })
       );
-      navigate("/");
+      if(isLogin){
+        navigate('/')
+      }
+      else{
+        navigate('/profile', {replace: true})
+      }
     } catch (error) {
       setError(error.message);
     }
