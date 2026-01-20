@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import ProfileForm from "../components/ProfileForm";
 
 import UserProfile from "../components/UserProfile";
