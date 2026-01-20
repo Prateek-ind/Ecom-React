@@ -5,20 +5,29 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
 import { useState } from "react";
 import ComboDrawer from "./ComboDrawer";
 import HamMenu from "./HamMenu";
 import Search from "../Search";
+import UserMenuDrawer from "./UserMenuDrawer";
 
 const Navbar = () => {
   const [hoverCategory, setHoverCategory] = useState(false);
   const [hoverCombo, setHoverCombo] = useState(false);
   const [hamMenuOpen, setHamMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
   const hasItems = Object.keys(cartItems).length;
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const navigate = useNavigate()
+
+  const navigateToLogin = ()=>{
+    navigate('/auth/login')
+  }
+
   return (
     <>
       <nav className=" w-full fixed z-50 mx-auto bg-[#feffec]">
@@ -72,23 +81,55 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to={'/bulk-order-inquiry'} className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+              <Link
+                to={"/bulk-order-inquiry"}
+                className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
+              >
                 Bulk order Enquiry
               </Link>
             </li>
             <li>
-              <Link to={'/contact-us'} className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+              <Link
+                to={"/contact-us"}
+                className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
+              >
                 Contact Us
               </Link>
             </li>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
-            <Link to={'auth/login'}><AiOutlineUser size={28} className="cursor-pointer"/></Link>
-            <AiOutlineSearch size={28} onClick={()=>setSearchOpen(true)} className="cursor-pointer" />
-              {searchOpen && <Search setSearchOpen={setSearchOpen}/>}
-            <div className="relative">
+            <div
+              className="relative py-12 "
+              onClick={() => {
+                isLoggedIn && setUserMenuOpen(true);
+              }}
+              onMouseLeave={() => setUserMenuOpen(false)}
+            >
+              {isLoggedIn ? (
+                <AiOutlineUser size={28} className="cursor-pointer" />
+              ) : (
+                <Link onClick={navigateToLogin}>
+                  <AiOutlineUser size={28} className="cursor-pointer" />
+                </Link>
+              )}
+              <div
+                className="absolute -left-5 w-fit mt-12  
+              bg-[#feffec] cursor-pointer"
+              >
+                {isLoggedIn && userMenuOpen && (
+                  <UserMenuDrawer setUserMenuOpen={setUserMenuOpen} />
+                )}
+              </div>
+            </div>
+            <AiOutlineSearch
+              className=" cursor-pointer"
+              size={28}
+              onClick={() => setSearchOpen(true)}
+            />
+            {searchOpen && <Search setSearchOpen={setSearchOpen} />}
+            <div className="relative px-1 cursor-pointer">
               <Link to={"cart"}>
-                <AiOutlineShoppingCart size={28} className="cursor-pointer" />
+                <AiOutlineShoppingCart size={28} />
               </Link>
               {hasItems > 0 && (
                 <div className="w-3 h-3 rounded-full absolute -right-1 -top-1 bg-green-600 shadow-white"></div>
