@@ -3,6 +3,7 @@ import cartReducer from "../features/cart/CartSlice";
 import cartUIReducer from "../features/cart/cartUISlice";
 import userReducer from "../features/users/userSlice"
 import { configureStore } from "@reduxjs/toolkit";
+import profileReducer from "../features/users/profileSlice"
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     cartUI: cartUIReducer,
     product: productReducer,
     user: userReducer,
+    userProfile: profileReducer,
   },
 });
 
