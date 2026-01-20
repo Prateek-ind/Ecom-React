@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Form, replace, useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, useNavigate, useSearchParams } from "react-router-dom";
 import { userActions } from "../features/users/userSlice";
 import { auth } from "./firebase/config";
 import {
@@ -8,15 +8,19 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
+import { setIdToken } from "../features/cart/cartAPI";
+
 const AuthForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const isLogin = searchParams.get("mode") !== "signup";
+  const isLogin = searchParams.get("mode") === "login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,15 +46,27 @@ const AuthForm = () => {
       }
       const user = userCredentials.user;
       const token = await user.getIdToken();
+      setIdToken(token);
+
+      const expiresIn = 3600 * 1000; // Set expiration time to 1 hour
+      const expiryTime = new Date().getTime() + expiresIn;
+      localStorage.setItem("token", token);
+      localStorage.setItem("tokenExpiry", expiryTime.toString());
+      console.log(expiryTime, expiresIn);
 
       dispatch(
-        userActions.login({ token, email: user.email, userId: user.uid })
+        userActions.login({
+          token,
+          email: user.email,
+          uid: user.uid,
+          tokenExpiry: expiryTime.toString(),
+        })
       );
-      if(isLogin){
-        navigate('/')
-      }
-      else{
-        navigate('/profile', {replace: true})
+
+      if (isLoggedIn) {
+        navigate("/", { replace: true });
+      } else {
+        navigate("/profile", { replace: true });
       }
     } catch (error) {
       setError(error.message);
