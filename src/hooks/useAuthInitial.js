@@ -7,11 +7,11 @@ export const useAuthInitial = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const uid = localStorage.getItem("uid");
     const email = localStorage.getItem("email");
 
-    if (userId && token) {
-      dispatch(userActions.autoLogin({ token, userId, email }));
+    if (uid && token) {
+      dispatch(userActions.autoLogin({ token, uid, email }));
     }
   }, [dispatch]);
 };

@@ -6,23 +6,23 @@ export const useLocalStorage=()=>{
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch()
     const cart = useSelector(state=>state.cart)
-    const userId = useSelector(state=>state.user.userId)
+    const uid = useSelector(state=>state.user.uid)
 
 
     useEffect(()=>{
-        if(!userId) return
-        const newCart = window.localStorage.getItem(`cart_${userId}`)
+        if(!uid) return
+        const newCart = window.localStorage.getItem(`cart_${uid}`)
         if(newCart){
             dispatch(cartActions.replaceCart(JSON.parse(newCart)))
         }
         setLoaded(true)
-    }, [dispatch, userId])
+    }, [dispatch, uid])
 
     useEffect(()=>{
-        if(!loaded || !userId) return
-        window.localStorage.setItem(`cart_${userId}`, JSON.stringify(cart))
+        if(!loaded || !uid) return
+        window.localStorage.setItem(`cart_${uid}`, JSON.stringify(cart))
        
-    }, [cart, userId])
+    }, [cart, uid])
 
    
 
