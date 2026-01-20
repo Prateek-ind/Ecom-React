@@ -6,13 +6,19 @@ export const usePlaceOrder = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const placeOrder = async ({ userId, orderDetails }) => {
+  const placeOrder = async ({ uid, orderDetails }) => {
+    if (!uid) {
+      setError("User not logged in");
+      return null;
+    }
     setIsLoading(true);
     setSuccess(false);
     setError(null);
 
     try {
-      const result = await placeOrderToDb({ userId, orderDetails });
+      console.log(uid, orderDetails);
+      const result = await placeOrderToDb({ uid, orderDetails });
+      console.log(result);
       setSuccess(true);
       return result;
     } catch (error) {

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userId: null,
-  userName: null,
+  uid: null,
   email: null,
+  token: null,
   isLoggedIn: false,
 };
 
@@ -12,32 +12,33 @@ const userSlice = createSlice({
   initialState: initialState,
   reducers: {
     login(state, action) {
-      const { userId, userName, email, token } = action.payload;
-      state.userId = userId;
-      state.userName = userName;
+      const { uid, email, token, tokenExpiry } = action.payload;
+      state.uid = uid;
       state.email = email;
       state.isLoggedIn = true;
-
+      state.token = token;
+      state.tokenExpiry = tokenExpiry;
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+      localStorage.setItem("uid", uid);
       localStorage.setItem("email", email);
+      localStorage.setItem("tokenExpiry", tokenExpiry);
     },
     logout(state) {
       state.isLoggedIn = false;
-
-      state.userId = null;
-      state.userName = null;
+      state.token = null;
+      state.uid = null;
       state.email = null;
 
       localStorage.removeItem("token");
-      localStorage.removeItem("userId");
+      localStorage.removeItem("uid");
       localStorage.removeItem("email");
     },
     autoLogin(state, action) {
-      const { userId, email, token } = action.payload;
-      state.userId = userId;
+      const { uid, email, token } = action.payload;
+      state.uid = uid;
       state.token = token;
       state.email = email;
+      state.token = token;
       state.isLoggedIn = true;
     },
   },

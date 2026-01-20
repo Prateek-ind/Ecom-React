@@ -1,17 +1,17 @@
-import { rdbUrl, getIdToken, getHeaders } from "../cart/cartAPI";
+import { rdbUrl, getIdToken } from "../cart/cartAPI";
 
-export const placeOrderToDb = async ({ orderDetails, userId }) => {
+export const placeOrderToDb = async ({ orderDetails, uid }) => {
   const token = getIdToken();
-  const url = `${rdbUrl}/orders/${userId}.json?auth=${token || ""}`;
+  if(!uid) throw new Error('User id is missing.')
+  const url = `${rdbUrl}/orders/${uid}.json?auth=${token || ""}`;
   const payload = {
     ...orderDetails,
-    userId: userId || null,
+    uid: uid || null,
     createdAt: new Date().toISOString(),
   };
 
   const response = await fetch(url, {
     method: "POST",
-    headers: getHeaders(),
     body: JSON.stringify(payload),
   });
   if (!response.ok) {
@@ -20,18 +20,17 @@ export const placeOrderToDb = async ({ orderDetails, userId }) => {
   return await response.json();
 };
 
-export const bulkOrderInquiryToDb = async ({ userId, orderDetails }) => {
+export const bulkOrderInquiryToDb = async ({ uid, orderDetails }) => {
   const token = getIdToken();
   if (!token) throw new Error("User not authenticated");
-  const url = `${rdbUrl}/bulkOrderInquiry/${userId}.json?auth=${token || ""}`;
+  const url = `${rdbUrl}/bulkOrderInquiry/${uid}.json?auth=${token || ""}`;
   const payload = {
     ...orderDetails,
-    userId: userId || null,
+    uid: uid || null,
     createdAt: new Date().toISOString(),
   };
   const response = await fetch(url, {
     method: "POST",
-    headers: getHeaders(),
     body: JSON.stringify(payload),
   });
   if (!response.ok) {

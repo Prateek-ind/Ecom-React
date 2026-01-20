@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
-const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
+const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
   const [hoverCombo, setHoverCombo] = useState(false);
   return (
     <div className="xl:py-0 py-4">
@@ -39,7 +39,6 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
               <Link
                 to={"/view-All/makhana/combo"}
                 onClick={() => {
-                  setHoverCategory(false);
                   setHoverCombo(false);
                   setHamMenuOpen(false);
                 }}
@@ -51,7 +50,6 @@ const ShopByCategoryDrawer = ({ setHoverCategory, setHamMenuOpen }) => {
               <Link
                 to={"/view-All/tea/combo"}
                 onClick={() => {
-                  setHoverCategory(false);
                   setHoverCombo(false);
                   setHamMenuOpen(false);
                 }}

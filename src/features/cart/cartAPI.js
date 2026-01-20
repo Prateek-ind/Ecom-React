@@ -1,23 +1,24 @@
 export const projectId = import.meta.env.VITE_PROJECT_ID;
 export const apiKey = import.meta.env.VITE_API_KEY;
-
 export const rdbUrl =
   "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
 
 let idToken = null;
-export const getIdToken = (token) => {
+export const setIdToken = (token) => {
   idToken = token;
 };
 
-export const getHeaders = () => {
-  const headers = { "Content-Type": "application/json" };
-  if (idToken) headers["Authorization"] = `Bearer ${idToken}`;
-  return headers;
+export const getIdToken = () => {
+  if (!idToken) {
+    throw new Error("User not logged in");
+  }
+  return idToken;
 };
 
-export const fetchCart = async (userId) => {
-  const url = `${rdbUrl}/carts/${userId}.json?auth=${idToken || ""}`;
-  const response = await fetch(url, { headers: getHeaders() });
+export const fetchCart = async (uid) => {
+  const token = getIdToken();
+  const url = `${rdbUrl}/carts/${uid}.json?auth=${token}`;
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Failed to fetch cart");
   }
@@ -27,11 +28,11 @@ export const fetchCart = async (userId) => {
   return data || {};
 };
 
-export const saveCart = async (userId, cartItems) => {
-  const url = `${rdbUrl}/carts/${userId}.json?auth=${idToken || ""}`;
+export const saveCart = async (uid, cartItems) => {
+  const token = getIdToken();
+  const url = `${rdbUrl}/carts/${uid}.json?auth=${token}`;
   const res = await fetch(url, {
     method: "PUT",
-    headers: getHeaders(),
     body: JSON.stringify(cartItems),
   });
 
