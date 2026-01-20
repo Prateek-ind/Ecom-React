@@ -7,8 +7,10 @@ import { cartActions } from "../../../features/cart/CartSlice";
 const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
-  const { placeOrder, isLoading, success, error } = usePlaceOrder();
-  const userId = useSelector((state) => state.user.userId);
+  const { placeOrder } = usePlaceOrder();
+  const userProfile = useSelector(state=>state.userProfile)
+  const uid = useSelector((state) => state.user.uid);
+  const email = useSelector((state)=>state.user.email)
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const CheckoutForm = () => {
       },
     };
 
-    const result = await placeOrder({ orderDetails, userId });
+    const result = await placeOrder({uid, orderDetails});
     if (result) {
       console.log(result);
       dispatch(cartActions.clearCart());
@@ -64,6 +66,7 @@ const CheckoutForm = () => {
         <input
           type="email"
           name="email"
+          defaultValue={email}
           placeholder="Enter your email"
           className="border px-2 py-4 w-full rounded"
           required
@@ -87,6 +90,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="first-name"
+            defaultValue={userProfile?.firstName}
             className="border px-2 py-4 w-full rounded"
             placeholder="First Name"
             required
@@ -94,6 +98,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="last-name"
+            defaultValue={userProfile?.lastName}
             className="border px-2 py-4 w-full rounded"
             placeholder="Last Name"
             required
@@ -102,6 +107,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="address"
+            defaultValue={userProfile?.address}
             className="col-span-2 border px-2 py-4 w-full rounded"
             placeholder="Address"
             required
@@ -109,6 +115,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="address-optional"
+            defaultValue={userProfile?.addressOptional}
             className=" col-span-2 border px-2 py-4 w-full rounded"
             placeholder="Apartment/Flat No. etc (Optional) "
             required
@@ -116,6 +123,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="City"
+            defaultValue={userProfile?.city}
             className="border px-2 py-4 w-full rounded"
             placeholder="City"
             required
@@ -123,6 +131,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="State"
+            defaultValue={userProfile?.state}
             className="border px-2 py-4 w-full rounded"
             placeholder="State"
             required
@@ -130,12 +139,14 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="pin-code"
+            defaultValue={userProfile?.pinCode}
             className="border px-2 py-4 w-full rounded"
             placeholder="Pin-code"
             required
           />
           <select
             name="country"
+            
             className="border px-2 py-4 rounded w-full "
             defaultValue="India"
             required
@@ -149,6 +160,7 @@ const CheckoutForm = () => {
             type="number"
             name="phone-number"
             id="phone-number"
+            defaultValue={userProfile?.phoneNumber}
             placeholder="Phone number"
             className="border px-2 py-4 w-full rounded"
           />
