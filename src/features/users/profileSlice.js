@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   firstName: "",
   lastName: "",
-  email: "",
   phoneNumber: "",
   address: "",
+  addressOptional: "",
   city: "",
   state: "",
   country: "India",
   pinCode: "",
-  isLoaded: "",
+  isLoaded: false,
 };
 
 const profileSlice = createSlice({
@@ -18,7 +18,16 @@ const profileSlice = createSlice({
   initialState: initialState,
   reducers: {
     setProfile(state, action) {
-      Object.assign(state, action.payload);
+      const profileData = action.payload || {}
+      state.firstName = profileData.firstName || "";
+      state.lastName = profileData.lastName || "";
+      state.phoneNumber = profileData.phoneNumber || "";
+      state.address = profileData.address || "";
+      state.addressOptional = profileData.addressOptional || "";
+      state.city = profileData.city || "";
+      state.state = profileData.state || "";
+      state.country = profileData.country || "India";
+      state.pinCode = profileData.pinCode || "";
       state.isLoaded = true;
     },
     clearProfile() {
