@@ -1,9 +1,12 @@
 import { Form, useNavigate } from "react-router";
 import { useUserProfile } from "../hooks/useUserProfile";
+import { useDispatch, useSelector } from "react-redux";
 
-const ProfileForm = ({ defaultValues, userId }) => {
+const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
   const navigate = useNavigate();
   const { storeUserProfile } = useUserProfile();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -11,13 +14,21 @@ const ProfileForm = ({ defaultValues, userId }) => {
     const userInfo = Object.fromEntries(formData.entries());
     console.log(userInfo);
 
-    await storeUserProfile({ uid: userId, userDetails: userInfo });
-    navigate("/");
+    const savedProfile = await storeUserProfile(userInfo);
+    if (savedProfile && onSave) {
+      onSave(savedProfile);
+      navigate("/profile");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
-    <Form className="space-y-6 " onSubmit={handleSubmit}>
-      <section>
+    <Form
+      className="w-full mt-10 flex flex-col items-center justify-center space-y-6"
+      onSubmit={handleSubmit}
+    >
+      <section className="">
         <div className="grid grid-cols-2 gap-4">
           <input
             type="text"
@@ -97,12 +108,24 @@ const ProfileForm = ({ defaultValues, userId }) => {
           />
         </div>
       </section>
-      <button
-        type="submit"
-        className="w-full bg-[#63ce36] text-white text-lg px-8 py-2 uppercase font-semibold hover:bg-[#57b92d] hover:scale-105"
-      >
-        Submit
-      </button>
+      <div className="flex gap-4">
+        <button
+          type="submit"
+          disabled={!isLoggedIn}
+          className="w-full max-w-3xl bg-[#63ce36] text-white 
+        text-lg px-8 py-2 uppercase font-semibold hover:bg-[#57b92d] hover:scale-105"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="w-full max-w-3xl bg-red-500 text-white 
+        text-lg px-8 py-2 uppercase font-semibold hover:bg-red-700 hover:scale-105"
+        >
+          Cancel
+        </button>
+      </div>
     </Form>
   );
 };
