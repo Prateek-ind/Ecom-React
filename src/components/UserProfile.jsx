@@ -4,17 +4,20 @@ import ProfileForm from "./ProfileForm";
 import { useUserProfile } from "../hooks/useUserProfile";
 
 const UserProfile = () => {
-  const profile = useSelector(state=>state.userProfile)
+  const profile = useSelector((state) => state.userProfile);
+  const { isLoaded } = profile;
   const [isEditing, setIsEditing] = useState(false);
-  const { isLoading, storeUserProfile } =
-    useUserProfile();
+  const { isLoading, storeUserProfile } = useUserProfile();
+  if (!isLoaded || isLoading) {
+    return (
+      <section className="max-w-3xl mx-auto px-4 py-10 bg-[#feffec]">
+        <p className="text-2xl text-center mb-6">Loading your Profile...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="max-w-3xl mx-auto px-4 py-10 bg-[#feffec]">
-      <h2 className="text-4xl text-center mb-6">Your Profile</h2>
-      {isLoading && (
-        <p className="text-2xl text-center mb-6">Loading your Profile...</p>
-      )}
       {isEditing ? (
         <ProfileForm
           userId={profile.userId}
@@ -27,7 +30,6 @@ const UserProfile = () => {
         />
       ) : (
         <div className="space-y-4 text-gray-700">
-
           <p>
             <strong>First Name:</strong> {profile?.firstName}
           </p>

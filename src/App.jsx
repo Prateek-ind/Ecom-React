@@ -13,6 +13,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import { useAuthInitial } from "./hooks/useAuthInitial";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
+import OrdersPage from "./pages/OrdersPage";
 
 const App = () => {
   useAuthInitial();
@@ -30,7 +31,22 @@ const App = () => {
         { path: "cart/checkout", element: <Checkout /> },
         { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
         { path: "/contact-us", element: <ContactUs /> },
-        {path: 'profile', element: <ProtectedRoute><Profile/></ProtectedRoute>}
+        {
+          path: "profile",
+          element: (
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "orders",
+          element: (
+            <ProtectedRoute>
+              <OrdersPage />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
     {
@@ -39,7 +55,6 @@ const App = () => {
       children: [
         { path: "login", element: <Login /> },
         { path: "signup", element: <Login mode="signup" /> },
-        
       ],
     },
   ]);

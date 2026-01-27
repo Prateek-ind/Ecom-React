@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   fetchUserDetailsFromDb,
   storeUserDetailsToDb,
 } from "../features/users/userAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { profileActions } from "../features/users/profileSlice";
+
 
 export const useUserProfile = () => {
   const dispatch = useDispatch();
@@ -51,5 +52,9 @@ export const useUserProfile = () => {
     },
     [uid, dispatch]
   );
+
+  useEffect(()=>{
+    fetchUserProfile()
+  }, [fetchUserProfile])
   return { isLoading, fetchUserProfile, storeUserProfile };
 };

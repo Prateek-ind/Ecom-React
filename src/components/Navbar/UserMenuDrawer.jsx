@@ -14,7 +14,7 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
     dispatch(userActions.logout());
     setUserMenuOpen(false);
     console.log(isLogin);
-    navigate("/auth/login");
+    navigate("/auth/login?mode=login");
   };
   return (
     <div className=" border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] ">
@@ -32,7 +32,7 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
         </li>
         <li>
           <Link
-            to={"/profile"}
+            to={"/orders"}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={() => setUserMenuOpen(false)}
@@ -43,7 +43,6 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
         </li>
         <li>
           <Link
-            to={"/"}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={onLogout}

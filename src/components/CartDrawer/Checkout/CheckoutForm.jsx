@@ -1,26 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { usePlaceOrder } from "../../../hooks/usePlaceOrder";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../../features/cart/CartSlice";
+import { orderActions, placeOrder } from "../../../features/order/orderSlice";
 
 const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
-  const { placeOrder } = usePlaceOrder();
-  const userProfile = useSelector(state=>state.userProfile)
+  const userProfile = useSelector((state) => state.userProfile);
   const uid = useSelector((state) => state.user.uid);
-  const email = useSelector((state)=>state.user.email)
+  const email = useSelector((state) => state.user.email);
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
   const navigate = useNavigate();
+  const { loading, error, orderPlaced } = useSelector((state) => state.orders);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const orderDetails = Object.fromEntries(formData.entries());
-    orderDetails.paymentMethod = paymentMethod;
+    if (!paymentMethod) {
+      alert("Please select payment method.");
+    }
 
     const subtotal = cartItems.reduce(
       (sum, item) => sum + item.quantity * Number(item.originalPrice),
@@ -33,31 +33,55 @@ const CheckoutForm = () => {
 
     const discount = subtotal - discountedTotal;
 
-    orderDetails.orderDetails = {
+    const orderPayload = {
+      customer: {
+        email,
+        phone: userProfile?.phoneNumber,
+        name: `${userProfile?.firstName} ${userProfile?.lastName}`,
+      },
+
+      shippingAddress: {
+        address: userProfile?.address,
+        addressOptional: userProfile?.addressOptional || null,
+        city: userProfile?.city,
+        state: userProfile?.state,
+        pinCode: userProfile?.pinCode,
+        country: "India",
+      },
+
       items: cartItems.map((item) => ({
-        id: item.id,
+        productId: item.id,
         name: item.name,
+        image: item.img1 || null,
+        price: Number(item.discountedPrice),
         quantity: item.quantity,
-        price: item.discountedPrice,
         total: item.quantity * Number(item.discountedPrice),
-        img: item.img1 || null,
       })),
-      summary: {
+
+      pricing: {
         subtotal,
-        shipping: cart.shipping,
         discount,
-        orderNote: cart.orderNote || null,
+        shipping: cart.shipping,
         total: discountedTotal + cart.shipping,
+      },
+
+      payment: {
+        method: paymentMethod.toUpperCase(),
+        status: paymentMethod === "cod" ? "PENDING" : "INITIATED",
       },
     };
 
-    const result = await placeOrder({uid, orderDetails});
-    if (result) {
-      console.log(result);
+    dispatch(placeOrder({ uid, orderDetails: orderPayload }));
+  };
+
+  useEffect(() => {
+    if (orderPlaced) {
       dispatch(cartActions.clearCart());
       navigate("/");
+      dispatch(orderActions.clearOrderPlaced())
     }
-  };
+
+  }, [orderPlaced, dispatch, navigate]);
 
   return (
     <Form className="space-y-6 " onSubmit={handleSubmit}>
@@ -146,7 +170,6 @@ const CheckoutForm = () => {
           />
           <select
             name="country"
-            
             className="border px-2 py-4 rounded w-full "
             defaultValue="India"
             required
@@ -244,12 +267,12 @@ const CheckoutForm = () => {
                 />
               </div>
               <input
-            type="text"
-            name="name-on-card"
-            className="border px-2 py-4 w-full rounded"
-            placeholder="Name on Card"
-            required
-          />
+                type="text"
+                name="name-on-card"
+                className="border px-2 py-4 w-full rounded"
+                placeholder="Name on Card"
+                required
+              />
             </div>
           )}
           {paymentMethod === "net-banking" && (

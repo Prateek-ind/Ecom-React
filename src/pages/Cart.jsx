@@ -70,7 +70,7 @@ function Cart({}) {
               <EditQuantityComponent product={item} />
             </div>
             <div className="pt-8 pl-10 lg:pl-20 hidden md:block">
-              <p>Rs. {cart.totalAmount.toFixed(2)}</p>
+              <p>Rs. Rs. {(item.quantity * item.discountedPrice).toFixed(2)}</p>
             </div>
           </div>
         ))}

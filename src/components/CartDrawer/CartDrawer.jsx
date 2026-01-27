@@ -4,7 +4,6 @@ import { MdDiscount } from "react-icons/md";
 import { cartUIActions } from "../../features/cart/cartUISlice";
 import OrderNoteSection from "./OrderNoteSection";
 import CartDrawerItems from "./CartDrawerItems";
-import { useNavigate } from "react-router";
 import MultiButton from "../Product/MultiButton";
 
 const CartDrawer = () => {
@@ -12,7 +11,6 @@ const CartDrawer = () => {
   const isOpen = useSelector((state) => state.cartUI.isOpen);
   const cart = useSelector((state) => state.cart);
 
-  const navigate = useNavigate();
 
   const closeCartDrawer = () => {
     dispatch(cartUIActions.closeCart());
