@@ -8,7 +8,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-import { setIdToken } from "../features/cart/cartAPI";
+
 
 const AuthForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -46,12 +46,13 @@ const AuthForm = () => {
       }
       const user = userCredentials.user;
       const token = await user.getIdToken();
-      setIdToken(token);
 
       const expiresIn = 3600 * 1000; // Set expiration time to 1 hour
       const expiryTime = new Date().getTime() + expiresIn;
       localStorage.setItem("token", token);
       localStorage.setItem("tokenExpiry", expiryTime.toString());
+      localStorage.setItem("uid", user.uid);
+      localStorage.setItem("email", user.email);
       console.log(expiryTime, expiresIn);
 
       dispatch(
@@ -63,7 +64,7 @@ const AuthForm = () => {
         })
       );
 
-      if (isLoggedIn) {
+      if (isLogin) {
         navigate("/", { replace: true });
       } else {
         navigate("/profile", { replace: true });
@@ -114,7 +115,7 @@ const AuthForm = () => {
       >
         {isLogin ? "Login" : "Sign-Up"}
       </button>
-      <p className="text-gray-700 ">
+      {isLogin ?(<p className="text-gray-700 ">
         Don't have an account?{" "}
         <span
           onClick={switchMode}
@@ -123,7 +124,16 @@ const AuthForm = () => {
           Click here
         </span>{" "}
         to sign-up.
-      </p>
+      </p>): (<p className="text-gray-700 ">
+        Have an account?{" "}
+        <span
+          onClick={switchMode}
+          className="text-[#63ce36] underline cursor-pointer"
+        >
+          Click here
+        </span>{" "}
+        to sign-in.
+      </p>)}
     </Form>
   );
 };

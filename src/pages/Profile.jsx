@@ -18,9 +18,6 @@ const Profile = () => {
     }
   }, [isLoggedIn, uid, fetchUserProfile]);
 
-  if (isLoading) {
-    return <p className="text-center">Loading profile...</p>;
-  }
 
   if (!isLoggedIn) return <p>Please login to view your profile</p>;
 
@@ -30,9 +27,9 @@ const Profile = () => {
         <h2 className="text-4xl text-gray-700 tracking-widest mb-8 uppercase">
           Profile
         </h2>
-        <p className="text-xs text-gray-700 tracking-widest mb-8 italic">
+        {!isLoggedIn && <p className="text-xs text-gray-700 tracking-widest mb-8 italic">
           Enter your details.
-        </p>
+        </p>}
       </div>
       <hr />
 
