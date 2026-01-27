@@ -17,6 +17,37 @@ const initialState = {
   freeShippingThreshold: 308.5,
 };
 
+export const fetchCartFromDB = createAsyncThunk(
+  "cart/fetchCart",
+  async ({ userId }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.user.token;
+    const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch cart");
+    }
+    const data = await response.json();
+    return data || {};
+  }
+);
+
+export const saveCartToDB = createAsyncThunk(
+  "cart/saveCart",
+  async ({ userId, cartItems }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.user.token;
+    const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartItems),
+    });
+    if (!response.ok) throw new Error("Failed to save cart");
+    return cartItems;
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
@@ -71,6 +102,7 @@ const cartSlice = createSlice({
       state.totalAmount = 0;
       state.orderNote = "";
       state.shipping = 100;
+      
     },
     replaceCart(state, action) {
       state.items = action.payload.items || {};
@@ -82,6 +114,12 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
+      //fetch cart to DB
+      .addCase(fetchCartFromDB.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchCartFromDB.fulfilled, (state, action) => {
         state.items = action.payload;
         state.totalQuantity = Object.values(action.payload).reduce(
@@ -94,43 +132,26 @@ const cartSlice = createSlice({
         );
         updateShipping(state);
       })
+      .addCase(fetchCartFromDB.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      //save cart to DB
+      .addCase(saveCartToDB.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(saveCartToDB.fulfilled, (state, action) => {
         state.items = action.payload;
         updateShipping(state);
+      })
+      .addCase(saveCartToDB.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
-
-export const fetchCartFromDB = createAsyncThunk(
-  "cart/fetchCart",
-  async ({ userId }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.user.token;
-    const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch cart");
-    }
-    const data = await response.json();
-    return data || {};
-  }
-);
-
-export const saveCartToDB = createAsyncThunk(
-  "cart/saveCart",
-  async ({ userId, cartItems }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.user.token;
-    const url = `${rdbUrl}/carts/${userId}.json?auth=${token || ""}`;
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cartItems),
-    });
-    if (!response.ok) throw new Error("Failed to save cart");
-    return cartItems;
-  }
-);
 
 export default cartSlice.reducer;
 export const cartActions = cartSlice.actions;
