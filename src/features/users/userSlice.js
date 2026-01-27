@@ -4,6 +4,7 @@ const initialState = {
   uid: null,
   email: null,
   token: null,
+  tokenExpiry: null,
   isLoggedIn: false,
 };
 
@@ -28,17 +29,17 @@ const userSlice = createSlice({
       state.token = null;
       state.uid = null;
       state.email = null;
-
+      state.tokenExpiry = null
       localStorage.removeItem("token");
       localStorage.removeItem("uid");
       localStorage.removeItem("email");
     },
     autoLogin(state, action) {
-      const { uid, email, token } = action.payload;
+      const { uid, email, token, tokenExpiry } = action.payload;
       state.uid = uid;
       state.token = token;
       state.email = email;
-      state.token = token;
+      state.tokenExpiry = tokenExpiry;
       state.isLoggedIn = true;
     },
   },
