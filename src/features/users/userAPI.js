@@ -1,4 +1,5 @@
-import { rdbUrl, getIdToken } from "../cart/cartAPI";
+import { getIdToken } from "../../utils/getIdToken";
+import { rdbUrl } from "../cart/cartAPI";
 
 export const contactUsToDb = async ({ uid, messageDetails }) => {
   const url = `${rdbUrl}/messages/${uid}.json?auth=${getIdToken() || null}`;
@@ -20,7 +21,7 @@ export const contactUsToDb = async ({ uid, messageDetails }) => {
 
 export const fetchUserDetailsFromDb = async (uid) => {
   try {
-    const token = getIdToken();
+    const token =await getIdToken();
     const response = await fetch(
       `${rdbUrl}/users/${uid}.json?auth=${token}`
     );
@@ -35,7 +36,7 @@ export const fetchUserDetailsFromDb = async (uid) => {
 
 export const storeUserDetailsToDb = async (userDetails, uid) => {
   try {
-    const token =  getIdToken();
+    const token = await getIdToken();
     const response = await fetch(
       `${rdbUrl}/users/${uid}.json?auth=${token}`,
       {
