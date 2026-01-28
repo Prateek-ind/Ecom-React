@@ -6,15 +6,13 @@ import { profileActions } from "../../features/users/profileSlice";
 
 const UserMenuDrawer = ({ setUserMenuOpen }) => {
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.user.isLoggedIn);
   const navigate = useNavigate();
 
   const onLogout = async () => {
     dispatch(profileActions.clearProfile());
     dispatch(userActions.logout());
     setUserMenuOpen(false);
-    console.log(isLogin);
-    navigate("/auth/login?mode=login");
+    navigate("/auth/login?mode=signup");
   };
   return (
     <div className=" border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] ">
@@ -42,7 +40,7 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
           </Link>
         </li>
         <li>
-          <Link
+          <Link to={'/auth/login?mode=login'}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={onLogout}
