@@ -25,7 +25,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const navigateToLogin = ()=>{
-    navigate('/auth/login')
+    navigate('/auth/login?mode=login')
   }
 
   return (

@@ -1,20 +1,38 @@
 import { Form, useNavigate } from "react-router";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
   const navigate = useNavigate();
   const { storeUserProfile } = useUserProfile();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    addressOptional: "",
+    city: "",
+    state: "",
+    pinCode: "",
+    country: "India",
+    phoneNumber: "",
+  });
+
+  useEffect(() => {
+    if (defaultValues) {
+      setFormValues((prev) => ({ ...prev, ...defaultValues }));
+    }
+  }, [defaultValues]);
+
+  const handleChange = (e) => {
+    setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const userInfo = Object.fromEntries(formData.entries());
-    console.log(userInfo);
-
-    const savedProfile = await storeUserProfile(userInfo);
+    const savedProfile = await storeUserProfile(formValues);
     if (savedProfile && onSave) {
       onSave(savedProfile);
       navigate("/profile");
@@ -24,7 +42,7 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
   };
 
   return (
-    <Form
+    <form
       className="w-full mt-10 flex flex-col items-center justify-center space-y-6"
       onSubmit={handleSubmit}
     >
@@ -35,7 +53,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="firstName"
             className="border px-2 py-4 w-full rounded"
             placeholder="First Name"
-            defaultValue={defaultValues?.firstName}
+            onChange={handleChange}
+            value={formValues.firstName}
             required
           />
           <input
@@ -43,7 +62,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="lastName"
             className="border px-2 py-4 w-full rounded"
             placeholder="Last Name"
-            defaultValue={defaultValues?.lastName}
+            onChange={handleChange}
+            value={formValues.lastName}
             required
           />
 
@@ -52,7 +72,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="address"
             className="col-span-2 border px-2 py-4 w-full rounded"
             placeholder="Address"
-            defaultValue={defaultValues?.address}
+            onChange={handleChange}
+            value={formValues.address}
             required
           />
           <input
@@ -60,7 +81,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="addressOptional"
             className=" col-span-2 border px-2 py-4 w-full rounded"
             placeholder="Apartment/Flat No. etc (Optional) "
-            defaultValue={defaultValues?.addressOptional}
+            onChange={handleChange}
+            value={formValues.addressOptional}
             required
           />
           <input
@@ -68,7 +90,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="city"
             className="border px-2 py-4 w-full rounded"
             placeholder="City"
-            defaultValue={defaultValues?.city}
+            onChange={handleChange}
+            value={formValues.city}
             required
           />
           <input
@@ -76,7 +99,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="state"
             className="border px-2 py-4 w-full rounded"
             placeholder="State"
-            defaultValue={defaultValues?.state}
+            onChange={handleChange}
+            value={formValues.state}
             required
           />
           <input
@@ -84,13 +108,15 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="pinCode"
             className="border px-2 py-4 w-full rounded"
             placeholder="Pin-code"
-            defaultValue={defaultValues?.pinCode}
+            onChange={handleChange}
+            value={formValues.pinCode}
             required
           />
           <select
             name="country"
             className="border px-2 py-4 rounded w-full "
-            defaultValue="India"
+            value="India"
+            onChange={handleChange}
             required
           >
             <option value="Select Country/Region" required>
@@ -103,7 +129,8 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
             name="phoneNumber"
             id="phone-number"
             placeholder="Phone number"
-            defaultValue={defaultValues?.phoneNumber}
+            value={formValues.phoneNumber}
+            onChange={handleChange}
             className="border px-2 py-4 w-full rounded"
           />
         </div>
@@ -126,7 +153,7 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
           Cancel
         </button>
       </div>
-    </Form>
+    </form>
   );
 };
 

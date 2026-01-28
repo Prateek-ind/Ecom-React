@@ -53,7 +53,7 @@ const App = () => {
       path: "/auth",
       element: <AuthLayout />,
       children: [
-        { path: "login", element: <Login /> },
+        { path: "login", element: <Login mode='login' /> },
         { path: "signup", element: <Login mode="signup" /> },
       ],
     },
