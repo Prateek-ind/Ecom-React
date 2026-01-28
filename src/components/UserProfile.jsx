@@ -4,8 +4,8 @@ import ProfileForm from "./ProfileForm";
 import { useUserProfile } from "../hooks/useUserProfile";
 
 const UserProfile = () => {
-  const profile = useSelector((state) => state.userProfile);
-  const { isLoaded } = profile;
+  const profile = useSelector((state) => state.userProfile.data);
+  const isLoaded  = useSelector((state) => state.userProfile.isLoaded);
   const [isEditing, setIsEditing] = useState(false);
   const { isLoading, storeUserProfile } = useUserProfile();
   if (!isLoaded || isLoading) {
@@ -16,9 +16,15 @@ const UserProfile = () => {
     );
   }
 
+  const isProfileEmpty =
+    !profile.firstName &&
+    !profile.lastName &&
+    !profile.address &&
+    !profile.phoneNumber;
+
   return (
     <section className="max-w-3xl mx-auto px-4 py-10 bg-[#feffec]">
-      {isEditing ? (
+      {isEditing && isProfileEmpty? (
         <ProfileForm
           userId={profile.userId}
           defaultValues={profile}
