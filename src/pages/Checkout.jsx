@@ -3,12 +3,26 @@ import CheckoutNavbar from "../components/Navbar/CheckoutNavbar";
 import CheckoutForm from "../components/CartDrawer/Checkout/CheckoutForm";
 import CheckoutDiscount from "../components/CartDrawer/Checkout/CheckoutDiscount";
 import { MdDiscount } from "react-icons/md";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const prepaidDiscount = (Number(cart.totalAmount) * 0.05).toFixed(2);
   const amountAfterDiscount = (cart.totalAmount - prepaidDiscount).toFixed(2);
- 
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+    }
+  }, [isLoggedIn, navigate]);
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
     <>
       <CheckoutNavbar />
