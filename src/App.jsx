@@ -14,6 +14,7 @@ import { useAuthInitial } from "./hooks/useAuthInitial";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OrdersPage from "./pages/OrdersPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage";
 
 const App = () => {
   useAuthInitial();
@@ -44,6 +45,14 @@ const App = () => {
           element: (
             <ProtectedRoute>
               <OrdersPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "orderDetails",
+          element: (
+            <ProtectedRoute>
+              <OrderDetailsPage />
             </ProtectedRoute>
           ),
         },
