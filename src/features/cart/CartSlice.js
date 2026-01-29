@@ -29,7 +29,7 @@ export const fetchCartFromDB = createAsyncThunk(
     }
     const data = await response.json();
     return data || {};
-  }
+  },
 );
 
 export const saveCartToDB = createAsyncThunk(
@@ -45,7 +45,7 @@ export const saveCartToDB = createAsyncThunk(
     });
     if (!response.ok) throw new Error("Failed to save cart");
     return cartItems;
-  }
+  },
 );
 
 const cartSlice = createSlice({
@@ -55,7 +55,6 @@ const cartSlice = createSlice({
     addToCart(state, action) {
       const product = action.payload;
       const id = product.id;
-      console.log(product.discountedPrice);
 
       if (state.items[id]) {
         state.items[id].quantity += 1;
@@ -102,7 +101,6 @@ const cartSlice = createSlice({
       state.totalAmount = 0;
       state.orderNote = "";
       state.shipping = 100;
-      
     },
     replaceCart(state, action) {
       state.items = action.payload.items || {};
@@ -124,11 +122,11 @@ const cartSlice = createSlice({
         state.items = action.payload;
         state.totalQuantity = Object.values(action.payload).reduce(
           (sum, item) => sum + item.quantity,
-          0
+          0,
         );
         state.totalAmount = Object.values(action.payload).reduce(
           (sum, item) => sum + item.quantity * Number(item.discountedPrice),
-          0
+          0,
         );
         updateShipping(state);
       })
