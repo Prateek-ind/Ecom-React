@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="mx-auto max-w-7xl px-4  lg:px-6  xl:px-8 flex items-center justify-between">
           <AiOutlineMenu
             size={28}
-            className="block xl:hidden text-[#293819]"
+            className="block xl:hidden text-[#293819] cursor-pointer"
             onClick={() => setHamMenuOpen(true)}
           />
           <Link to={"/"}>
@@ -98,7 +98,7 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
-            <div
+            {! <div
               className="relative py-12 "
               onClick={() => {
                 if (isLoggedIn) setUserMenuOpen((prev) => !prev);
@@ -122,7 +122,7 @@ const Navbar = () => {
                   />
                 )}
               </div>
-            </div>
+            </div>}
             <AiOutlineSearch
               className=" cursor-pointer"
               size={28}
@@ -144,7 +144,7 @@ const Navbar = () => {
             setHamMenuOpen={setHamMenuOpen}
             setUserMenuOpen={setUserMenuOpen}
             hamMenuOpen={hamMenuOpen}
-            className="cursor-pointer"
+
           />
         )}
         <hr />

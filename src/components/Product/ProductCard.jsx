@@ -1,7 +1,7 @@
 import StarRating from "./StarRating";
 import { useState } from "react";
 import AddToCartBtn from "./AddToCartBtn";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ isMobile, product, closeSearch }) => {
   const [isHovered, setIsHovered] = useState();
@@ -27,14 +27,14 @@ const ProductCard = ({ isMobile, product, closeSearch }) => {
           className="w-full h-auto opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
-        {isHovered ||
-          (isMobile && (
+        {isHovered || isMobile
+           ? (
             <AddToCartBtn
               product={product}
               closeSearch={closeSearch}
               onClick={(e) => e.stopPropagation()}
             />
-          ))}
+          ): null}
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>
