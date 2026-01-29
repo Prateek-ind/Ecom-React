@@ -12,7 +12,7 @@ const OrderDetailsPage = () => {
   const currentOrder = useSelector((state) => state.orders.currentOrder);
   const orderDate = new Date(currentOrder?.createdAt).toDateString();
   const orderTime = new Date(currentOrder?.createdAt).toLocaleTimeString();
-  console.log(currentOrder);
+ 
 
   useEffect(() => {
     if (uid && orderId) dispatch(fetchSingleOrder({ uid, orderId }));
