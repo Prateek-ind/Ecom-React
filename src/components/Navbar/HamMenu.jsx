@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
 import ComboDrawer from "./ComboDrawer";
 import { useState } from "react";
+import UserMenuDrawer from "./UserMenuDrawer";
 
 const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
   const [openDrawer, setOpenDrawer] = useState(null);
@@ -37,9 +38,7 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
           className=" px-4  py-4 uppercase tracking-widest
            border-y border-gray-100 hover:border-gray-200 text-[#729b4a]
             hover:bg-gray-100 cursor-pointer"
-          onClick={() => {
-            toggleDrawer("category");
-          }}
+          onClick={() => toggleDrawer("category")}
         >
           Shop by category
         </li>
@@ -50,7 +49,7 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
             }`}
           >
             {" "}
-            <ShopByCategoryDrawer setHamMenuOpen={setHamMenuOpen}  />
+            <ShopByCategoryDrawer setHamMenuOpen={setHamMenuOpen} />
           </div>
         )}
 
@@ -86,14 +85,27 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
           </li>
         </Link>
       </ul>
-      <div
-        onClick={() => setHamMenuOpen(false)}
-        className=" flex gap-2 py-8 text-[#80ad53]"
-      >
-        <Link>
+      <div className="relative flex gap-2 py-6 text-[#80ad53]">
+        <li
+          className=" px-4 py-4 flex items-center  gap-4 uppercase tracking-widest
+           border-y border-gray-100 hover:border-gray-200 text-[#729b4a]
+            hover:bg-gray-100 cursor-pointer"
+          onClick={() => toggleDrawer("profile")}
+        >
           <AiOutlineUser size={28} />
-        </Link>
-        <p className="uppercase tracking-widest">Account</p>
+
+          <p className="uppercase tracking-widest">Account</p>
+        </li>
+        {openDrawer === "profile" && (
+          <div
+            className={`w-full absolute -top-32 overflow-hidden transition-all duration-300 ${
+              openDrawer === "profile" ? "max-h-96" : "max-h-0"
+            }`}
+          >
+            {" "}
+            <UserMenuDrawer setHamMenuOpen={setHamMenuOpen} />
+          </div>
+        )}
       </div>
     </div>
   );
