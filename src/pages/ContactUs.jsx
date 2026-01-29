@@ -14,17 +14,17 @@ const ContactUs = () => {
         </p>
       </div>
       <hr />
-      <div className="grid grid-cols-3 py-12 px-8">
+      <div className=" flex flex-col md:grid md:grid-cols-3 gap-8 py-12 px-8">
         <div className="flex flex-col items-center">
-          <h3 className="text-gray-800 font-light mb-12 uppercase">Phone</h3>
+          <h3 className="text-gray-800 font-light mb-6 md:mb-12 uppercase">Phone</h3>
           <p className="font-semibold text-gray-900 text-sm">12345678</p>
         </div>
         <div className="flex flex-col items-center mx-auto ">
-          <h3 className="text-gray-800 font-light mb-12 uppercase">Email</h3>
+          <h3 className="text-gray-800 font-light mb-6 md:mb-12 uppercase">Email</h3>
           <p className="font-semibold text-gray-900 text-xs">support@abc.com</p>
         </div>
         <div className="flex flex-col items-center">
-          <h3 className="text-gray-800 font-light mb-12 uppercase">
+          <h3 className="text-gray-800 font-light mb-6 md:mb-12 uppercase">
             Office Hours
           </h3>
           <p className="font-semibold text-gray-900 text-xs">
