@@ -1,12 +1,22 @@
-import { Link } from "react-router";
 import StarRating from "./StarRating";
 import { useState } from "react";
 import AddToCartBtn from "./AddToCartBtn";
+import { Navigate, useNavigate } from "react-router";
 
-const ProductCard = ({isMobile, product, closeSearch }) => {
+const ProductCard = ({ isMobile, product, closeSearch }) => {
   const [isHovered, setIsHovered] = useState();
+  const navigate = useNavigate();
+
+  const goToProduct = () => {
+    closeSearch && closeSearch(false);
+    navigate(`/products/${product.id}`);
+  };
+
   return (
-    <div className=" flex flex-col items-center uppercase text-center cursor-pointer">
+    <div
+      className=" flex flex-col items-center uppercase text-center cursor-pointer"
+      onClick={goToProduct}
+    >
       <div
         className="relative w-full overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
@@ -17,7 +27,14 @@ const ProductCard = ({isMobile, product, closeSearch }) => {
           className="w-full h-auto opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
-        {isHovered || isMobile && <AddToCartBtn product={product} closeSearch={closeSearch}/>}
+        {isHovered ||
+          (isMobile && (
+            <AddToCartBtn
+              product={product}
+              closeSearch={closeSearch}
+              onClick={(e) => e.stopPropagation()}
+            />
+          ))}
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>
@@ -35,9 +52,8 @@ const ProductCard = ({isMobile, product, closeSearch }) => {
         </p>
       </div>
       <div className="flex gap-4 pt-4">
-        
-          <StarRating rating={product.rating} />
-        
+        <StarRating rating={product.rating} />
+
         <p className="text-xs text-gray-400 tracking-widest">
           ({product.rating})
         </p>

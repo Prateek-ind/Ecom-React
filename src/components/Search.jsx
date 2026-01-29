@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "./Product/ProductCard";
 import { IoCloseOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Search = ({ setSearchOpen }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -11,7 +12,7 @@ const Search = ({ setSearchOpen }) => {
 
   const filterProducts = () => {
     return products.filter((product) =>
-      product.name.toLowerCase().includes(searchInput.toLowerCase())
+      product.name.toLowerCase().includes(searchInput.toLowerCase()),
     );
   };
   const handleChange = (e) => {
@@ -70,7 +71,13 @@ const Search = ({ setSearchOpen }) => {
             {filteredProducts.map((product) => (
               <li key={product.id} className="px-2">
                 <div className="w-48 text-gray-900">
-                  <ProductCard product={product} closeSearch={()=>setSearchOpen(false)}/>
+                  <Link
+                    key={product.id}
+                    to={`/products/${product.id}`}
+                    state={product}
+                  >
+                    <ProductCard product={product} closeSearch={setSearchOpen} />
+                  </Link>
                 </div>
               </li>
             ))}
