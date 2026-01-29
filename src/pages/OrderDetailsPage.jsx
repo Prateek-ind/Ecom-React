@@ -21,6 +21,7 @@ const OrderDetailsPage = () => {
     return <p className="mt-32 text-center">Loading order...</p>;
   }
 
+
   return (
     <section className="w-full  py-10 bg-[#feffec]">
       <div className=" mx-auto max-w-5xl px-12 mb-6 mt-28 flex flex-col">
