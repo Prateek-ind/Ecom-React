@@ -33,7 +33,7 @@ export const fetchOrdersFromDb = async ({ uid }) => {
 
   if (!uid) throw new Error("User id is missing.");
   if (!token) throw new Error("Auth token missing.");
-  
+
   if (!uid) throw new Error("User id is missing.");
 
   const url = `${rdbUrl}/orders/${uid}.json?auth=${token || ""}`;
@@ -58,7 +58,8 @@ export const fetchSingleOrderFromDb = async ({ orderId, uid }) => {
   const url = `${rdbUrl}/orders/${uid}/${orderId}.json?auth=${token || ""}`;
   const response = await fetch(url);
   if (!response.ok) throw new Error("Unable to fetch order details");
-  return response.json();
+  const data = await response.json();
+  return { orderId, ...data };
 };
 
 export const bulkOrderInquiryToDb = async ({ uid, orderDetails }) => {
