@@ -24,7 +24,7 @@ const OrderDetailsPage = () => {
 
   return (
     <section className="w-full  py-10 bg-[#feffec]">
-      <div className=" mx-auto max-w-5xl px-12 mb-6 mt-28 flex flex-col">
+      <div className=" mx-auto max-w-5xl px-4 md:px-12 mb-6 mt-28 flex flex-col md:flex-row">
         <h2 className="text-4xl text-center text-gray-700 tracking-widest mb-8 uppercase">
           Order Details
         </h2>
@@ -74,7 +74,7 @@ const OrderDetailsPage = () => {
           return (
             <div
               key={key}
-              className="mx-auto flex items-center justify-center gap-8 py-4 px-4"
+              className="mx-auto flex items-center justify-center gap-4 md:gap-8 py-4 px-4"
             >
               <img src={product.img1} className="h-32" alt="" />
               <div className=" flex flex-col gap-4 justify-center">
@@ -88,7 +88,7 @@ const OrderDetailsPage = () => {
             </div>
           );
         })}
-        <div className="flex items-start justify-between mt-12 px-12">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-8 mt-12 px-12">
           <div className="flex flex-col items-start justify-start">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Shipping Address

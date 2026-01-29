@@ -27,7 +27,7 @@ const OrdersPage = () => {
           </p>
         ) : (
           <div>
-            <div className="px-4 py-2 grid grid-cols-7 grid-flow-col items-center gap-4 text-center border-b">
+            <div className="px-4 py-2 hidden md:grid grid-cols-7 grid-flow-col items-center gap-4 text-center border-b">
               <p className="col-span-2">Order Number</p>
               <p>Date</p>
               <p>Items</p>
