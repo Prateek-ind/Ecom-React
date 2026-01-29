@@ -12,7 +12,6 @@ const OrderDetailsPage = () => {
   const currentOrder = useSelector((state) => state.orders.currentOrder);
   const orderDate = new Date(currentOrder?.createdAt).toDateString();
   const orderTime = new Date(currentOrder?.createdAt).toLocaleTimeString();
- 
 
   useEffect(() => {
     if (uid && orderId) dispatch(fetchSingleOrder({ uid, orderId }));
@@ -29,8 +28,8 @@ const OrderDetailsPage = () => {
           Order Details
         </h2>
         <hr />
-        <div className="mt-8 mb-4 flex gap-8 mx-auto">
-          <div className="flex">
+        <div className="mt-8 mb-4 flex flex-col gap-4 md:flex-row md:gap-8 mx-auto">
+          <div className="flex ">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Order Number -{" "}
             </p>
@@ -90,9 +89,11 @@ const OrderDetailsPage = () => {
         })}
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 mt-12 px-12">
           <div className="flex flex-col items-start justify-start">
+            <hr />
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Shipping Address
             </p>
+            <hr />
             <p className="text-sm text-gray-700 tracking-widest">
               Name - {currentOrder?.customer.name},
             </p>
@@ -119,10 +120,13 @@ const OrderDetailsPage = () => {
               Phone Number - {currentOrder?.customer.phone}
             </p>
           </div>
+
           <div className="flex flex-col gap-1">
+            <hr />
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Order Summary
             </p>
+            <hr />
             <div className="flex">
               <p className="text-sm text-gray-700 tracking-widest font-semibold">
                 Sub Total -{" "}
