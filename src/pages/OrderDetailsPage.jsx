@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router";
 import { fetchSingleOrder } from "../features/order/orderSlice";
+import { getProductById } from "../utils/getProductById";
 
 const OrderDetailsPage = () => {
   const uid = useSelector((state) => state.user.uid);
@@ -21,6 +22,10 @@ const OrderDetailsPage = () => {
     return <p className="mt-32 text-center">Loading order...</p>;
   }
 
+  const previewProducts = currentOrder.items
+    .map((item) => getProductById(item.productId))
+    .filter((p) => p);
+    console.log(previewProducts);
 
   return (
     <section className="w-full  py-10 bg-[#feffec]">
@@ -73,7 +78,7 @@ const OrderDetailsPage = () => {
             key={key}
             className="mx-auto flex items-center justify-center gap-8 py-4 px-4"
           >
-            <img src={item.image} className="h-32" alt="" />
+            {previewProducts.map(prod=><img src={prod.img1} className="h-32" alt="" />)}
             <div className=" flex flex-col gap-4 justify-center">
               <p className=" max-w-48 font-thin text-sm tracking-widest text-gray-800 leading-6 uppercase">
                 {item.name}

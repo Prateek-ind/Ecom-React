@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
-import { allProducts } from "../features/product/Products";
+import { getProductById } from "../utils/getProductById";
 
-const Order = ({ orderDetails, products }) => {
+const Order = ({ orderDetails }) => {
   let orderPlacedDate = orderDetails.createdAt;
   orderPlacedDate = new Date(orderPlacedDate).toLocaleDateString();
-
-  const getProductById = (productId) => {
-    return allProducts.find((p) => p.id === productId);
-  };
 
   const previewProducts = orderDetails.items
     .map((item) => getProductById(item.productId))
