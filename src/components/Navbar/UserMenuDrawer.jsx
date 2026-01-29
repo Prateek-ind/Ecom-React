@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { userActions } from "../../features/users/userSlice";
 import { profileActions } from "../../features/users/profileSlice";
 
-const UserMenuDrawer = ({ setUserMenuOpen }) => {
+const UserMenuDrawer = ({ setUserMenuOpen, setHamMenuOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -12,17 +12,21 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
     dispatch(profileActions.clearProfile());
     dispatch(userActions.logout());
     setUserMenuOpen(false);
+    setHamMenuOpen(false);
     navigate("/auth/login?mode=signup");
   };
   return (
-    <div className=" border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] ">
+    <div className="bg-white border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] ">
       <ul className="py-4 flex flex-col gap-2">
         <li>
           <Link
             to={"/profile"}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
-            onClick={() => setUserMenuOpen(false)}
+            onClickCapture={() => {
+              setHamMenuOpen(false);
+              setUserMenuOpen(false);
+            }}
           >
             <FiUser />
             Profile
@@ -33,14 +37,18 @@ const UserMenuDrawer = ({ setUserMenuOpen }) => {
             to={"/orders"}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
-            onClick={() => setUserMenuOpen(false)}
+            onClickCapture={() => {
+              setHamMenuOpen(false);
+              setUserMenuOpen(false);
+            }}
           >
             <FiPackage />
             Orders
           </Link>
         </li>
         <li>
-          <Link to={'/auth/login?mode=login'}
+          <Link
+            to={"/auth/login?mode=login"}
             className="flex items-center gap-2 px-2 py-1
            text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={onLogout}
