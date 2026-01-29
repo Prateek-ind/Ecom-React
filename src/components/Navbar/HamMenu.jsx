@@ -6,7 +6,7 @@ import ComboDrawer from "./ComboDrawer";
 import { useState } from "react";
 import UserMenuDrawer from "./UserMenuDrawer";
 
-const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
+const HamMenu = ({ setUserMenuOpen, setHamMenuOpen, HamMenuOpen }) => {
   const [openDrawer, setOpenDrawer] = useState(null);
 
   const toggleDrawer = (drawer) => {
@@ -103,7 +103,7 @@ const HamMenu = ({ setHamMenuOpen, HamMenuOpen }) => {
             }`}
           >
             {" "}
-            <UserMenuDrawer setHamMenuOpen={setHamMenuOpen} />
+            <UserMenuDrawer setUserMenuOpen={setUserMenuOpen} setHamMenuOpen={setHamMenuOpen} />
           </div>
         )}
       </div>

@@ -22,11 +22,11 @@ const Navbar = () => {
   const hasItems = Object.keys(cartItems).length;
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const navigateToLogin = ()=>{
-    navigate('/auth/login?mode=login')
-  }
+  const navigateToLogin = () => {
+    navigate("/auth/login?mode=login");
+  };
 
   return (
     <>
@@ -101,9 +101,8 @@ const Navbar = () => {
             <div
               className="relative py-12 "
               onClick={() => {
-                isLoggedIn && setUserMenuOpen(true);
+                if (isLoggedIn) setUserMenuOpen((prev) => !prev);
               }}
-              onMouseLeave={() => setUserMenuOpen(false)}
             >
               {isLoggedIn ? (
                 <AiOutlineUser size={28} className="cursor-pointer" />
@@ -117,7 +116,10 @@ const Navbar = () => {
               bg-[#feffec] cursor-pointer"
               >
                 {isLoggedIn && userMenuOpen && (
-                  <UserMenuDrawer setUserMenuOpen={setUserMenuOpen} />
+                  <UserMenuDrawer
+                    setUserMenuOpen={setUserMenuOpen}
+                    setHamMenuOpen={setHamMenuOpen}
+                  />
                 )}
               </div>
             </div>
@@ -140,6 +142,7 @@ const Navbar = () => {
         {hamMenuOpen && (
           <HamMenu
             setHamMenuOpen={setHamMenuOpen}
+            setUserMenuOpen={setUserMenuOpen}
             hamMenuOpen={hamMenuOpen}
             className="cursor-pointer"
           />
