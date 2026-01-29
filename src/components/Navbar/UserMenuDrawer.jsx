@@ -17,16 +17,23 @@ const UserMenuDrawer = ({ setUserMenuOpen, setHamMenuOpen }) => {
   };
 
   const goToProfile = () => {
+    setUserMenuOpen(false);
     setHamMenuOpen(false);
+
     navigate("/profile");
   };
 
   const goToOrders = () => {
+    setUserMenuOpen(false);
     setHamMenuOpen(false);
     navigate("/orders");
   };
   return (
-    <div className="bg-white border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] ">
+    <div
+      className="bg-white border-t-4 border-x border-b
+     border-t-[#729b4a] border-x-[#729b4a4b] "
+      onClick={(e) => e.stopPropagation()}
+    >
       <ul className="py-4 flex flex-col gap-2">
         <li
           className="flex items-center gap-2 px-2 py-1

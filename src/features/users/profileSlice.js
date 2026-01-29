@@ -5,7 +5,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     address: "",
-    addressOptional: "",
+    additionalAddress: "",
     city: "",
     state: "",
     pinCode: "",

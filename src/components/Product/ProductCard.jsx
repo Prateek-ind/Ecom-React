@@ -3,7 +3,7 @@ import StarRating from "./StarRating";
 import { useState } from "react";
 import AddToCartBtn from "./AddToCartBtn";
 
-const ProductCard = ({ product, closeSearch }) => {
+const ProductCard = ({isMobile, product, closeSearch }) => {
   const [isHovered, setIsHovered] = useState();
   return (
     <div className=" flex flex-col items-center uppercase text-center cursor-pointer">
@@ -17,7 +17,7 @@ const ProductCard = ({ product, closeSearch }) => {
           className="w-full h-auto opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
-        {isHovered && <AddToCartBtn product={product} closeSearch={closeSearch}/>}
+        {isHovered || isMobile && <AddToCartBtn product={product} closeSearch={closeSearch}/>}
         <p className="absolute top-2 left-2 px-1 py-[2px] bg-red-500 text-white text-xs tracking-widest">
           Save {product.discount}%
         </p>

@@ -7,13 +7,44 @@ import { orderActions, placeOrder } from "../../../features/order/orderSlice";
 const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
-  const userProfile = useSelector((state) => state.userProfile);
+  const userProfile = useSelector((state) => state.userProfile.data);
   const uid = useSelector((state) => state.user.uid);
   const email = useSelector((state) => state.user.email);
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
   const navigate = useNavigate();
-  const { loading, error, orderPlaced } = useSelector((state) => state.orders);
+  const { orderPlaced } = useSelector((state) => state.orders);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    additionalAddress: "",
+    city: "",
+    state: "",
+    country: "India",
+    pinCode: "",
+    phoneNumber: "",
+  });
+
+  useEffect(() => {
+    if (userProfile) {
+      setFormData({
+        firstName: userProfile.firstName || "",
+        lastName: userProfile.lastName || "",
+        address: userProfile.address || "",
+        additionalAddress: userProfile.additionalAddress || "",
+        city: userProfile.city || "",
+        state: userProfile.state || "",
+        pinCode: userProfile.pinCode || "",
+        phoneNumber: userProfile.phoneNumber || "",
+      });
+    }
+  }, [userProfile]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,11 +55,11 @@ const CheckoutForm = () => {
 
     const subtotal = cartItems.reduce(
       (sum, item) => sum + item.quantity * Number(item.originalPrice),
-      0
+      0,
     );
     const discountedTotal = cartItems.reduce(
       (sum, item) => sum + item.quantity * Number(item.discountedPrice),
-      0
+      0,
     );
 
     const discount = subtotal - discountedTotal;
@@ -36,16 +67,16 @@ const CheckoutForm = () => {
     const orderPayload = {
       customer: {
         email,
-        phone: userProfile?.phoneNumber,
-        name: `${userProfile?.firstName} ${userProfile?.lastName}`,
+        phone: formData?.phoneNumber,
+        name: `${formData?.firstName} ${formData?.lastName}`,
       },
 
       shippingAddress: {
-        address: userProfile?.address,
-        addressOptional: userProfile?.addressOptional || null,
-        city: userProfile?.city,
-        state: userProfile?.state,
-        pinCode: userProfile?.pinCode,
+        address: formData?.address,
+        additionalAddress: formData?.additionalAddress || null,
+        city: formData?.city,
+        state: formData?.state,
+        pinCode: formData?.pinCode,
         country: "India",
       },
 
@@ -78,13 +109,12 @@ const CheckoutForm = () => {
     if (orderPlaced) {
       dispatch(cartActions.clearCart());
       navigate("/");
-      dispatch(orderActions.clearOrderPlaced())
+      dispatch(orderActions.clearOrderPlaced());
     }
-
   }, [orderPlaced, dispatch, navigate]);
 
   return (
-    <Form className="space-y-6 " onSubmit={handleSubmit}>
+    <form className="space-y-6 " onSubmit={handleSubmit}>
       <section className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">CONTACT</h2>
         <input
@@ -113,65 +143,73 @@ const CheckoutForm = () => {
         <div className="grid grid-cols-2 gap-4">
           <input
             type="text"
-            name="first-name"
-            defaultValue={userProfile?.firstName}
+            name="firstName"
+            value={formData.firstName}
             className="border px-2 py-4 w-full rounded"
             placeholder="First Name"
+            onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="last-name"
-            defaultValue={userProfile?.lastName}
+            name="lastName"
+            value={formData.lastName}
             className="border px-2 py-4 w-full rounded"
             placeholder="Last Name"
+            onChange={handleChange}
             required
           />
 
           <input
             type="text"
             name="address"
-            defaultValue={userProfile?.address}
+            value={formData.address}
             className="col-span-2 border px-2 py-4 w-full rounded"
-            placeholder="Address"
+            placeholder="Apartment/Flat No. etc"
+            onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="address-optional"
-            defaultValue={userProfile?.addressOptional}
+            name="additionalAddress"
+            value={formData.addressOptional}
             className=" col-span-2 border px-2 py-4 w-full rounded"
-            placeholder="Apartment/Flat No. etc (Optional) "
+            placeholder="Additional Address (Landmark) "
+            onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="City"
-            defaultValue={userProfile?.city}
+            name="city"
+            value={formData.city}
             className="border px-2 py-4 w-full rounded"
             placeholder="City"
+            onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="State"
-            defaultValue={userProfile?.state}
+            name="state"
+            value={formData.state}
             className="border px-2 py-4 w-full rounded"
             placeholder="State"
+            onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="pin-code"
-            defaultValue={userProfile?.pinCode}
+            name="pinCode"
+            value={formData.pinCode}
             className="border px-2 py-4 w-full rounded"
             placeholder="Pin-code"
+            onChange={handleChange}
             required
           />
           <select
             name="country"
             className="border px-2 py-4 rounded w-full "
-            defaultValue="India"
+            value="India"
+            onChange={handleChange}
             required
           >
             <option value="Select Country/Region" required>
@@ -181,10 +219,11 @@ const CheckoutForm = () => {
           </select>
           <input
             type="number"
-            name="phone-number"
+            name="phoneNumber"
             id="phone-number"
-            defaultValue={userProfile?.phoneNumber}
+            value={formData.phoneNumber}
             placeholder="Phone number"
+            onChange={handleChange}
             className="border px-2 py-4 w-full rounded"
           />
         </div>
@@ -293,7 +332,7 @@ const CheckoutForm = () => {
       >
         {paymentMethod === "cod" ? "Place Order" : "Pay Now"}
       </button>
-    </Form>
+    </form>
   );
 };
 
