@@ -14,7 +14,6 @@ const OrdersPage = () => {
     }
   }, [uid, dispatch]);
 
-  console.log(orders);
   return (
     <section className="w-full mx-auto py-10 bg-[#feffec]">
       <div className="mb-6 mt-28 text-center">
