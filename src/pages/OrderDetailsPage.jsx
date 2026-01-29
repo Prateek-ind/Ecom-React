@@ -69,7 +69,7 @@ const OrderDetailsPage = () => {
         <hr />
 
         {currentOrder?.items.map((item, key) => {
-          const product = getProductById(item.id);
+          const product = getProductById(item.productId);
 
           return (
             <div
