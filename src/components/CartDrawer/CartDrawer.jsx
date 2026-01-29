@@ -18,7 +18,7 @@ const CartDrawer = () => {
 
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-2/3 xl:w-1/3 bg-white shadow-lg
+      className={`fixed top-0 right-0 h-full w-4/5 xl:w-1/3 bg-white shadow-lg
     transition-transform duration-300 z-50 flex flex-col
     ${isOpen ? "translate-x-0" : "translate-x-full"}
     `}
