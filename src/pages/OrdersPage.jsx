@@ -15,6 +15,8 @@ const OrdersPage = () => {
     }
   }, [uid, dispatch]);
 
+  
+
   console.log(orders);
   return (
     <section className="w-full mx-auto py-10 bg-[#feffec]">
@@ -23,17 +25,23 @@ const OrdersPage = () => {
           Orders
         </h2>
         <hr />
-        <div className="px-4 py-2 grid grid-cols-7 grid-flow-col items-center gap-4 text-center border-b">
-          <p className="col-span-2">Order Number</p>
-          <p>Date</p>
-          <p>Items</p>
-          <p>Order Status</p>
-          <p>Payment Method</p>
-          <p>Total</p>
-        </div>
-        {orders.map((order) => (
-          <Order key={order.orderNumber} orderDetails={order} />
-        ))}
+        {orders.length === 0 ? (
+          <p className="text-center mt-20 text-gray-700 text-xl">Loading orders...</p>
+        ) : (
+          <div>
+            <div className="px-4 py-2 grid grid-cols-7 grid-flow-col items-center gap-4 text-center border-b">
+              <p className="col-span-2">Order Number</p>
+              <p>Date</p>
+              <p>Items</p>
+              <p>Order Status</p>
+              <p>Payment Method</p>
+              <p>Total</p>
+            </div>
+            {orders.map((order) => (
+              <Order key={order.orderNumber} orderDetails={order} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
