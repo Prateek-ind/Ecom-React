@@ -17,7 +17,7 @@ const ViewAllProducts = () => {
       return category === "singles" ? "Makhana" : "Makhana Combo";
     if (type === "tea") return category === "singles" ? "Tea" : "Tea Combo";
   };
-  console.log();
+ 
 
   return (
     <section

@@ -11,7 +11,6 @@ export const useUserProfile = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const uid = useSelector((state) => state.user.uid);
-  console.log(uid)
 
   const fetchUserProfile = useCallback(async () => {
     if (!uid) {
@@ -22,7 +21,6 @@ export const useUserProfile = () => {
     try {
       const data = await fetchUserDetailsFromDb(uid);
       dispatch(profileActions.setProfile(data));
-      console.log(data);
       return data;
     } catch (error) {
       console.error("Error fetching user profile:", error.message);
