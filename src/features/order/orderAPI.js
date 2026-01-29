@@ -28,8 +28,6 @@ export const placeOrderToDb = async ({ orderDetails, uid }) => {
 };
 export const fetchOrdersFromDb = async ({ uid }) => {
   const token = await getIdToken();
-  console.log("UID:", uid);
-  console.log("TOKEN:", token);
 
   if (!uid) throw new Error("User id is missing.");
   if (!token) throw new Error("Auth token missing.");

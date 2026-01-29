@@ -8,8 +8,6 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-
-
 const AuthForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isLogin = searchParams.get("mode") === "login";
@@ -35,13 +33,13 @@ const AuthForm = () => {
         userCredentials = await signInWithEmailAndPassword(
           auth,
           email,
-          password
+          password,
         );
       } else {
         userCredentials = await createUserWithEmailAndPassword(
           auth,
           email,
-          password
+          password,
         );
       }
       const user = userCredentials.user;
@@ -53,7 +51,6 @@ const AuthForm = () => {
       localStorage.setItem("tokenExpiry", expiryTime.toString());
       localStorage.setItem("uid", user.uid);
       localStorage.setItem("email", user.email);
-      console.log(expiryTime, expiresIn);
 
       dispatch(
         userActions.login({
@@ -61,7 +58,7 @@ const AuthForm = () => {
           email: user.email,
           uid: user.uid,
           tokenExpiry: expiryTime.toString(),
-        })
+        }),
       );
 
       if (isLogin) {
@@ -115,25 +112,29 @@ const AuthForm = () => {
       >
         {isLogin ? "Login" : "Sign-Up"}
       </button>
-      {isLogin ?(<p className="text-gray-700 ">
-        Don't have an account?{" "}
-        <span
-          onClick={switchMode}
-          className="text-[#63ce36] underline cursor-pointer"
-        >
-          Click here
-        </span>{" "}
-        to sign-up.
-      </p>): (<p className="text-gray-700 ">
-        Have an account?{" "}
-        <span
-          onClick={switchMode}
-          className="text-[#63ce36] underline cursor-pointer"
-        >
-          Click here
-        </span>{" "}
-        to sign-in.
-      </p>)}
+      {isLogin ? (
+        <p className="text-gray-700 ">
+          Don't have an account?{" "}
+          <span
+            onClick={switchMode}
+            className="text-[#63ce36] underline cursor-pointer"
+          >
+            Click here
+          </span>{" "}
+          to sign-up.
+        </p>
+      ) : (
+        <p className="text-gray-700 ">
+          Have an account?{" "}
+          <span
+            onClick={switchMode}
+            className="text-[#63ce36] underline cursor-pointer"
+          >
+            Click here
+          </span>{" "}
+          to sign-in.
+        </p>
+      )}
     </Form>
   );
 };

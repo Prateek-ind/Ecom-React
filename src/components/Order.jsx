@@ -9,6 +9,7 @@ const Order = ({ orderDetails }) => {
     .map((item) => getProductById(item.productId))
     .filter((p) => p);
 
+
   return (
     <Link to={`/orderDetails?orderId=${orderDetails.orderId}`}>
       <div
@@ -18,7 +19,7 @@ const Order = ({ orderDetails }) => {
         <p className="col-span-2 cursor-pointer">{orderDetails.orderNumber}</p>
         <p>{orderPlacedDate}</p>
         <p className="flex items-center">
-          {previewProducts.slice(0, 2).map((product, i) => (
+          {previewProducts.slice(0, 1).map((product, i) => (
             <img key={i} src={product.img1} className="w-16 mr-4" alt="" />
           ))}
 
