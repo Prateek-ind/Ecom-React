@@ -22,11 +22,6 @@ const OrderDetailsPage = () => {
     return <p className="mt-32 text-center">Loading order...</p>;
   }
 
-  const previewProducts = currentOrder.items
-    .map((item) => getProductById(item.productId))
-    .filter((p) => p);
-    console.log(previewProducts);
-
   return (
     <section className="w-full  py-10 bg-[#feffec]">
       <div className=" mx-auto max-w-5xl px-12 mb-6 mt-28 flex flex-col">
@@ -73,22 +68,26 @@ const OrderDetailsPage = () => {
         </div>
         <hr />
 
-        {currentOrder?.items.map((item, key) => (
-          <div
-            key={key}
-            className="mx-auto flex items-center justify-center gap-8 py-4 px-4"
-          >
-            {previewProducts.map(prod=><img src={prod.img1} className="h-32" alt="" />)}
-            <div className=" flex flex-col gap-4 justify-center">
-              <p className=" max-w-48 font-thin text-sm tracking-widest text-gray-800 leading-6 uppercase">
-                {item.name}
-              </p>
-              <p className="text-xs text-gray-500 tracking-widest">
-                {item.quantity} × Rs. {(item.total || 0).toFixed(2)}
-              </p>
+        {currentOrder?.items.map((item, key) => {
+          const product = getProductById(item.id);
+
+          return (
+            <div
+              key={key}
+              className="mx-auto flex items-center justify-center gap-8 py-4 px-4"
+            >
+              <img src={product.img1} className="h-32" alt="" />
+              <div className=" flex flex-col gap-4 justify-center">
+                <p className=" max-w-48 font-thin text-sm tracking-widest text-gray-800 leading-6 uppercase">
+                  {item.name}
+                </p>
+                <p className="text-xs text-gray-500 tracking-widest">
+                  {item.quantity} × Rs. {(item.total || 0).toFixed(2)}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div className="flex items-start justify-between mt-12 px-12">
           <div className="flex flex-col items-start justify-start">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
