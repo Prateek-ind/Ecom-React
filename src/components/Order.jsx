@@ -9,7 +9,6 @@ const Order = ({ orderDetails }) => {
     .map((item) => getProductById(item.productId))
     .filter((p) => p);
 
-  console.log(orderDetails);
   return (
     <Link to={`/orderDetails?orderId=${orderDetails.orderId}`}>
       <div
