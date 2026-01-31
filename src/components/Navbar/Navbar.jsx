@@ -98,31 +98,33 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
-            {! <div
-              className="relative py-12 "
-              onClick={() => {
-                if (isLoggedIn) setUserMenuOpen((prev) => !prev);
-              }}
-            >
-              {isLoggedIn ? (
-                <AiOutlineUser size={28} className="cursor-pointer" />
-              ) : (
-                <Link onClick={navigateToLogin}>
-                  <AiOutlineUser size={28} className="cursor-pointer" />
-                </Link>
-              )}
+            {
               <div
-                className="absolute -left-5 w-fit mt-12  
-              bg-[#feffec] cursor-pointer"
+                className="relative py-12 "
+                onClick={() => {
+                  if (isLoggedIn) setUserMenuOpen((prev) => !prev);
+                }}
               >
-                {isLoggedIn && userMenuOpen && (
-                  <UserMenuDrawer
-                    setUserMenuOpen={setUserMenuOpen}
-                    setHamMenuOpen={setHamMenuOpen}
-                  />
+                {isLoggedIn ? (
+                  <AiOutlineUser size={28} className="cursor-pointer" />
+                ) : (
+                  <Link onClick={navigateToLogin}>
+                    <AiOutlineUser size={28} className="cursor-pointer" />
+                  </Link>
                 )}
+                <div
+                  className="absolute -left-5 w-fit mt-12  
+              bg-[#feffec] cursor-pointer"
+                >
+                  {isLoggedIn && userMenuOpen && (
+                    <UserMenuDrawer
+                      setUserMenuOpen={setUserMenuOpen}
+                      setHamMenuOpen={setHamMenuOpen}
+                    />
+                  )}
+                </div>
               </div>
-            </div>}
+            }
             <AiOutlineSearch
               className=" cursor-pointer"
               size={28}
@@ -144,7 +146,6 @@ const Navbar = () => {
             setHamMenuOpen={setHamMenuOpen}
             setUserMenuOpen={setUserMenuOpen}
             hamMenuOpen={hamMenuOpen}
-
           />
         )}
         <hr />
