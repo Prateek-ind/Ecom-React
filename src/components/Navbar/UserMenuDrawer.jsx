@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../../features/users/userSlice";
 import { profileActions } from "../../features/users/profileSlice";
+import { memo } from "react";
 
-const UserMenuDrawer = ({ setUserMenuOpen, setHamMenuOpen }) => {
+const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -62,6 +63,6 @@ const UserMenuDrawer = ({ setUserMenuOpen, setHamMenuOpen }) => {
       </ul>
     </div>
   );
-};
+});
 
 export default UserMenuDrawer;
