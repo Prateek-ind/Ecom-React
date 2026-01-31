@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "./Product/ProductCard";
 import { IoCloseOutline } from "react-icons/io5";
@@ -44,6 +44,10 @@ const Search = ({ setSearchOpen }) => {
     };
   }, []);
 
+  const closeSearch = useCallback(()=>{
+    setSearchOpen(false)
+  })
+
   return (
     <div
       ref={searchRef}
@@ -76,7 +80,7 @@ const Search = ({ setSearchOpen }) => {
                     to={`/products/${product.id}`}
                     state={product}
                   >
-                    <ProductCard product={product} closeSearch={setSearchOpen} />
+                    <ProductCard product={product} closeSearch={closeSearch} />
                   </Link>
                 </div>
               </li>

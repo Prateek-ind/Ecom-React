@@ -15,15 +15,11 @@ const Order = ({ orderDetails }) => {
         className="px-4 py-4 flex flex-col md:grid md:grid-cols-7 items-center
      gap-4 text-center border-b"
       >
-        <div className="flex gap-4">
-          {" "}
+        <div className="col-span-2">
           <p className="block md:hidden">Order Number: </p>
-          <p className="col-span-2 cursor-pointer">
-            {orderDetails.orderNumber}
-          </p>
+          <p className=" cursor-pointer">{orderDetails.orderNumber}</p>
         </div>
-        <div className="flex gap-4">
-          {" "}
+        <div className="">
           <p className="block md:hidden">Order Date: </p>
           <p>{orderPlacedDate}</p>
         </div>
@@ -41,18 +37,15 @@ const Order = ({ orderDetails }) => {
           )}
           {orderDetails.items.length > 2 && " + more..."}
         </p>
-        <div className="flex gap-4">
-          {" "}
+        <div className="">
           <p className="block md:hidden">Order Status: </p>
           <p>{orderDetails?.status}</p>
         </div>
-        <div className="flex gap-4">
-          {" "}
+        <div className="">
           <p className="block md:hidden">Payment Method: </p>
           <p>{orderDetails.payment.method}</p>
         </div>
-        <div className="flex gap-4">
-          {" "}
+        <div className="">
           <p className="block md:hidden">Order Total: </p>
           <p>Rs. {orderDetails.pricing.total.toFixed(2)}</p>
         </div>
