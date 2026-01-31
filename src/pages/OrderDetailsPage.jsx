@@ -23,13 +23,13 @@ const OrderDetailsPage = () => {
 
   return (
     <section className="w-full  py-10 bg-[#feffec]">
-      <div className=" mx-auto max-w-5xl px-4 md:px-12 mb-6 mt-28 flex flex-col md:flex-row">
+      <div className=" mx-auto max-w-6xl px-4 md:px-8 mb-6 mt-28">
         <h2 className="text-4xl text-center text-gray-700 tracking-widest mb-8 uppercase">
           Order Details
         </h2>
         <hr />
-        <div className="mt-8 mb-4 flex flex-col gap-4 md:flex-row md:gap-8 mx-auto">
-          <div className="flex ">
+        <div className="mt-6 mb-6 px-12 flex flex-col md:flex-row md:justify-between gap-4 ">
+          <div className="flex gap-2">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Order Number -{" "}
             </p>
@@ -37,7 +37,7 @@ const OrderDetailsPage = () => {
               {currentOrder?.orderNumber}
             </p>
           </div>
-          <div className="flex">
+          <div className="flex gap-2 ">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Placed on -
             </p>
@@ -47,8 +47,8 @@ const OrderDetailsPage = () => {
           </div>
         </div>
 
-        <div className="mb-4 flex gap-8 mx-auto">
-          <div className="flex">
+        <div className="px-12 mb-8 flex flex-col md:flex-row md:justify-between gap-4">
+          <div className="flex gap-2">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Status -{" "}
             </p>
@@ -56,7 +56,7 @@ const OrderDetailsPage = () => {
               {currentOrder?.status}
             </p>
           </div>
-          <div className="flex">
+          <div className="flex gap-2">
             <p className="text-sm text-gray-700 tracking-widest font-semibold">
               Payment Method -{" "}
             </p>
