@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import CheckoutNavbar from "../components/Navbar/CheckoutNavbar";
-import CheckoutForm from "../components/CartDrawer/Checkout/CheckoutForm";
-import CheckoutDiscount from "../components/CartDrawer/Checkout/CheckoutDiscount";
+import CheckoutNavbar from "@/shared/components/Navbar/CheckoutNavbar";
+import CheckoutForm from "@/shared/components/Checkout/CheckoutForm";
+import CheckoutDiscount from "@/shared/components/Checkout/CheckoutDiscount";
 import { MdDiscount } from "react-icons/md";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";

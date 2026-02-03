@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer";
-import CartDrawer from "../components/CartDrawer/CartDrawer";
-import ScrollToTop from "../components/ScrollToTop";
+import Navbar from "../shared/components/Navbar/Navbar";
+import Footer from "../shared/components/Footer";
+import CartDrawer from "@/features/cart/components/CartDrawer";
+import ScrollToTop from "../shared/components/ScrollToTop";
 
 const RootLayout = () => {
-
   return (
     <>
-    <ScrollToTop/>
+      <ScrollToTop />
       <Navbar />
       <main>
         <CartDrawer />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../../features/cart/CartSlice";
+import { cartActions } from "@/features/cart/CartSlice";
 
 const OrderNoteSection = () => {
   const dispatch = useDispatch();

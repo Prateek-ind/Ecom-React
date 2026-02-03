@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Form, useNavigate } from "react-router";
-import { useContactUs } from "../hooks/useContactUs";
+import { useContactUs } from "../../hooks/useContactUs";
 
 const ContactUsForm = () => {
   const { contactUsFormSubmit } = useContactUs();

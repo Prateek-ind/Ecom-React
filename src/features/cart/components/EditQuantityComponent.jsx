@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../../features/cart/CartSlice";
+import { cartActions } from "../CartSlice";
 
 const EditQuantityComponent = ({ product, showRemoveBtn = true }) => {
   const cartItems = useSelector((state) => state.cart.items);
-   if (!product) return null;
+  if (!product) return null;
   const cartItem = cartItems[product.id]
     ? { ...cartItems[product.id], id: product.id }
     : { ...product, quantity: 1 };

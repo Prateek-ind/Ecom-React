@@ -1,35 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import HeroCarouselButtons from "./HeroCarouselButtons";
 import HeroShopButton from "./HeroShopButton";
-import { heroSectionImg } from "../../features/product/Products";
+import { heroSectionImg } from "@/features/product/Products";
 
 const HeroCarousel = ({ isMobile }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  let imgIntervalId = "";
+
+  const imgSource = useMemo(() => {
+    return isMobile
+      ? Object.values(heroSectionImg.mobile)
+      : Object.values(heroSectionImg.desktop);
+  }, [isMobile]);
 
   useEffect(() => {
-    imgIntervalId = setInterval(() => {
-      setLoading(true);
+   const imgIntervalId = setInterval(() => {
       setCurrentIndex((prev) => {
         return (prev + 1) % imgSource.length;
       });
+      setLoading(true);
     }, 4000);
-    setLoading(false);
+
     return () => {
       clearInterval(imgIntervalId);
     };
-  }, [currentIndex]);
-
-  const imgSource = isMobile
-    ? Object.values(heroSectionImg.mobile)
-    : Object.values(heroSectionImg.desktop);
+  }, [imgSource.length]);
 
   const handleImageLoad = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 100);
+   requestAnimationFrame(()=>setLoading(false))
   };
 
   return (

@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdDiscount } from "react-icons/md";
-import { cartUIActions } from "../../features/cart/cartUISlice";
-import OrderNoteSection from "./OrderNoteSection";
+import { cartUIActions } from "@/features/cart/cartUISlice";
+import OrderNoteSection from "@/features/cart/components/OrderNoteSection";
 import CartDrawerItems from "./CartDrawerItems";
-import MultiButton from "../Product/MultiButton";
+import MultiButton from "@/features/product/components/MultiButton";
 
 const CartDrawer = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.cartUI.isOpen);
   const cart = useSelector((state) => state.cart);
-
 
   const closeCartDrawer = () => {
     dispatch(cartUIActions.closeCart());

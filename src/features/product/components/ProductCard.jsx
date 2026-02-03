@@ -1,6 +1,6 @@
 import StarRating from "./StarRating";
 import { memo, useState } from "react";
-import AddToCartBtn from "./AddToCartBtn";
+import AddToCartBtn from "@/features/cart/components/AddToCartBtn";
 import { useNavigate } from "react-router";
 
 const ProductCard = memo(({ isMobile, product, closeSearch }) => {
@@ -8,7 +8,7 @@ const ProductCard = memo(({ isMobile, product, closeSearch }) => {
   const navigate = useNavigate();
 
   const goToProduct = () => {
-     closeSearch?.();
+    closeSearch?.();
     navigate(`/products/${product.id}`);
   };
 

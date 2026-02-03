@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, useNavigate } from "react-router";
-import { useBulkOrderInquiry } from "../hooks/useBulkOrderInquiry";
+import { useBulkOrderInquiry } from "../../../hooks/useBulkOrderInquiry";
 import { useSelector } from "react-redux";
 
 const BulkOrderInquiryForm = () => {

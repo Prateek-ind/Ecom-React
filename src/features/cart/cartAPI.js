@@ -1,7 +1,6 @@
 import { getIdToken } from "../../utils/getIdToken";
 
-export const projectId = import.meta.env.VITE_PROJECT_ID;
-export const apiKey = import.meta.env.VITE_API_KEY;
+
 export const rdbUrl =
   "https://healthy-buddie-project-f6ce6-default-rtdb.firebaseio.com/";
 

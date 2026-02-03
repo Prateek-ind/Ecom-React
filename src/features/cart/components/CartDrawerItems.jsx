@@ -2,8 +2,6 @@ import React from "react";
 import EditQuantityComponent from "./EditQuantityComponent";
 
 const CartDrawerItems = ({ cart }) => {
- 
-
   return (
     <>
       <div>
@@ -14,8 +12,9 @@ const CartDrawerItems = ({ cart }) => {
           </p>
         ) : (
           <p className="py-2 px-4 text-xs text-gray-500">
-            ` Spend Rs. {(cart.freeShippingThreshold - cart.totalAmount).toFixed(2)} more and get free
-            shipping!`
+            ` Spend Rs.{" "}
+            {(cart.freeShippingThreshold - cart.totalAmount).toFixed(2)} more
+            and get free shipping!`
           </p>
         )}
         <hr />
@@ -40,7 +39,7 @@ const CartDrawerItems = ({ cart }) => {
                   </p>
                   <p className="text-sm font-extralight text-gray-800">
                     {` Rs. ${(item.quantity * item.discountedPrice).toFixed(
-                      2
+                      2,
                     )}`}
                   </p>
                   <EditQuantityComponent product={item} />

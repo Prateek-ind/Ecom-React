@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import EditQuantityComponent from "../components/CartDrawer/EditQuantityComponent";
-import OrderNoteSection from "../components/CartDrawer/OrderNoteSection";
+import EditQuantityComponent from "@/features/cart/components/EditQuantityComponent";
+import OrderNoteSection from "@/features/cart/components/OrderNoteSection";
 import { MdDiscount } from "react-icons/md";
 import { useNavigate } from "react-router";
 

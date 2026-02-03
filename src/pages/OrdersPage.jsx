@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import Order from "../components/Order";
+import Order from "@/features/order/components/Order";
 import { useEffect } from "react";
-import { fetchOrders } from "../features/order/orderSlice";
+import { fetchOrders } from "@/features/order/orderSlice";
 
 const OrdersPage = () => {
   const uid = useSelector((state) => state.user.uid);

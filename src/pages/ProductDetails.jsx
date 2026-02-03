@@ -1,12 +1,12 @@
 import { useLocation } from "react-router";
-import StarRating from "../components/Product/StarRating";
-import EditQuantityComponent from "../components/CartDrawer/EditQuantityComponent";
+import StarRating from "../features/product/components/StarRating";
+import EditQuantityComponent from "@/features/cart/components/EditQuantityComponent";
 import { useMemo, useState } from "react";
-import MultiButton from "../components/Product/MultiButton";
+import MultiButton from "../features/product/components/MultiButton";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../features/cart/CartSlice";
-import OfferSwitcher from "../components/Product/OfferSwitcher";
-import ProductImageGallery from "../components/Product/ProductImageGallery";
+import OfferSwitcher from "../features/product/components/OfferSwitcher";
+import ProductImageGallery from "../features/product/components/ProductImageGallery";
 
 const offers = [
   {
@@ -28,11 +28,12 @@ const ProductDetails = () => {
   const product = location.state;
   const [selectedImg, setSelectedImg] = useState(product.img1);
 
-  const productImgArray = useMemo(()=>
-    Object.keys(product)
-      .filter((key) => key.startsWith("img"))
-      .map((key) => (key = product[key])),
-    [product]
+  const productImgArray = useMemo(
+    () =>
+      Object.keys(product)
+        .filter((key) => key.startsWith("img"))
+        .map((key) => (key = product[key])),
+    [product],
   );
 
   return (
@@ -145,7 +146,7 @@ const ProductDetails = () => {
             )}
           <hr />
           {["combo", "pack"].some((word) =>
-            location.pathname.toLowerCase().includes(word)
+            location.pathname.toLowerCase().includes(word),
           ) && (
             <div className="pt-8">
               <h3 className="text-gray-800 font-bold pb-4">

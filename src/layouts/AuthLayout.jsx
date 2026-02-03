@@ -1,8 +1,7 @@
-
-import ScrollToTop from "../components/ScrollToTop";
+import ScrollToTop from "@/shared/components/ScrollToTop";
 import { Outlet } from "react-router";
-import Footer from "../components/Footer";
-import AuthNavbar from "../components/Navbar/AuthNavbar";
+import Footer from "@/shared/components/Footer";
+import AuthNavbar from "@/shared/components/Navbar/AuthNavbar";
 
 const AuthLayout = () => {
   return (

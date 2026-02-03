@@ -1,9 +1,9 @@
-import HeroCarousel from "../components/HeroSection/HeroCarousel";
-import ExploreSection from "../components/ExploreSection/ExploreSection";
-import { partitionImg } from "../features/product/Products";
+import HeroCarousel from "@/shared/components/HeroSection/HeroCarousel";
+import ExploreSection from "@/shared/components/ExploreSection/ExploreSection";
+import { partitionImg } from "@/features/product/Products";
 import { useEffect, useState } from "react";
-import Reviews from "../components/Reviews";
-import GetInTouch from "../components/GetInTouch";
+import Reviews from "@/shared/components/Reviews";
+import GetInTouch from "@/shared/components/GetInTouch";
 
 
 const HomePage = () => {
