@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import ProfileForm from "../components/ProfileForm";
+import ProfileForm from "@/features/users/components/ProfileForm";
 
-import UserProfile from "../components/UserProfile";
+import UserProfile from "@/features/users/components/UserProfile";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { useSelector } from "react-redux";
 

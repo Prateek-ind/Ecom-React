@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getProductById } from "../utils/getProductById";
+import { getProductById } from "../../../utils/getProductById";
 
 const Order = ({ orderDetails }) => {
   let orderPlacedDate = orderDetails.createdAt;

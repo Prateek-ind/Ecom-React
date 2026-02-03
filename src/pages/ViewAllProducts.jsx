@@ -1,5 +1,5 @@
 import React from "react";
-import Products from "../components/Product/Products";
+import Products from "../features/product/components/Products";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
@@ -9,7 +9,7 @@ const ViewAllProducts = () => {
   const allProducts = useSelector((state) => state.product.allProducts);
 
   const products = allProducts.filter(
-    (product) => product.type === type && product.category === category
+    (product) => product.type === type && product.category === category,
   );
 
   const getTitle = () => {
@@ -17,7 +17,6 @@ const ViewAllProducts = () => {
       return category === "singles" ? "Makhana" : "Makhana Combo";
     if (type === "tea") return category === "singles" ? "Tea" : "Tea Combo";
   };
- 
 
   return (
     <section

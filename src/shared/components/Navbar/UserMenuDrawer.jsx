@@ -1,8 +1,8 @@
 import { FiLogOut, FiPackage, FiUser } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userActions } from "../../features/users/userSlice";
-import { profileActions } from "../../features/users/profileSlice";
+import { userActions } from "../../../features/users/userSlice";
+import { profileActions } from "../../../features/users/profileSlice";
 import { memo } from "react";
 
 const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {

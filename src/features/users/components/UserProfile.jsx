@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ProfileForm from "./ProfileForm";
-import { useUserProfile } from "../hooks/useUserProfile";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 const UserProfile = () => {
   const profile = useSelector((state) => state.userProfile.data);

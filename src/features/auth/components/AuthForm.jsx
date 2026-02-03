@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
-import { userActions } from "../features/users/userSlice";
-import { auth } from "./firebase/config";
+import { userActions } from "@/features/users/userSlice";
+import { auth } from "@/services/firebase/config";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,

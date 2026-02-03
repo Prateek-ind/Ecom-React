@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import ProductCard from "./Product/ProductCard";
+import ProductCard from "@/features/product/components/ProductCard";
 import { IoCloseOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
@@ -44,9 +44,9 @@ const Search = ({ setSearchOpen }) => {
     };
   }, []);
 
-  const closeSearch = useCallback(()=>{
-    setSearchOpen(false)
-  })
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+  });
 
   return (
     <div

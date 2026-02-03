@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Products from "../Product/Products";
+import Products from "@/features/product/components/Products";
 import ViewAllBtn from "./ViewAllBtn";
 
 const ExploreSection = ({
@@ -9,12 +9,12 @@ const ExploreSection = ({
   type,
   category,
   partitionImageSrc,
-  isMobile
+  isMobile,
 }) => {
   const allProducts = useSelector((state) => state.product.allProducts);
 
   const products = allProducts.filter(
-    (product) => product.type === type && product.category === category
+    (product) => product.type === type && product.category === category,
   );
 
   return (
@@ -31,7 +31,11 @@ const ExploreSection = ({
             {heading}
           </h2>
         </div>
-        <Products isMobile={isMobile} products={products} noOfItems={noOfItems} />
+        <Products
+          isMobile={isMobile}
+          products={products}
+          noOfItems={noOfItems}
+        />
         <ViewAllBtn category={category} type={type} />
       </section>
       {partitionImageSrc && (

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../../../features/cart/CartSlice";
-import { orderActions, placeOrder } from "../../../features/order/orderSlice";
+import { cartActions } from "@/features/cart/CartSlice";
+import { orderActions, placeOrder } from "@/features/order/orderSlice";
 
 const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
