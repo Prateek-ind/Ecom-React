@@ -10,7 +10,7 @@ const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const prepaidDiscount = (Number(cart.totalAmount) * 0.05).toFixed(2);
   const amountAfterDiscount = (cart.totalAmount - prepaidDiscount).toFixed(2);
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const navigate = useNavigate();
 
   useEffect(() => {

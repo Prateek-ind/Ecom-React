@@ -8,8 +8,8 @@ const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.userProfile.data);
-  const uid = useSelector((state) => state.user.uid);
-  const email = useSelector((state) => state.user.email);
+  const uid = useSelector((state) => state.auth.uid);
+  const email = useSelector((state) => state.auth.email);
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
   const navigate = useNavigate();

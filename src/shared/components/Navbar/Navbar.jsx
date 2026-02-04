@@ -20,7 +20,7 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
   const hasItems = Object.keys(cartItems).length;
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const navigate = useNavigate();
 

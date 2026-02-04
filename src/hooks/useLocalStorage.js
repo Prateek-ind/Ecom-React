@@ -6,7 +6,7 @@ export const useLocalStorage=()=>{
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch()
     const cart = useSelector(state=>state.cart)
-    const uid = useSelector(state=>state.user.uid)
+    const uid = useSelector(state=>state.auth.uid)
 
 
     useEffect(()=>{

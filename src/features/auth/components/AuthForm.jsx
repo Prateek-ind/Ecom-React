@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
-import { userActions } from "@/features/users/userSlice";
 import { auth } from "@/services/firebase/config";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { authActions } from "@/features/auth/authSlice";
 
 const AuthForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +18,7 @@ const AuthForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const AuthForm = () => {
       localStorage.setItem("email", user.email);
 
       dispatch(
-        userActions.login({
+        authActions.login({
           token,
           email: user.email,
           uid: user.uid,
