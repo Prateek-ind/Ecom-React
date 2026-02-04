@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
   const navigate = useNavigate();
   const { storeUserProfile } = useUserProfile();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",

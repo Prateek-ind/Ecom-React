@@ -4,12 +4,13 @@ import ProfileForm from "@/features/users/components/ProfileForm";
 import UserProfile from "@/features/users/components/UserProfile";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { useSelector } from "react-redux";
+import ProfileSkeleton from "../features/users/components/ProfileSkeleton";
 
 const Profile = () => {
   const { fetchUserProfile } = useUserProfile();
   const profile = useSelector((state) => state.userProfile.data);
   const isLoaded = useSelector((state) => state.userProfile.isLoaded);
-  const { isLoggedIn, uid } = useSelector((state) => state.user);
+  const { isLoggedIn, uid } = useSelector((state) => state.auth);
   useEffect(() => {
     if (isLoggedIn && uid && !isLoaded) {
       fetchUserProfile();
@@ -22,7 +23,7 @@ const Profile = () => {
     !profile || (!profile.firstName && !profile.lastName && !profile.address);
 
   if (!isLoaded) {
-    return <p className="text-center mt-20 text-xl">Loading profile...</p>;
+    return <ProfileSkeleton/>;
   }
 
   return (

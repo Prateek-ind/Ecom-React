@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { fetchOrders } from "@/features/order/orderSlice";
 
 const OrdersPage = () => {
-  const uid = useSelector((state) => state.user.uid);
+  const uid = useSelector((state) => state.auth.uid);
   const orders = useSelector((state) => state.orders.orders);
   const dispatch = useDispatch();
 

@@ -8,7 +8,7 @@ const AddToCartBtn = ({ product, closeSearch }) => {
   const [cssClasses, setCssClasses] = useState("");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  const userId = useSelector((state) => state.user.userId);
+  const uid = useSelector((state) => state.auth.uid);
 
   const triggerAnimation = (animation) => {
     setCssClasses(""); // reset class
@@ -29,7 +29,7 @@ const AddToCartBtn = ({ product, closeSearch }) => {
           quantity: (cartItems[product.id]?.quantity || 0) + 1,
         },
       };
-      dispatch(saveCartToDB({ userId, cartItems: updatedCartItems }));
+      dispatch(saveCartToDB({ uid, cartItems: updatedCartItems }));
     }, 0);
     if (closeSearch) closeSearch();
   };

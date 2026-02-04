@@ -5,7 +5,7 @@ import { fetchSingleOrder } from "../features/order/orderSlice";
 import { getProductById } from "../utils/getProductById";
 
 const OrderDetailsPage = () => {
-  const uid = useSelector((state) => state.user.uid);
+  const uid = useSelector((state) => state.auth.uid);
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const dispatch = useDispatch();

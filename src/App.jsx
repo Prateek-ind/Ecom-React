@@ -10,7 +10,7 @@ import BulkOrderInquiry from "./pages/BulkOrderInquiry";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import AuthLayout from "./layouts/AuthLayout";
-import { useAuthInitial } from "./hooks/useAuthInitial";
+import { useAuthInitial } from "@/hooks/useAuthInitial";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
 import OrdersPage from "./pages/OrdersPage";

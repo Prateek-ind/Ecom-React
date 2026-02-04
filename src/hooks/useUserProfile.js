@@ -10,7 +10,7 @@ import { profileActions } from "../features/users/profileSlice";
 export const useUserProfile = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const uid = useSelector((state) => state.user.uid);
+  const uid = useSelector((state) => state.auth.uid);
 
   const fetchUserProfile = useCallback(async () => {
     if (!uid) {

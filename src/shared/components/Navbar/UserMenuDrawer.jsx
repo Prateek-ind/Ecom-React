@@ -1,9 +1,9 @@
 import { FiLogOut, FiPackage, FiUser } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userActions } from "../../../features/users/userSlice";
-import { profileActions } from "../../../features/users/profileSlice";
+import { profileActions } from "@/features/users/profileSlice";
 import { memo } from "react";
+import { authActions } from "@/features/auth/authSlice";
 
 const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
 
   const onLogout = async () => {
     dispatch(profileActions.clearProfile());
-    dispatch(userActions.logout());
+    dispatch(authActions.logout());
     setUserMenuOpen(false);
     setHamMenuOpen(false);
     navigate("/auth/login?mode=login");

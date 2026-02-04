@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { userActions } from "../features/users/userSlice";
+import { authActions } from "../features/auth/authSlice";
+
 
 export const useAuthInitial = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export const useAuthInitial = () => {
 
     if (uid && token) {
       dispatch(
-        userActions.autoLogin({ token, uid, email, tokenExpiry: expiry })
+        authActions.autoLogin({ token, uid, email, tokenExpiry: expiry })
       );
     }
   }, [dispatch]);
