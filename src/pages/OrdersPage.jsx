@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Order from "@/features/order/components/Order";
 import { useEffect } from "react";
 import { fetchOrders } from "@/features/order/orderSlice";
+import OrdersSkeleton from "../features/order/components/OrdersSkeleton";
 
 const OrdersPage = () => {
-  const uid = useSelector((state) => state.auth.uid);
+  const { uid } = useSelector((state) => state.auth);
   const orders = useSelector((state) => state.orders.orders);
   const dispatch = useDispatch();
-
+  const isLoading = useSelector((state) => state.orders.loading);
   useEffect(() => {
     if (uid) {
       dispatch(fetchOrders({ uid }));
@@ -16,31 +17,35 @@ const OrdersPage = () => {
 
   return (
     <section className="w-full mx-auto py-10 bg-[#feffec]">
-      <div className="mb-6 mt-28 text-center">
-        <h2 className="text-4xl text-gray-700 tracking-widest mb-8 uppercase">
+      <div className="mt-28 text-center mb-8">
+        <h2 className="text-4xl text-gray-700 tracking-widest uppercase">
           Orders
         </h2>
-        <hr />
-        {orders.length === 0 ? (
-          <p className="text-center mt-20 text-gray-700 text-xl">
-            Loading orders...
-          </p>
-        ) : (
-          <div>
-            <div className="px-4 py-2 hidden md:grid grid-cols-7 grid-flow-col items-center gap-4 text-center border-b">
-              <p className="col-span-2">Order Number</p>
-              <p>Date</p>
-              <p>Items</p>
-              <p>Order Status</p>
-              <p>Payment Method</p>
-              <p>Total</p>
-            </div>
-            {orders.map((order) => (
-              <Order key={order.orderNumber} orderDetails={order} />
-            ))}
-          </div>
-        )}
+        <p className="text-sm text-gray-400 mt-2">Your recent purchases</p>
       </div>
+
+      {isLoading ? (
+        <OrdersSkeleton />
+      ) : orders.length === 0 ? (
+        <p className="text-center text-gray-600 mt-20">
+          You haven’t placed any orders yet.
+        </p>
+      ) : (
+        <div className="max-w-4xl mx-auto space-y-6 px-4">
+          <div className="hidden md:grid max-w-4xl mx-auto grid-cols-7
+           gap-8 px-6 py-3 text-sm text-gray-500 border-b">
+            <p className="col-span-2 mx-auto">Order ID</p>
+            <p className="mx-auto">Date</p>
+            <p className="mx-auto">Items</p>
+            <p className="mx-auto">Status</p>
+            <p className="mx-auto">Payment</p>
+            <p className="text-right">Total</p>
+          </div>
+          {orders.map((order) => (
+            <Order key={order.orderNumber} orderDetails={order} />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
