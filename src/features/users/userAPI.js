@@ -2,7 +2,8 @@ import { getIdToken } from "../../utils/getIdToken";
 import { rdbUrl } from "../cart/cartAPI";
 
 export const contactUsToDb = async ({ uid, messageDetails }) => {
-  const url = `${rdbUrl}/messages/${uid}.json?auth=${getIdToken() || null}`;
+  const token = await getIdToken()
+  const url = `${rdbUrl}/messages/${uid}.json?auth=${token}`;
   const payload = {
     ...messageDetails,
     message: messageDetails.message,
@@ -10,8 +11,8 @@ export const contactUsToDb = async ({ uid, messageDetails }) => {
   };
   const response = await fetch(url, {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-    headers: getHeaders(),
   });
   if (!response.ok) {
     throw new Error("Could not send message.");

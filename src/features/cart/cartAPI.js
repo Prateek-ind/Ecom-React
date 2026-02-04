@@ -24,6 +24,7 @@ export const saveCart = async (uid, cartItems) => {
   const url = `${rdbUrl}/carts/${uid}.json?auth=${token}`;
   const res = await fetch(url, {
     method: "PUT",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(cartItems),
   });
 
