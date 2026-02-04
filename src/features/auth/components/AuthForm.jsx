@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
-import { auth } from "@/services/firebase/config";
+import { auth } from "@/services/firebase/config.client";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
