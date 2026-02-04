@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
 import OrdersPage from "./pages/OrdersPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
+import { orderDetailsLoader } from "./features/order/loaders/orderDetailsLoader";
 
 const App = () => {
   useAuthInitial();
@@ -50,6 +51,7 @@ const App = () => {
         },
         {
           path: "orderDetails",
+          loader: orderDetailsLoader,
           element: (
             <ProtectedRoute>
               <OrderDetailsPage />

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router";
+import { useLoaderData, useSearchParams } from "react-router";
 import { fetchSingleOrder } from "../features/order/orderSlice";
 import { getProductById } from "../utils/getProductById";
+import OrderDetailsSkeleton from "../features/order/components/OrderDetailsSkeleton";
 
 const OrderDetailsPage = () => {
   const uid = useSelector((state) => state.auth.uid);
-  const [searchParams] = useSearchParams();
-  const orderId = searchParams.get("orderId");
+  const {orderId} = useLoaderData()
   const dispatch = useDispatch();
   const currentOrder = useSelector((state) => state.orders.currentOrder);
   const orderDate = new Date(currentOrder?.createdAt).toDateString();
@@ -18,7 +18,7 @@ const OrderDetailsPage = () => {
   }, [uid, orderId, dispatch]);
 
   if (!currentOrder) {
-    return <p className="mt-32 text-center">Loading order...</p>;
+    return <OrderDetailsSkeleton />;
   }
 
   return (
