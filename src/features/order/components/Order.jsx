@@ -5,48 +5,52 @@ const Order = ({ orderDetails }) => {
   let orderPlacedDate = orderDetails.createdAt;
   orderPlacedDate = new Date(orderPlacedDate).toLocaleDateString();
 
-  const previewProducts = orderDetails.items
-    .map((item) => getProductById(item.productId))
-    .filter((p) => p);
+  const firstItem = orderDetails.items[0];
+  const product = getProductById(firstItem.productId);
+  const previewImage = product?.img1 || firstItem.image;
 
   return (
     <Link to={`/orderDetails?orderId=${orderDetails.orderId}`}>
       <div
         className="px-4 py-4 flex flex-col md:grid md:grid-cols-7 items-center
-     gap-4 text-center border-b"
+     gap-4 text-center border-b hover:bg-gray-50 transition"
       >
-        <div className="col-span-2">
-          <p className="block md:hidden">Order Number: </p>
-          <p className=" cursor-pointer">{orderDetails.orderNumber}</p>
+        <div className="col-span-2 ">
+          <p className="block md:hidden text-gray-400 text-sm">
+            Order Number:{" "}
+          </p>
+          <p className=" font-medium">{orderDetails.orderNumber}</p>
         </div>
         <div className="">
-          <p className="block md:hidden">Order Date: </p>
+          <p className="block md:hidden text-gray-400 text-sm">Order Date: </p>
           <p>{orderPlacedDate}</p>
         </div>
-        <p className="flex items-center">
-          {previewProducts.slice(0, 1).map((product, i) => (
-            <img key={i} src={product.img1} className="w-16 mr-4" alt="" />
-          ))}
-
+        <p className="flex items-center text-xs text-gray-500">
+          <img
+            src={previewImage}
+            className="w-14 h-14 object-cover rounded-lg"
+            alt="product preview"
+          />
           {orderDetails.items.length > 1 && (
-            <img
-              src={orderDetails.items[1].image}
-              className="w-16 mr-4"
-              alt=""
-            />
+            <span className="text-sm text-gray-500">
+              +{orderDetails.items.length - 1} more
+            </span>
           )}
-          {orderDetails.items.length > 2 && " + more..."}
         </p>
         <div className="">
-          <p className="block md:hidden">Order Status: </p>
-          <p>{orderDetails?.status}</p>
+          <p className="block md:hidden text-gray-400 text-sm">
+            Order Status:{" "}
+          </p>
+          <p className="font-semibold">{orderDetails?.status}</p>
         </div>
         <div className="">
-          <p className="block md:hidden">Payment Method: </p>
+          <p className="block md:hidden text-gray-400 text-sm">
+            Payment Method:{" "}
+          </p>
           <p>{orderDetails.payment.method}</p>
         </div>
         <div className="">
-          <p className="block md:hidden">Order Total: </p>
+          <p className="block md:hidden text-gray-400 text-sm">Order Total: </p>
           <p>Rs. {orderDetails.pricing.total.toFixed(2)}</p>
         </div>
       </div>
