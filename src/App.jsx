@@ -16,6 +16,8 @@ import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
 import OrdersPage from "./pages/OrdersPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import { orderDetailsLoader } from "./features/order/loaders/orderDetailsLoader";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./utils/queryClient";
 
 const App = () => {
   useAuthInitial();
@@ -64,13 +66,17 @@ const App = () => {
       path: "/auth",
       element: <AuthLayout />,
       children: [
-        { path: "login", element: <Login mode='login' /> },
+        { path: "login", element: <Login mode="login" /> },
         { path: "signup", element: <Login mode="signup" /> },
       ],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;
