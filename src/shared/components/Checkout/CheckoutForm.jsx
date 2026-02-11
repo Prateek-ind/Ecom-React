@@ -2,18 +2,22 @@ import { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/features/cart/CartSlice";
-import { orderActions, placeOrder } from "@/features/order/orderSlice";
+import { useMutation } from "@tanstack/react-query";
+import { placeOrderToDb } from "../../../features/order/orderAPI";
+import { queryClient } from "../../../utils/queryClient";
+// import { orderActions, placeOrder } from "@/features/order/orderSlice";
 
 const CheckoutForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const userProfile = useSelector((state) => state.userProfile.data);
   const uid = useSelector((state) => state.auth.uid);
   const email = useSelector((state) => state.auth.email);
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
-  const navigate = useNavigate();
-  const { orderPlaced } = useSelector((state) => state.orders);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -45,6 +49,20 @@ const CheckoutForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const {
+    mutate: placeOrderMutation,
+    isPending,
+    isError,
+    error,
+  } = useMutation({
+    mutationFn: placeOrderToDb,
+    onSuccess: () => {
+      dispatch(cartActions.clearCart());
+      queryClient.invalidateQueries(["orders", uid]);
+      navigate("/orders");
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,16 +120,8 @@ const CheckoutForm = () => {
       },
     };
 
-    dispatch(placeOrder({ uid, orderDetails: orderPayload }));
+    placeOrderMutation({ uid, orderDetails: orderPayload });
   };
-
-  useEffect(() => {
-    if (orderPlaced) {
-      dispatch(cartActions.clearCart());
-      navigate("/");
-      dispatch(orderActions.clearOrderPlaced());
-    }
-  }, [orderPlaced, dispatch, navigate]);
 
   return (
     <form className="space-y-6 " onSubmit={handleSubmit}>
@@ -172,7 +182,7 @@ const CheckoutForm = () => {
           <input
             type="text"
             name="additionalAddress"
-            value={formData.addressOptional}
+            value={formData.additionalAddress}
             className=" col-span-2 border px-2 py-4 w-full rounded"
             placeholder="Additional Address (Landmark) "
             onChange={handleChange}
@@ -326,8 +336,16 @@ const CheckoutForm = () => {
           )}
         </div>
       </section>
+
+      {isError && (
+        <p className="text-red-500 text-sm">
+          {error.message || "Something went wrong, try again."}
+        </p>
+      )}
+
       <button
         type="submit"
+        disabled={isPending}
         className="w-full bg-[#63ce36] text-white text-lg px-8 py-2 uppercase font-semibold hover:bg-[#57b92d] hover:scale-105"
       >
         {paymentMethod === "cod" ? "Place Order" : "Pay Now"}
