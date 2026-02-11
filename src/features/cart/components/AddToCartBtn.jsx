@@ -11,7 +11,7 @@ const AddToCartBtn = ({ product, closeSearch }) => {
   const uid = useSelector((state) => state.auth.uid);
 
   const triggerAnimation = (animation) => {
-    setCssClasses(""); // reset class
+    setCssClasses("");
     setTimeout(() => setCssClasses(animation), 10);
   };
 
