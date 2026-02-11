@@ -18,6 +18,9 @@ export const placeOrderToDb = async ({ orderDetails, uid }) => {
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   if (!response.ok) {
     throw new Error("Failed to place Order");
@@ -26,13 +29,12 @@ export const placeOrderToDb = async ({ orderDetails, uid }) => {
 
   return { orderId: data.name, ...payload };
 };
+
 export const fetchOrdersFromDb = async ({ uid }) => {
   const token = await getIdToken();
 
   if (!uid) throw new Error("User id is missing.");
   if (!token) throw new Error("Auth token missing.");
-
-  if (!uid) throw new Error("User id is missing.");
 
   const url = `${rdbUrl}/orders/${uid}.json?auth=${token || ""}`;
 
@@ -77,5 +79,5 @@ export const bulkOrderInquiryToDb = async ({ uid, orderDetails }) => {
     throw new Error("Failed to place Order Inquiry");
   }
   const data = await response.json();
-  return { orderId, ...data };
+  return { ...data };
 };
