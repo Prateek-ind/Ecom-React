@@ -1,19 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Order from "@/features/order/components/Order";
-import { useEffect } from "react";
-import { fetchOrders } from "@/features/order/orderSlice";
 import OrdersSkeleton from "../features/order/components/OrdersSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOrdersFromDb } from "../features/order/orderAPI";
 
 const OrdersPage = () => {
   const { uid } = useSelector((state) => state.auth);
-  const orders = useSelector((state) => state.orders.orders);
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.orders.loading);
-  useEffect(() => {
-    if (uid) {
-      dispatch(fetchOrders({ uid }));
-    }
-  }, [uid, dispatch]);
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["orders", uid],
+    queryFn: () => fetchOrdersFromDb({ uid }),
+    enabled: !!uid,
+  });
 
   return (
     <section className="w-full mx-auto py-10 bg-[#feffec]">
@@ -26,14 +28,18 @@ const OrdersPage = () => {
 
       {isLoading ? (
         <OrdersSkeleton />
+      ) : isError ? (
+        <p className="text-center text-red-500 mt-20">{error.message}</p>
       ) : orders.length === 0 ? (
         <p className="text-center text-gray-600 mt-20">
           You haven’t placed any orders yet.
         </p>
       ) : (
         <div className="max-w-4xl mx-auto space-y-6 px-4">
-          <div className="hidden md:grid max-w-4xl mx-auto grid-cols-7
-           gap-8 px-6 py-3 text-sm text-gray-500 border-b">
+          <div
+            className="hidden md:grid max-w-4xl mx-auto grid-cols-7
+           gap-8 px-6 py-3 text-sm text-gray-500 border-b"
+          >
             <p className="col-span-2 mx-auto">Order ID</p>
             <p className="mx-auto">Date</p>
             <p className="mx-auto">Items</p>
