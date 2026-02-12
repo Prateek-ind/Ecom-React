@@ -1,12 +1,11 @@
-import {  useNavigate } from "react-router";
-import { useUserProfile } from "@/hooks/useUserProfile";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { storeUserDetailsToDb } from "../userAPI";
+import { queryClient } from "../../../utils/queryClient";
 
-const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
-  const navigate = useNavigate();
-  const { storeUserProfile } = useUserProfile();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+const ProfileForm = ({ defaultValues, onCancel }) => {
+  const { uid, isLoggedIn } = useSelector((state) => state.auth);
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -25,19 +24,40 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
     }
   }, [defaultValues]);
 
+  const mutation = useMutation({
+    mutationFn: (userDetails) => storeUserDetailsToDb(userDetails, uid),
+    onMutate: async (newData) => {
+      await queryClient.cancelQueries(["profile", uid]);
+
+      const previous = queryClient.getQueryData(["profile", uid]);
+
+      queryClient.setQueryData(["profile", uid], newData);
+
+      return { previous };
+    },
+    onError: (context) => {
+      queryClient.invalidateQueries(["profile", uid], context.previous);
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries(["profile", uid]);
+    },
+
+    onSuccess: () => {
+      onCancel?.();
+    },
+  });
+
   const handleChange = (e) => {
     setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const savedProfile = await storeUserProfile(formValues);
-    if (savedProfile && onSave) {
-      onSave(savedProfile);
-      navigate("/profile");
-    } else {
-      navigate("/");
+    try {
+      await mutation.mutateAsync(formValues);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -142,7 +162,7 @@ const ProfileForm = ({ defaultValues, onSave, onCancel }) => {
           className="w-full max-w-3xl bg-[#63ce36] text-white 
         text-lg px-8 py-2 uppercase font-semibold hover:bg-[#57b92d] hover:scale-105"
         >
-          Save
+          {mutation.isPending ? "Saving..." : "Save"}
         </button>
         <button
           type="button"
