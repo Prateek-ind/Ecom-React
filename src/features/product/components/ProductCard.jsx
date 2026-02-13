@@ -24,7 +24,9 @@ const ProductCard = memo(({ isMobile, product, closeSearch }) => {
       >
         <img
           src={isHovered ? product.img2 : product.img1}
-          className="w-full h-auto opacity-100 transition-opacity duration-500"
+          width='400'
+          height='600'
+          className="opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
         {isHovered || isMobile ? (

@@ -3,7 +3,7 @@ import React from 'react'
 const ProductImageGallery = ({images, selectedImg, onSelectImage }) => {
   return (
     <div className="col-span-2">
-        <img src={selectedImg} className="px-12" alt="" />
+        <img src={selectedImg} width='600' height='800' className="px-12" alt="" />
         <div className="flex gap-4 px-12 flex-wrap pt-4">
           {images.map((img, i) => (
             <img

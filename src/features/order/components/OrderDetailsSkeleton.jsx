@@ -39,7 +39,7 @@ const OrderDetailsSkeleton = () => {
         <div className="flex flex-col md:flex-row justify-between gap-12 mt-12 px-12">
 
           {/* Shipping */}
-          <div className="flex flex-col gap-3 w-full md:w-1/2">
+          <div className="flex flex-col md:flex-row gap-3 w-full md:w-1/2">
             <div className="h-4 w-40 bg-gray-300 rounded mb-2" />
             {[1, 2, 3, 4, 5, 6].map((_, i) => (
               <div key={i} className="h-3 w-72 bg-gray-200 rounded" />
