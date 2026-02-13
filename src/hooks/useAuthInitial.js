@@ -11,6 +11,7 @@ export const useAuthInitial = () => {
     const uid = localStorage.getItem("uid");
     const email = localStorage.getItem("email");
     const expiry = localStorage.getItem("tokenExpiry");
+    
 
     if (!token || !uid || !expiry) return;
 
