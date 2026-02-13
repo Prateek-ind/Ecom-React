@@ -1,16 +1,31 @@
 import { FiLogOut, FiPackage, FiUser } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { profileActions } from "@/features/users/profileSlice";
-import { memo } from "react";
+// import { profileActions } from "@/features/users/profileSlice";
+import { memo, useEffect, useRef } from "react";
 import { authActions } from "@/features/auth/authSlice";
 
 const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userMenuRef = useRef();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [setUserMenuOpen]);
 
   const onLogout = async () => {
-    dispatch(profileActions.clearProfile());
+    // dispatch(profileActions.clearProfile());
     dispatch(authActions.logout());
     setUserMenuOpen(false);
     setHamMenuOpen(false);
@@ -31,6 +46,7 @@ const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   };
   return (
     <div
+      ref={userMenuRef}
       className="bg-white border-t-4 border-x border-b
      border-t-[#729b4a] border-x-[#729b4a4b] "
       onClick={(e) => e.stopPropagation()}

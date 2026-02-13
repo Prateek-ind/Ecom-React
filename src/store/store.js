@@ -3,7 +3,7 @@ import cartReducer from "../features/cart/CartSlice";
 import cartUIReducer from "../features/cart/cartUISlice";
 import authReducer from "../features/auth/authSlice"
 import { configureStore } from "@reduxjs/toolkit";
-import profileReducer from "../features/users/profileSlice"
+// import profileReducer from "../features/users/profileSlice"
 // import orderReducer from '../features/order/orderSlice'
 
 const store = configureStore({
@@ -12,7 +12,7 @@ const store = configureStore({
     cartUI: cartUIReducer,
     product: productReducer,
     auth: authReducer,
-    userProfile: profileReducer,
+    // userProfile: profileReducer,
     // orders: orderReducer,
   },
 });

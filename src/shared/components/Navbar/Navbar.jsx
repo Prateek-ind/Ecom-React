@@ -106,11 +106,13 @@ const Navbar = () => {
                 }}
               >
                 {isLoggedIn ? (
-                  <AiOutlineUser size={28} className="cursor-pointer" />
+                  <AiOutlineUser  size={28} className="cursor-pointer" />
                 ) : (
-                  <Link onClick={navigateToLogin}>
-                    <AiOutlineUser size={28} className="cursor-pointer" />
-                  </Link>
+                  <AiOutlineUser
+                    onClick={navigateToLogin}
+                    size={28}
+                    className="cursor-pointer"
+                  />
                 )}
                 <div
                   className="absolute -left-5 w-fit mt-12  

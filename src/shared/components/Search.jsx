@@ -30,7 +30,7 @@ const Search = ({ setSearchOpen }) => {
     return () => {
       clearTimeout(searchTimer);
     };
-  }, [searchInput]);
+  }, [searchInput, filterProducts]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -42,18 +42,18 @@ const Search = ({ setSearchOpen }) => {
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, []);
+  }, [setSearchOpen]);
 
-  const closeSearch = useCallback(() => {
+  const closeSearch = () => {
     setSearchOpen(false);
-  });
+  };
 
   return (
     <div
       ref={searchRef}
       className="absolute w-full max-h-fit top-28 left-0 flex flex-col object-contain"
     >
-      <div className="w-full px-4  flex items-center bg-white border border-gray-300">
+      <div className="w-full px-4  flex items-center bg-[#feffec] border border-gray-300">
         <input
           type="text"
           placeholder="Search here..."

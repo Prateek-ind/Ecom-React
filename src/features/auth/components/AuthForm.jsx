@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
 import { auth } from "@/services/firebase/config";
 import {
@@ -18,11 +18,12 @@ const AuthForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setError(null);
+    const ADMIN_EMAIL = 'admin@ecom.com'
     try {
       if (!isLogin && password !== confirmPassword) {
         setError("Passwords do not match");
@@ -44,6 +45,9 @@ const AuthForm = () => {
       }
       const user = userCredentials.user;
       const token = await user.getIdToken();
+      let role = user.email === ADMIN_EMAIL ? 'admin': 'user'
+
+      
 
       const expiresIn = 3600 * 1000; // Set expiration time to 1 hour
       const expiryTime = new Date().getTime() + expiresIn;
@@ -58,6 +62,7 @@ const AuthForm = () => {
           email: user.email,
           uid: user.uid,
           tokenExpiry: expiryTime.toString(),
+          role,
         }),
       );
 
