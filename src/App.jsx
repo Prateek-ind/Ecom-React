@@ -18,6 +18,7 @@ import OrderDetailsPage from "./pages/OrderDetailsPage";
 import { orderDetailsLoader } from "./features/order/loaders/orderDetailsLoader";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/queryClient";
+import RootErrorPage from "./shared/components/RootErrorPage";
 
 const App = () => {
   useAuthInitial();
@@ -27,6 +28,7 @@ const App = () => {
     {
       path: "/",
       element: <RootLayout />,
+      errorElement: <RootErrorPage/>,
       children: [
         { index: true, element: <HomePage /> },
         { path: "products/:id", element: <ProductDetails /> },
