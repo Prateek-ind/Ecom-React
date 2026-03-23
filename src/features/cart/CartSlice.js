@@ -119,7 +119,7 @@ const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCartFromDB.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload || {};
         state.totalQuantity = Object.values(action.payload).reduce(
           (sum, item) => sum + item.quantity,
           0,
