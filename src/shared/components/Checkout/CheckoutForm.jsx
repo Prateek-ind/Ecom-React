@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/features/cart/CartSlice";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { placeOrderToDb } from "../../../features/order/orderAPI";
 import { queryClient } from "../../../utils/queryClient";
+import { fetchUserDetailsFromDb } from "../../../features/users/userAPI";
 // import { orderActions, placeOrder } from "@/features/order/orderSlice";
 
 const CheckoutForm = () => {
@@ -12,11 +13,18 @@ const CheckoutForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userProfile = useSelector((state) => state.userProfile.data);
+  
   const uid = useSelector((state) => state.auth.uid);
   const email = useSelector((state) => state.auth.email);
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(useSelector((state) => state.cart.items));
+
+  const {data: userProfile} = useQuery({
+    queryKey: ['users', uid],
+    queryFn: ()=>fetchUserDetailsFromDb(uid),
+    enabled: !!uid
+  })
+  
 
   const [formData, setFormData] = useState({
     firstName: "",
