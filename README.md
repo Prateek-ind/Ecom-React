@@ -53,9 +53,12 @@ cd Ecom-React
 npm install
 npm start
 
+---
+
 🌐 Live Demo
 👉 https://ecom-react-blush.vercel.app/
 
+---
 
 ## 📸 Screenshots
 
@@ -68,7 +71,7 @@ npm start
 ### 🛒 Product Page
 ![Cart](./public/screenshots/product.png)
 
-
+---
 
 🎯 What I Learned
 
@@ -79,6 +82,7 @@ Creating reusable components
 Handling real-world UI flows
 User authentication
 
+---
 
 🚀 Future Improvements
 
@@ -86,3 +90,5 @@ User authentication
 Backend integration improvements
 Payment gateway
 Wishlist feature
+
+---
