@@ -1,33 +1,20 @@
-import { FaStar } from "react-icons/fa";
+import { memo } from "react";
 
 const StarRating = ({ rating }) => {
-  // Each star gets a fill % based on rating and star position
-  // e.g. rating=4.8 → 4 stars full, 1 star 80% filled
-
-  const stars = Array(5).fill(0);
+  const percentage = (rating / 5) * 100;
 
   return (
-    <div className="flex">
-      {stars.map((_, i) => {
-        // Calculate fill percent for star (0 to 100)
-        const fillPercent = Math.min(Math.max(rating - i, 0), 1) * 100;
-
-        return (
-          <div
-            key={i}
-            className="relative w-4 h-4 text-lime-500"
-            style={{ width: 24, height: 24 }}
-          >
-            <FaStar className="absolute top-0 left-0 w-4 h-4 text-gray-300" />
-            <FaStar
-              className="absolute top-0 left-0 w-4 h-4 text-lime-500 overflow-hidden"
-              style={{ clipPath: `inset(0 ${100 - fillPercent}% 0 0)` }}
-            />
-          </div>
-        );
-      })}
+    <div
+      className="text-2xl"
+      style={{
+        background: `linear-gradient(90deg, #84cc16 ${percentage}%, #d1d5db ${percentage}%)`,
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      }}
+    >
+      ★★★★★
     </div>
   );
 };
 
-export default StarRating;
+export default memo(StarRating);
