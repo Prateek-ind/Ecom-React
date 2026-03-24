@@ -13,6 +13,12 @@ const HamMenu = ({ setUserMenuOpen, setHamMenuOpen, HamMenuOpen }) => {
     setOpenDrawer(openDrawer === drawer ? null : drawer);
   };
 
+  const handleCloseHamMenu = ()=>{
+    setHamMenuOpen(false)
+  }
+
+
+
   return (
     <div
       className={`fixed top-0 left-0 h-full w-2/3 xl:w-1/3 bg-white shadow-lg
@@ -24,11 +30,11 @@ const HamMenu = ({ setUserMenuOpen, setHamMenuOpen, HamMenuOpen }) => {
         <IoCloseOutline
           size={32}
           className="text-gray-400"
-          onClick={() => setHamMenuOpen(false)}
+          onClick={handleCloseHamMenu}
         />
       </div>
       <ul className="flex flex-col flex-1">
-        <Link to={"/"} onClick={() => setHamMenuOpen(false)}>
+        <Link to={"/"} onClick={handleCloseHamMenu}>
           <li className=" px-4  py-4 uppercase tracking-widest border-y border-gray-100 hover:border-gray-200 text-[#729b4a] hover:bg-gray-100 cursor-pointer">
             Home
           </li>

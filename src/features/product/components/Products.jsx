@@ -1,7 +1,7 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
-const Products = ({ isMobile, products, noOfItems }) => {
+const Products = ({ products, noOfItems }) => {
   const productKeys = Object.keys(products);
   if (!products || Object.keys(products).length === 0) {
     return <p className="text-center py-10">No products available.</p>;
@@ -22,7 +22,7 @@ const Products = ({ isMobile, products, noOfItems }) => {
               to={`/products/${product.id}`}
               state={product}
             >
-              <ProductCard isMobile={isMobile} product={product} />
+              <ProductCard product={product} />
             </Link>
           );
         })}

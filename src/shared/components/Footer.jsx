@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { Form } from "react-router";
 
@@ -79,4 +80,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 
 const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
   const [hoverCombo, setHoverCombo] = useState(false);
+  const handleHoverCombo = () => {
+    
+  };
   return (
     <div className="xl:py-0 py-4">
       <ul className="xl:block flex flex-col gap-2 tracking-widest">
         <li>
           <Link
-            to={"/view-All/makhana/singles"}
+            to="/view-All/makhana/singles"
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={() => setHamMenuOpen(false)}
           >
@@ -18,7 +21,7 @@ const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
         </li>
         <li className="xl:py-2">
           <Link
-            to={"/view-All/tea/singles"}
+            to="/view-All/tea/singles"
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
             onClick={() => setHamMenuOpen(false)}
           >
@@ -36,23 +39,14 @@ const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
         <div className="absolute top-60 xl:top-20 left-full ml-0 px-4 py-2 w-40 bg-[#feffec] border border-[#729b4a4b]">
           <ul>
             <li className="px-4 py-2 xl:py-1 text-[#729b4a] hover:text-[#729b4a7a] uppercase">
-              <Link
-                to={"/view-All/makhana/combo"}
-                onClick={() => {
-                  setHoverCombo(false);
-                  setHamMenuOpen(false);
-                }}
-              >
+              <Link to={"/view-All/makhana/combo"} onClick={handleHoverCombo}>
                 Makhana Combo
               </Link>
             </li>
             <li className="px-4 py-2 xl:py-1 text-[#729b4a] hover:text-[#729b4a7a] uppercase">
               <Link
                 to={"/view-All/tea/combo"}
-                onClick={() => {
-                  setHoverCombo(false);
-                  setHamMenuOpen(false);
-                }}
+                onClick={handleHoverCombo}
               >
                 Tea Combo
               </Link>

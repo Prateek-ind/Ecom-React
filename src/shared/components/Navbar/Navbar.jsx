@@ -1,31 +1,25 @@
-import {
-  AiOutlineMenu,
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-} from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import { AiOutlineMenu } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
 import ShopByCategoryDrawer from "./ShopByCategoryDrawer";
-import { useState } from "react";
-import ComboDrawer from "./ComboDrawer";
-import HamMenu from "./HamMenu";
-import Search from "../Search";
-import UserMenuDrawer from "./UserMenuDrawer";
+import { lazy, memo, Suspense, useCallback, useState } from "react";
+import CartIcon from "./CartIcon";
+import SearchIcon from "./SearchIcon";
+
+const UserMenu = lazy(() => import("./UserMenu"));
+const HamMenu = lazy(() => import("./HamMenu"));
+const ComboDrawer = lazy(() => import("./ComboDrawer"));
 
 const Navbar = () => {
-  const [hoverCategory, setHoverCategory] = useState(false);
-  const [hoverCombo, setHoverCombo] = useState(false);
   const [hamMenuOpen, setHamMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const cartItems = useSelector((state) => state.cart.items);
-  const hasItems = Object.keys(cartItems).length;
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const navigateToLogin = () => {
+  const navigateToLogin = useCallback(() => {
     navigate("/auth/login?mode=login");
+  }, [navigate]);
+
+  const openHamMenu = () => {
+    setHamMenuOpen(true);
   };
 
   return (
@@ -35,13 +29,13 @@ const Navbar = () => {
           <AiOutlineMenu
             size={28}
             className="block xl:hidden text-[#293819] cursor-pointer"
-            onClick={() => setHamMenuOpen(true)}
+            onClick={openHamMenu}
           />
           <Link to={"/"}>
             <img
               src="//healthybuddie.com/cdn/shop/files/c62c0830-bad3-46e5-855d-273a3a5bc550.png?v=1744475062&width=1082"
               alt="logo"
-              className="w-28 cursor-pointer"
+              className="w-28 h-28 cursor-pointer"
             />
           </Link>
 
@@ -51,38 +45,37 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li
-              onMouseEnter={() => setHoverCategory(true)}
-              onMouseLeave={() => setHoverCategory(false)}
-              className="relative"
-            >
-              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+            <li className="relative group">
+              <span className=" px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a] cursor-pointer">
                 Shop by category
-              </Link>
-              {hoverCategory && (
-                <div className="absolute left-0 w-full mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
-                  <ShopByCategoryDrawer setHoverCategory={setHoverCategory} />
-                </div>
-              )}
+              </span>
+
+              <div
+                className="absolute hidden group-hover:block left-0 w-full mt-12 px-4 py-4 border-t-4
+                 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec] "
+              >
+                <ShopByCategoryDrawer />
+              </div>
             </li>
-            <li
-              onMouseEnter={() => setHoverCombo(true)}
-              onMouseLeave={() => setHoverCombo(false)}
-              className="relative"
-            >
-              <Link className=" px-4 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+            <li className="group relative">
+              <span className=" px-4 py-12 border-b-4 border-transparent hover:border-[#729b4a] cursor-pointer">
                 Combo
-              </Link>
-              {hoverCombo && (
-                <div className="absolute left-0 w-56 mt-12 px-4 py-4 border-t-4 border-x border-b border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec]">
+              </span>
+
+              <div
+                className="absolute hidden group-hover:block 
+                   left-0 w-56 mt-12 px-4 py-4  border-t-4 border-x border-b
+                 border-t-[#729b4a] border-x-[#729b4a4b] bg-[#feffec] cursor-pointer"
+              >
+                <Suspense fallback={null}>
                   <ComboDrawer />
-                </div>
-              )}
+                </Suspense>
+              </div>
             </li>
 
             <li>
               <Link
-                to={"/bulk-order-inquiry"}
+                to="bulk-order-inquiry"
                 className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
               >
                 Bulk order Enquiry
@@ -90,7 +83,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to={"/contact-us"}
+                to={"contact-us"}
                 className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
               >
                 Contact Us
@@ -99,48 +92,20 @@ const Navbar = () => {
           </ul>
           <div className="flex items-center justify-between text-[#80ad53] gap-4">
             {
-              <div
-                className="relative py-12 "
-                onClick={() => {
-                  if (isLoggedIn) setUserMenuOpen((prev) => !prev);
-                }}
-              >
-                {isLoggedIn ? (
-                  <AiOutlineUser  size={28} className="cursor-pointer" />
-                ) : (
-                  <AiOutlineUser
-                    onClick={navigateToLogin}
-                    size={28}
-                    className="cursor-pointer"
+              <div className="relative py-12 ">
+                <Suspense fallback={null}>
+                  <UserMenu
+                    userMenuOpen={userMenuOpen}
+                    setHamMenuOpen={setHamMenuOpen}
+                    setUserMenuOpen={setUserMenuOpen}
+                    navigateToLogin={navigateToLogin}
                   />
-                )}
-                <div
-                  className="absolute -left-5 w-fit mt-12  
-              bg-[#feffec] cursor-pointer"
-                >
-                  {isLoggedIn && userMenuOpen && (
-                    <UserMenuDrawer
-                      setUserMenuOpen={setUserMenuOpen}
-                      setHamMenuOpen={setHamMenuOpen}
-                    />
-                  )}
-                </div>
+                </Suspense>
               </div>
             }
-            <AiOutlineSearch
-              className=" cursor-pointer"
-              size={28}
-              onClick={() => setSearchOpen(true)}
-            />
-            {searchOpen && <Search setSearchOpen={setSearchOpen} />}
-            <div className="relative px-1 cursor-pointer">
-              <Link to={"cart"}>
-                <AiOutlineShoppingCart size={28} />
-              </Link>
-              {hasItems > 0 && (
-                <div className="w-3 h-3 rounded-full absolute -right-1 -top-1 bg-green-600 shadow-white"></div>
-              )}
-            </div>
+            <SearchIcon />
+
+            <CartIcon />
           </div>
         </div>
         {hamMenuOpen && (
@@ -156,4 +121,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

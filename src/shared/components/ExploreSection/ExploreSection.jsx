@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Products from "@/features/product/components/Products";
 import ViewAllBtn from "./ViewAllBtn";
+import { memo, useMemo } from "react";
+import PartitionPicture from "../PartitionPicture";
 
 const ExploreSection = ({
   heading,
@@ -9,13 +11,15 @@ const ExploreSection = ({
   type,
   category,
   partitionImageSrc,
-  isMobile,
 }) => {
   const allProducts = useSelector((state) => state.product.allProducts);
 
-  const products = allProducts.filter(
-    (product) => product.type === type && product.category === category,
-  );
+  const products = useMemo(() => {
+    if (!allProducts) return [];
+    return allProducts.filter(
+      (product) => product.type === type && product.category === category,
+    );
+  }, [allProducts, category, type]);
 
   return (
     <>
@@ -31,19 +35,13 @@ const ExploreSection = ({
             {heading}
           </h2>
         </div>
-        <Products
-          isMobile={isMobile}
-          products={products}
-          noOfItems={noOfItems}
-        />
+        <Products products={products} noOfItems={noOfItems} />
         <ViewAllBtn category={category} type={type} />
       </section>
       {partitionImageSrc && (
-        <img
-          src={partitionImageSrc}
-          alt="partition image"
-          
-          className="w-full pt-12 bg-[#feffec]"
+        <PartitionPicture
+          mobileSrc={partitionImageSrc.mobile.img1}
+          desktopSrc={partitionImageSrc.desktop.img1}
         />
       )}
       <hr />
@@ -51,4 +49,4 @@ const ExploreSection = ({
   );
 };
 
-export default ExploreSection;
+export default memo(ExploreSection);

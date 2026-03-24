@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import HeroShopButton from "./HeroSection/HeroShopButton";
 import { Form } from "react-router";
 
@@ -36,4 +36,4 @@ const GetInTouch = () => {
   );
 };
 
-export default GetInTouch;
+export default memo(GetInTouch);

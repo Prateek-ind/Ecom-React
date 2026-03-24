@@ -2,10 +2,10 @@ import { FiLogOut, FiPackage, FiUser } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import { profileActions } from "@/features/users/profileSlice";
-import { memo, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { authActions } from "@/features/auth/authSlice";
 
-const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
+const UserMenuDrawer = ({close, setUserMenuOpen, setHamMenuOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userMenuRef = useRef();
@@ -35,6 +35,7 @@ const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   const goToProfile = () => {
     setUserMenuOpen(false);
     setHamMenuOpen(false);
+    close()
 
     navigate("/profile");
   };
@@ -42,8 +43,10 @@ const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
   const goToOrders = () => {
     setUserMenuOpen(false);
     setHamMenuOpen(false);
+    close()
     navigate("/orders");
   };
+
   return (
     <div
       ref={userMenuRef}
@@ -79,6 +82,6 @@ const UserMenuDrawer = memo(({ setUserMenuOpen, setHamMenuOpen }) => {
       </ul>
     </div>
   );
-});
+};
 
 export default UserMenuDrawer;

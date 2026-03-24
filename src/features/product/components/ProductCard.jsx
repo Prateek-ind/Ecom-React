@@ -1,21 +1,23 @@
 import StarRating from "./StarRating";
-import { memo, useState } from "react";
+import {  memo, useState } from "react";
 import AddToCartBtn from "@/features/cart/components/AddToCartBtn";
-import { useNavigate } from "react-router";
+import useIsMobile from "../../../hooks/useIsMobile";
+// import { useNavigate } from "react-router-dom";
 
-const ProductCard = memo(({ isMobile, product, closeSearch }) => {
+const ProductCard = ({  product, closeSearch }) => {
   const [isHovered, setIsHovered] = useState();
-  const navigate = useNavigate();
+  const isMobile = useIsMobile()
+  // const navigate = useNavigate();
 
-  const goToProduct = () => {
-    closeSearch?.();
-    navigate(`/products/${product.id}`);
-  };
+  // const goToProduct = () => {
+  //   closeSearch?.();
+  //   navigate(`/products/${product.id}`);
+  // };
 
   return (
     <div
       className=" flex flex-col items-center uppercase text-center cursor-pointer"
-      onClick={goToProduct}
+      // onClick={goToProduct}
     >
       <div
         className="relative w-full overflow-hidden"
@@ -24,7 +26,6 @@ const ProductCard = memo(({ isMobile, product, closeSearch }) => {
       >
         <img
           src={isHovered ? product.img2 : product.img1}
-          
           className="w-full h-auto object-cover opacity-100 transition-opacity duration-500"
           alt={product.name}
         />
@@ -60,5 +61,5 @@ const ProductCard = memo(({ isMobile, product, closeSearch }) => {
       </div>
     </div>
   );
-});
-export default ProductCard;
+};
+export default memo(ProductCard);
