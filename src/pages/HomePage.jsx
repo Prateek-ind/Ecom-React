@@ -1,22 +1,16 @@
 import HeroCarousel from "@/shared/components/HeroSection/HeroCarousel";
 import ExploreSection from "@/shared/components/ExploreSection/ExploreSection";
 import { partitionImg } from "@/features/product/Products";
-import { useEffect, useState } from "react";
 import Reviews from "@/shared/components/Reviews";
 import GetInTouch from "@/shared/components/GetInTouch";
+import useIsMobile from "../hooks/useIsMobile";
 
 
 const HomePage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isMobile = useIsMobile()
 
   const partitionImageSrc = partitionImg;
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener("resize", handleResize);
-  }, []);
 
   return (
     <main>
@@ -28,11 +22,7 @@ const HomePage = () => {
         type='makhana'
         category="singles"
         noOfItems={6}
-        partitionImageSrc={
-          isMobile
-            ? partitionImageSrc.mobile.img1
-            : partitionImageSrc.desktop.img1
-        }
+        partitionImageSrc={ partitionImageSrc.section1}
       />
       <ExploreSection
         isMobile={isMobile}
@@ -41,11 +31,7 @@ const HomePage = () => {
         type='makhana'
         category="combo"
         noOfItems={3}
-        partitionImageSrc={
-          isMobile
-            ? partitionImageSrc.mobile.img2
-            : partitionImageSrc.desktop.img2
-        }
+        partitionImageSrc={ partitionImageSrc.section2}
       />
       <ExploreSection
         isMobile={isMobile}
