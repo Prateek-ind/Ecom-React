@@ -447,7 +447,7 @@ Made with 100% natural ingredients, gluten-free, high in protein, and rich in fi
       3: `Reduces Stress & Anxiety – Tulsi adaptogens regulate cortisol and promote calm balance.`,
       4: `Balances Blood Sugar & Cholesterol – Green tea catechins aid healthy metabolism.`,
       5: `Soothes Respiratory System – Tulsi and mulethi help relieve throat irritation and congestion.`,
-      5: `Promotes Calm Alertness – L-theanine and mild caffeine enhance focus without jitters.`,
+      6: `Promotes Calm Alertness – L-theanine and mild caffeine enhance focus without jitters.`,
     },
     brewingInstruction: {
       1: "Don’t boil your tea blend — just add boiling water.",
@@ -933,27 +933,21 @@ Made with 100% natural ingredients, gluten-free, high in protein, and rich in fi
 ];
 
 export const heroSectionImg = {
-  desktop: {
-    img1: heroSectionImg1,
-    img2: heroSectionImg2,
-    img3: heroSectionImg3,
-  },
-  mobile: {
-    img1: heroSectionImg1_2,
-    img2: heroSectionImg2_2,
-    img3: heroSectionImg3_2,
-  },
+  desktop: [heroSectionImg1, heroSectionImg2, heroSectionImg3],
+  mobile: [heroSectionImg1_2, heroSectionImg2_2, heroSectionImg3_2],
 };
 
 export const partitionImg = {
-  desktop: {
-    img1: partitionImg1,
-    img2: partitionImg2,
-    img3: partitionImg3,
+  section1: {
+    desktop: { img1: partitionImg1 },
+    mobile: { img1: partitionImg1Mobile },
   },
-  mobile: {
-    img1: partitionImg1Mobile,
-    img2: partitionImg2Mobile,
-    img3: partitionImg3Mobile,
+  section2: {
+    desktop: { img1: partitionImg2 },
+    mobile: { img1: partitionImg2Mobile },
+  },
+  section3: {
+    desktop: { img1: partitionImg3 },
+    mobile: { img1: partitionImg3Mobile },
   },
 };
