@@ -2,58 +2,54 @@ import { useEffect, useMemo, useState } from "react";
 import HeroCarouselButtons from "./HeroCarouselButtons";
 import HeroShopButton from "./HeroShopButton";
 import { heroSectionImg } from "@/features/product/Products";
+import useIsMobile from "../../../hooks/useIsMobile";
 
-const HeroCarousel = ({ isMobile }) => {
+const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const isMobile = useIsMobile()
 
 
   const imgSource = useMemo(() => {
     return isMobile
-      ? Object.values(heroSectionImg.mobile)
-      : Object.values(heroSectionImg.desktop);
+      ? heroSectionImg.mobile
+      : heroSectionImg.desktop
   }, [isMobile]);
 
   useEffect(() => {
-   const imgIntervalId = setInterval(() => {
-      setCurrentIndex((prev) => {
-        return (prev + 1) % imgSource.length;
-      });
-      setLoading(true);
+    imgSource.forEach((src)=>{
+      const img = new Image()
+      img.src = src
+    })
+  }, [imgSource])
+  console.log(imgSource);
+  
+
+  useEffect(() => {
+   const id = setInterval(() => {
+      setCurrentIndex((prev) => ( (prev + 1) % imgSource.length));
     }, 4000);
 
     return () => {
-      clearInterval(imgIntervalId);
+      clearInterval(id);
     };
-  }, [imgSource.length]);
+  }, [imgSource]);
 
-  const handleImageLoad = () => {
-   requestAnimationFrame(()=>setLoading(false))
-  };
+  
 
   return (
-    <div className="relative pt-20 flex items-center justify-center bg-gray-100 overflow-hidden">
-      <div className="absolute bottom-6 right-10 flex gap-4 z-10">
-        {imgSource.map((img, i) => (
-          <HeroCarouselButtons
-            className="relative w-2 h-2"
-            index={i}
-            key={i}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-          />
-        ))}
-      </div>
-
-      <img
-        key={currentIndex}
-        src={imgSource[currentIndex]}
-        onLoad={handleImageLoad}
-        className={`w-full h-full object-cover transition-all duration-2000 ease-in-out ${
-          loading ? "opacity-0 scale-110" : "opacity-100 scale-100"
+    <div className="relative h-[800px] pt-20 bg-gray-100 overflow-hidden">
+      
+        {imgSource.map((src, i) => {
+          console.log(src);
+         return <img
+        key={i}
+        src={src}
+        className={`absolute w-full h-full object-cover transition-all duration-700 ease-in-out ${
+          i===currentIndex ? "opacity-100 scale-100" : "opacity-0 scale-110"
         }`}
         alt=""
       />
+        })}
       {currentIndex !== 2 && (
         <HeroShopButton currentIndex={currentIndex} isMobile={isMobile} />
       )}
