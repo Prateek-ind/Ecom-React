@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const ComboDrawer = ({ setHamMenuOpen }) => {
@@ -8,7 +8,7 @@ const ComboDrawer = ({ setHamMenuOpen }) => {
         <li className="py-1">
           {" "}
           <Link
-            to={"/view-All/makhana/combo"}
+            to="/view-All/makhana/combo"
             onClick={() => setHamMenuOpen(false)}
             className="px-4 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
           >
