@@ -41,7 +41,7 @@ const Navbar = () => {
 
           <ul className="hidden xl:flex items-center gap-12 flex-wrap text-[#729b4a] text-sm font-normal font-customFont tracking-widest uppercase">
             <li>
-              <Link className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
+              <Link to={'/'} className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]">
                 Home
               </Link>
             </li>
@@ -75,7 +75,7 @@ const Navbar = () => {
 
             <li>
               <Link
-                to="bulk-order-inquiry"
+                to="/bulk-order-inquiry"
                 className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
               >
                 Bulk order Enquiry
@@ -83,7 +83,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to={"contact-us"}
+                to={"/contact-us"}
                 className="px-2 py-12 border-b-4 border-transparent hover:border-[#729b4a]"
               >
                 Contact Us
