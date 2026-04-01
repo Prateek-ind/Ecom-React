@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 
 const BulkOrderInquiryForm = () => {
   const { submitInquiry } = useBulkOrderInquiry();
-  const userEmail = useSelector((state) => state.user.email);
-  const userId = useSelector((state) => state.user.userId);
+  const userEmail = useSelector((state) => state.auth.email);
+  const userId = useSelector((state) => state.auth.userId);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
