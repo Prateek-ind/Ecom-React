@@ -20,7 +20,7 @@ const HeroShopButton = ({ label, currentIndex, isMobile }) => {
     },
   };
 
-  if (currentIndex === 1) {
+  if (currentIndex !==0) {
     return (
       <button
         className={
