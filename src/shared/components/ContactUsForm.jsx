@@ -5,7 +5,7 @@ import { useContactUs } from "../../hooks/useContactUs";
 
 const ContactUsForm = () => {
   const { contactUsFormSubmit } = useContactUs();
-  const userId = useSelector((state) => state.user.userId);
+  const userId = useSelector((state) => state.auth.userId);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
