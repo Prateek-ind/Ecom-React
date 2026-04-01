@@ -20,11 +20,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/queryClient";
 import RootErrorPage from "./shared/components/RootErrorPage";
 
-const App = () => {
-  useAuthInitial();
-  useLocalStorage();
-
-  const router = createBrowserRouter([
+ const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
@@ -80,6 +76,12 @@ const App = () => {
       ],
     },
   ]);
+  
+const App = () => {
+  useAuthInitial();
+  useLocalStorage();
+
+ 
 
   return (
     <QueryClientProvider client={queryClient}>

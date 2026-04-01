@@ -1,7 +1,11 @@
 
 import { Link } from "react-router-dom";
 
-const ComboDrawer = ({ setHamMenuOpen }) => {
+const ComboDrawer = ({ setHamMenuOpen=()=>{} }) => {
+
+  const handleHamMenuOpen = ()=>{
+    setHamMenuOpen(false)
+  }
   return (
     <div className="xl:py-0 py-4">
       <ul className="xl:block flex flex-col gap-4">
@@ -9,7 +13,7 @@ const ComboDrawer = ({ setHamMenuOpen }) => {
           {" "}
           <Link
             to="/view-All/makhana/combo"
-            onClick={() => setHamMenuOpen(false)}
+            onClick={handleHamMenuOpen}
             className="px-4 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
           >
             Makhana Combo
@@ -18,7 +22,7 @@ const ComboDrawer = ({ setHamMenuOpen }) => {
         <li className="py-1">
           <Link
             to={"/view-All/tea/combo"}
-            onClick={() => setHamMenuOpen(false)}
+            onClick={handleHamMenuOpen}
             className="px-4 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
           >
             Tea Combo
