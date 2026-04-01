@@ -2,11 +2,15 @@ import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
+const ShopByCategoryDrawer = ({ setHamMenuOpen = ()=>{} }) => {
   const [hoverCombo, setHoverCombo] = useState(false);
   const handleHoverCombo = () => {
-    
+    setHoverCombo(!hoverCombo)
   };
+
+  const handleHamMenuOpen = ()=>{
+    setHamMenuOpen(false)
+  }
   return (
     <div className="xl:py-0 py-4">
       <ul className="xl:block flex flex-col gap-2 tracking-widest">
@@ -14,7 +18,7 @@ const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
           <Link
             to="/view-All/makhana/singles"
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
-            onClick={() => setHamMenuOpen(false)}
+            onClick={handleHamMenuOpen}
           >
             Makhana
           </Link>
@@ -23,7 +27,7 @@ const ShopByCategoryDrawer = ({ setHamMenuOpen }) => {
           <Link
             to="/view-All/tea/singles"
             className="px-4 py-2 text-[#729b4a] hover:text-[#729b4a7a] uppercase"
-            onClick={() => setHamMenuOpen(false)}
+            onClick={handleHamMenuOpen}
           >
             Tea
           </Link>
