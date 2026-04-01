@@ -28,14 +28,21 @@ const App = () => {
     {
       path: "/",
       element: <RootLayout />,
-      errorElement: <RootErrorPage/>,
+      errorElement: <RootErrorPage />,
       children: [
         { index: true, element: <HomePage /> },
         { path: "products/:id", element: <ProductDetails /> },
         { path: "view-All/:type/:category", element: <ViewAllProducts /> },
         { path: "cart", element: <Cart /> },
         { path: "cart/checkout", element: <Checkout /> },
-        { path: "/bulk-order-inquiry", element: <BulkOrderInquiry /> },
+        {
+          path: "/bulk-order-inquiry",
+          element: (
+            <ProtectedRoute>
+              <BulkOrderInquiry />
+            </ProtectedRoute>
+          ),
+        },
         { path: "/contact-us", element: <ContactUs /> },
         {
           path: "profile",
