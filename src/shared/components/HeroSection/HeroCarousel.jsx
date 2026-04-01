@@ -37,7 +37,7 @@ const HeroCarousel = () => {
   
 
   return (
-    <div className="relative h-[800px] pt-20 bg-gray-100 overflow-hidden">
+    <div className="relative h-[90vh] pt-20 bg-gray-100 overflow-hidden">
       
         {imgSource.map((src, i) => {
           console.log(src);
@@ -50,9 +50,10 @@ const HeroCarousel = () => {
         alt=""
       />
         })}
-      {currentIndex !== 2 && (
+      {/* {currentIndex !== 2 && (
         <HeroShopButton currentIndex={currentIndex} isMobile={isMobile} />
-      )}
+      )} */}
+      <HeroShopButton currentIndex={currentIndex} isMobile={isMobile} />
     </div>
   );
 };
