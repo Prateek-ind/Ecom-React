@@ -1,12 +1,12 @@
 import StarRating from "./StarRating";
-import {  memo, useState } from "react";
+import { memo, useState } from "react";
 import AddToCartBtn from "@/features/cart/components/AddToCartBtn";
 import useIsMobile from "../../../hooks/useIsMobile";
 // import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({  product, closeSearch }) => {
+const ProductCard = ({ product, closeSearch }) => {
   const [isHovered, setIsHovered] = useState();
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   // const navigate = useNavigate();
 
   // const goToProduct = () => {
@@ -25,9 +25,27 @@ const ProductCard = ({  product, closeSearch }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={isHovered ? product.img2 : product.img1}
-          className="w-full h-auto object-cover opacity-100 transition-opacity duration-500"
+          src={product.img1}
+          width={512}
+          height={512}
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+          className="w-[32rem] h-[32rem] object-cover transition-opacity duration-500"
+          style={{ opacity: isHovered ? 0 : 1 }}
           alt={product.name}
+        />
+        {/* Hover Image */}
+        <img
+          src={product.img2}
+          width={512}
+          height={512}
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+          className="absolute inset-0 w-[32rem] h-[32rem] object-cover transition-opacity duration-500"
+          style={{ opacity: isHovered ? 1 : 0 }}
+          alt=""
         />
         {isHovered || isMobile ? (
           <AddToCartBtn

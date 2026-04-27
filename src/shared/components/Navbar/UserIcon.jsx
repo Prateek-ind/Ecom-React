@@ -1,21 +1,18 @@
+import { AiOutlineUser } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
-import { AiOutlineUser } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+const UserIcon = ({ navigateToLogin }) => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-const UserIcon = ({navigateToLogin}) => {
-     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  
-  return (
-    isLoggedIn ? (
-                  <AiOutlineUser  size={28} className="cursor-pointer" />
-                ) : (
-                  <AiOutlineUser
-                    onClick={navigateToLogin}
-                    size={28}
-                    className="cursor-pointer"
-                  />
-                )
-  )
-}
+  return isLoggedIn ? (
+    <AiOutlineUser size={28} className="cursor-pointer" />
+  ) : (
+    <AiOutlineUser
+      onClick={navigateToLogin}
+      size={28}
+      className="cursor-pointer"
+    />
+  );
+};
 
-export default UserIcon
+export default UserIcon;
