@@ -36,7 +36,7 @@ const AddToCartBtn = ({ product, closeSearch }) => {
 
   return (
     <div
-      className="absolute flex items-center justify-center bottom-4 right-4
+      className="absolute flex items-center justify-center bottom-6 right-12 md:bottom-6 md:right-6
       w-10 h-10 bg-gray-100 border border-gray-400 cursor-pointer"
     >
       <button
