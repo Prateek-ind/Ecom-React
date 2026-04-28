@@ -2,9 +2,7 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import HomePage from "./pages/HomePage";
-const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const Cart = lazy(() => import("./pages/Cart"));
-const Checkout = lazy(() => import("./pages/Checkout"));
+
 import ViewAllProducts from "./pages/ViewAllProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import BulkOrderInquiry from "./pages/BulkOrderInquiry";
@@ -21,9 +19,12 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/queryClient";
 import RootErrorPage from "./shared/components/RootErrorPage";
 import ProductDetailsSkeleton from "./shared/components/ProductDetailsSkeleton";
-import CartSkeleton from "./features/cart/components/cartSkeleton";
+import CartSkeleton from "./features/cart/components/CartSkeleton";
 import CheckoutSkeleton from "./shared/components/CheckoutSkeleton";
 import ViewAllProductsSkeleton from "./features/product/components/ViewAllProductsSkeleton";
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout"));
 
 const router = createBrowserRouter([
   {
