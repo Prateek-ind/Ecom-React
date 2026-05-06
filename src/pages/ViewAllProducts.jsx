@@ -25,7 +25,7 @@ const ViewAllProducts = () => {
     >
       <div className=" w-full text-center uppercase mt-28">
         <div className="w-full relative py-12 ">
-          <p className="pl-4 absolute top-2 left-0 text-xs text-gray-500 font-thin">
+          <p className="pl-4 absolute top-6 left-0 text-xs text-gray-500 font-thin">
             Home / Shop / {getTitle()}
           </p>
           <h2 className="text-3xl text-gray-700 font-extralight tracking-widest">
