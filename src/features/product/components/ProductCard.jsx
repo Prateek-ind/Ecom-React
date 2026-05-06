@@ -26,24 +26,24 @@ const ProductCard = ({ product, closeSearch }) => {
       >
         <img
           src={product.img1}
-          width={512}
-          height={512}
+          width={256}
+          height={256}
           fetchpriority="high"
           loading="eager"
           decoding="async"
-          className="w-[32rem] h-[32rem] object-cover transition-opacity duration-500"
+          className="w-auto h-auto object-cover transition-opacity duration-500"
           style={{ opacity: isHovered ? 0 : 1 }}
           alt={product.name}
         />
         {/* Hover Image */}
         <img
           src={product.img2}
-          width={512}
-          height={512}
+          width={256}
+          height={256}
           loading="lazy"
           decoding="async"
           aria-hidden="true"
-          className="absolute inset-0 w-[32rem] h-[32rem] object-cover transition-opacity duration-500"
+          className="absolute inset-0 w-auto h-auto object-cover transition-opacity duration-500"
           style={{ opacity: isHovered ? 1 : 0 }}
           alt=""
         />
